@@ -257,12 +257,22 @@
 @media (max-width: 47.99em) and (max-height: 43.75em) {
   .hl--island { right: auto; left: calc(50% - min(38vw, 9rem)); width: min(76vw, 18rem); bottom: -2.5svh; }
   .s-hero--scene .s-hero__inner { padding-top: calc(var(--header-h) + 0.75rem); gap: var(--space-md); }
-  .s-hero--scene .s-hero__stat { scale: 0.72; transform-origin: right bottom; }
+  .s-hero--scene .s-hero__stat { scale: 0.66; }
+  .hl--island { left: calc(50% - min(47vw, 11rem)); width: min(94vw, 22rem); bottom: -5svh; }
   .hl--leaf-bl { width: 26vw; bottom: -6%; }
   .hl--leaf-tr { width: 30vw; top: -6%; }
 }
 
 /* Celulares de alto intermedio (700–800 px, p. ej. Android 411×776): isla centrada bajo el botón */
 @media (max-width: 47.99em) and (min-height: 43.76em) and (max-height: 50em) {
-  .hl--island { right: auto; left: calc(50% - min(46vw, 12rem)); width: min(92vw, 24rem); }
+  .hl--island { right: auto; left: calc(50% - min(54vw, 14rem)); width: min(108vw, 28rem); bottom: -7svh; }
 }
+
+/* Mobile: tarjeta 100 % más chica y más abajo; descripción un poco más compacta → más espacio para la isla */
+@media (max-width: 47.99em) {
+  .s-hero--scene .s-hero__stat { scale: 0.8; transform-origin: right bottom; position: relative; top: 1.25rem; }
+  .s-hero__lead { line-height: 1.5; }
+}
+
+/* Mobile: skyline más tenue y corrido a la izquierda */
+@media (max-width: 47.99em) { .hl--skyline { left: -28%; opacity: 0.42; } }
