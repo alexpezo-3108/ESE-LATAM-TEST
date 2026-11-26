@@ -43,7 +43,13 @@
   };
 
   document.addEventListener('click', (e) => { if (e.target.closest('[data-cookie-settings]')) { e.preventDefault(); show(); } });
-  if (!get()) show(1400);
+  if (!get()) {
+    // nunca durante el preloader: 4 s desde la carga, y al menos 1,5 s después de que termine la intro
+    const t0 = performance.now();
+    const go = () => show(Math.max(1500, 4000 - (performance.now() - t0)));
+    if (document.documentElement.classList.contains('is-intro') && !window.__preEnd) addEventListener('preloader:end', go, { once: true });
+    else show(4000);
+  }
 
   // Solo demo: botón para volver a ver el aviso. Poner DEMO = false en producción.
   const DEMO = true;

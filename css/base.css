@@ -87,6 +87,7 @@ html.lenis, html.lenis body { height: auto; }
   transform: translate3d(0, var(--reveal-distance), 0);
 }
 .js-motion [data-reveal="scale"]:not(.is-revealed) { transform: scale(0.94); }
+.js-motion [data-reveal-fade]:not(.is-revealed):not(.is-revealing) { opacity: 0; }
 .js-motion [data-reveal="rise"]:not(.is-revealed) { transform: translate3d(0, 100%, 0); }
 .js-motion [data-reveal="mask"]:not(.is-revealed):not(.is-split) { clip-path: inset(100% 0 0 0); }
 .js-motion [data-reveal="mask-x"]:not(.is-revealed) { clip-path: inset(0 100% 0 0); }

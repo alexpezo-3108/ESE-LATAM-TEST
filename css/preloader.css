@@ -55,3 +55,6 @@ html.is-intro { scrollbar-gutter: stable; }
   .preloader.is-out { opacity: 0; }
   .preloader__countries { display: none; }
 }
+
+/* Aviso de cookies y su botón: nunca durante la intro */
+.is-intro .cookie-note, .is-intro .cookie-fab, .is-intro [class*="cookie"] { visibility: hidden !important; }

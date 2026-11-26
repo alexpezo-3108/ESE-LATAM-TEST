@@ -86,4 +86,35 @@
     }).observe(hero);
   }
   kick();
+
+  /* Contador de la tarjeta «100 %»: sube rápido (0 → 100 en ~0,9 s) justo cuando la tarjeta entra */
+  const num = hero.querySelector('[data-hero-count]');
+  const card = num && num.closest('[data-reveal]');
+  if (num && card) {
+    const to = parseFloat(num.dataset.heroCount) || 0;
+    const set = (v) => { num.textContent = Math.round(v) + '%'; };
+    if (reduce.matches) set(to);
+    else {
+      let started = false;
+      const run = () => {
+        if (started) return; started = true;
+        const t0 = performance.now() + 150, D = 900;
+        const step = (now) => {
+          const k = Math.min(1, Math.max(0, (now - t0) / D));
+          set(to * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      const on = () => card.classList.contains('is-revealing') || card.classList.contains('is-revealed');
+      if (on()) run();
+      else {
+        const mo = new MutationObserver(() => { if (on()) { mo.disconnect(); run(); } });
+        mo.observe(card, { attributes: true, attributeFilter: ['class'] });
+      }
+      // red de seguridad: si la tarjeta nunca se revela, igual cuenta (nunca se queda en 0 %)
+      const late = () => setTimeout(run, 3000);
+      if (document.documentElement.classList.contains('is-intro') && !window.__preEnd) addEventListener('preloader:end', late, { once: true }); else late();
+    }
+  }
 })();

@@ -945,7 +945,7 @@
 .section-intro {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;   /* texto + CTA apoyados en el piso del título */
   justify-content: space-between;
   gap: var(--space-xl) var(--space-2xl);
 }

@@ -114,10 +114,13 @@ function reveal(el, extraDelay = 0) {
       { transform: ['scale(0.94)', 'scale(1)'] },
       { duration: 0.8, ease: EASE_OUT, delay }));
   } else {
-    anims.push(animate(el,
-      { transform: [`translate3d(0,${distance()},0)`, 'translate3d(0,0,0)'] },
-      { duration: 0.8, ease: EASE_OUT, delay }));
+    // data-reveal-fade: además entra con fade (no se ve antes de su animación)
+    const kf = { transform: [`translate3d(0,${distance()},0)`, 'translate3d(0,0,0)'] };
+    if (el.hasAttribute('data-reveal-fade')) kf.opacity = [0, 1];
+    anims.push(animate(el, kf, { duration: 0.8, ease: EASE_OUT, delay }));
   }
+  // marca el inicio real de la animación (tras su delay) → p. ej. para arrancar contadores
+  setTimeout(() => el.classList.add('is-revealing'), delay * 1000);
 
   Promise.all(anims).then(() => done(el));
 }
