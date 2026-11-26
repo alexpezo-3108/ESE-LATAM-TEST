@@ -35,7 +35,7 @@
   const sceneSize = () => ({ w: scene.offsetWidth || innerWidth, h: scene.offsetHeight || innerHeight });
   const gridBox = () => {
     const W = innerWidth, H = innerHeight, { w: sw, h: sh } = sceneSize(), ar = sw / sh;
-    const top = mobile ? 5.5 * 16 : 6 * 16, bottom = H - (mobile ? 13 : 11) * 16;
+    const top = mobile ? 5.5 * 16 : 6 * 16, bottom = H - (mobile ? 15 : 11) * 16;
     const w = Math.min(mobile ? W - 48 : W * 0.5, (bottom - top) * ar), h = w / ar;
     return { x: (W - w) / 2, y: top + (bottom - top - h) / 2, w, h };
   };
