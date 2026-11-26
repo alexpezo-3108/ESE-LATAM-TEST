@@ -506,7 +506,7 @@ html.is-modal-open { overflow: hidden; }
   .s-pd__info > .pd-head { order: 1; margin-bottom: var(--space-lg); }
 }
 @media (max-width: 47.99em) {
-  .pd-title__l2 { white-space: normal; text-wrap: balance; }
+  .pd-title__l1, .pd-title__l2 { width: auto; max-width: 100%; white-space: normal; text-wrap: balance; overflow-wrap: break-word; }
 }
 
 /* Ajustes buy box: cabe en 100svh, Cotizar alineado con certificaciones, botones iguales */
@@ -614,7 +614,7 @@ html.is-modal-open { overflow: hidden; }
 .pd-spec { background: rgb(255 255 255 / 0.09); border-color: rgb(255 255 255 / 0.15); }
 /* Continuidad decorativa: anillos suaves que bajan hacia características */
 .s-pd-specs { position: relative; }
-.s-pd-specs::before { content: ""; position: absolute; left: 70%; top: 0; z-index: -1; width: min(150vw, 80rem); aspect-ratio: 1; translate: -50% -55%; border-radius: 50%; background: repeating-radial-gradient(circle, transparent 0 calc(16.66% - 1px), rgb(255 255 255 / 0.05) calc(16.66% - 1px) 16.66%); -webkit-mask: radial-gradient(circle, #000 20%, transparent 70%); mask: radial-gradient(circle, #000 20%, transparent 70%); pointer-events: none; }
+.s-pd-specs::before { content: none; }
 /* Halo blanco detrás del producto: se despega aunque su color se parezca al fondo */
 .pd-stage::before { background: radial-gradient(closest-side, var(--theme-glow), rgb(255 255 255 / 0.05) 55%, transparent); }
 .pd-glow { background: radial-gradient(closest-side, rgb(255 255 255 / 0.16), transparent); }
@@ -670,4 +670,21 @@ html.is-modal-open { overflow: hidden; }
 @media (max-width: 47.99em) {
   .s-pd__inner { padding-top: calc(var(--header-h) - 0.25rem); gap: var(--space-sm); }
   .s-pd__info > .pd-head { margin-bottom: var(--space-sm); }
+}
+
+/* Mobile: el título nunca se sale por la derecha (va al final para ganar a width: max-content) */
+@media (max-width: 47.99em) {
+  .pd-title, .pd-title * { max-width: 100%; }
+  .pd-title__l1, .pd-title__l2 { width: auto; white-space: normal; text-wrap: balance; overflow-wrap: break-word; }
+}
+
+/* Mobile: título de corrido ("Contenedor 2 ruedas SL" fluye en el mismo renglón) */
+@media (max-width: 47.99em) {
+  .pd-title .pd-title__l1, .pd-title .pd-title__l2 { display: inline !important; }
+}
+/* Mobile: Color primero (justo bajo las certificaciones) para ver el cambio sin subir y bajar */
+@media (max-width: 63.99em) {
+  .pd-options { display: flex; flex-direction: column; }
+  .pd-options > .pd-opt--color { order: -1; margin-top: 0; padding-top: 0; border-top: 0; }
+  .pd-options > .pd-opt:first-child { margin-top: clamp(var(--space-md), 3svh, var(--space-xl)); padding-top: clamp(var(--space-md), 3svh, var(--space-xl)); border-top: 1px solid rgb(255 255 255 / 0.16); }
 }

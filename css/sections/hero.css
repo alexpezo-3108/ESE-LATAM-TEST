@@ -255,7 +255,7 @@
 /* Celulares bajos (≤700 px de alto, p. ej. iPhone SE): isla más chica y centrada bajo el botón,
    texto más arriba, tarjeta 100 % y hojas más chicas */
 @media (max-width: 47.99em) and (max-height: 43.75em) {
-  .hl--island { right: auto; left: calc(50% - min(42.5vw, 10rem)); width: min(85vw, 20rem); bottom: -2.5svh; }
+  .hl--island { right: auto; left: calc(50% - min(38vw, 9rem)); width: min(76vw, 18rem); bottom: -2.5svh; }
   .s-hero--scene .s-hero__inner { padding-top: calc(var(--header-h) + 0.75rem); gap: var(--space-md); }
   .s-hero--scene .s-hero__stat { scale: 0.72; transform-origin: right bottom; }
   .hl--leaf-bl { width: 26vw; bottom: -6%; }
