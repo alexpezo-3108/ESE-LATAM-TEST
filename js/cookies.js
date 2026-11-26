@@ -52,7 +52,7 @@
   }
 
   // Solo demo: botón para volver a ver el aviso. Poner DEMO = false en producción.
-  const DEMO = true;
+  const DEMO = false;
   if (DEMO) {
     const b = document.createElement('button');
     b.type = 'button';

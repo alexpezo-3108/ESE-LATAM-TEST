@@ -251,3 +251,13 @@
 
 /* Color de cada ave según lo que tiene detrás: cielo → azul atmosférico; isla/edificios → oscuro */
 .s-hero__flock g[data-bird] path { fill: var(--bc, #4F75A3); transition: fill 0.45s ease; }
+
+/* Celulares bajos (≤700 px de alto, p. ej. iPhone SE): isla más chica y centrada bajo el botón,
+   texto más arriba, tarjeta 100 % y hojas más chicas */
+@media (max-width: 47.99em) and (max-height: 43.75em) {
+  .hl--island { right: auto; left: calc(50% - min(42.5vw, 10rem)); width: min(85vw, 20rem); bottom: -2.5svh; }
+  .s-hero--scene .s-hero__inner { padding-top: calc(var(--header-h) + 0.75rem); gap: var(--space-md); }
+  .s-hero--scene .s-hero__stat { scale: 0.72; transform-origin: right bottom; }
+  .hl--leaf-bl { width: 26vw; bottom: -6%; }
+  .hl--leaf-tr { width: 30vw; top: -6%; }
+}

@@ -58,3 +58,8 @@ html.is-intro { scrollbar-gutter: stable; }
 
 /* Aviso de cookies y su botón: nunca durante la intro */
 .is-intro .cookie-note, .is-intro .cookie-fab, .is-intro [class*="cookie"] { visibility: hidden !important; }
+
+/* Volver al Home en la misma sesión (sin preloader): hero, textos y navbar ya visibles, sin entrada */
+.is-return .s-hero--scene *, .is-return .s-hero--scene *::before, .is-return .s-hero--scene *::after,
+.is-return .s-hero--scene::before, .is-return .s-hero--scene::after { transition-duration: 0s !important; transition-delay: 0s !important; }
+.is-return .s-hero--scene [data-reveal], .is-return .s-hero--scene [data-reveal] .line__inner { opacity: 1 !important; visibility: visible !important; clip-path: none !important; transform: none !important; }

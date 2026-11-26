@@ -659,3 +659,15 @@ html.is-modal-open { overflow: hidden; }
 .pd-specs.is-lit .pd-spec:nth-child(5) { animation-delay: 0.72s; }
 .pd-specs.is-lit .pd-spec:nth-child(6) { animation-delay: 0.9s; }
 @media (prefers-reduced-motion: reduce) { .pd-specs.is-lit .pd-spec { animation: none; } }
+
+/* Mobile: producto un poco más chico y descripción a 14 px */
+@media (max-width: 47.99em) {
+  .pd-stage { --stage: min(22rem, 78vw); width: min(100%, 20rem); }
+  .pd-lead { font-size: var(--fs-caption-sm, 0.875rem); }
+}
+
+/* Mobile: título más arriba para que el producto quede más centrado en la primera vista */
+@media (max-width: 47.99em) {
+  .s-pd__inner { padding-top: calc(var(--header-h) - 0.25rem); gap: var(--space-sm); }
+  .s-pd__info > .pd-head { margin-bottom: var(--space-sm); }
+}

@@ -30,7 +30,7 @@
   <script>
     (function (d) {
       var seen = false; try { seen = sessionStorage.getItem('ese-intro') === '1'; } catch (e) {}
-      if (!seen) d.classList.add('is-intro');
+      if (!seen) d.classList.add('is-intro'); else d.classList.add('is-return');
     })(document.documentElement);
   </script>
   <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->

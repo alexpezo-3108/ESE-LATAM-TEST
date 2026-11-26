@@ -158,8 +158,16 @@
   });
 
   header.querySelectorAll('.nav a').forEach((a) => {
-    a.addEventListener('click', () => { if (!desktop.matches) setNav(false); });
+    // Si el link lleva a otra página, el menú NO se cierra: la transición de página lo funde entero.
+    // (Cerrarlo dejaba congelada su animación de salida en la captura de la transición → "lagazo")
+    a.addEventListener('click', () => {
+      if (desktop.matches) return;
+      const toOtherPage = a.target !== '_blank' && (a.pathname !== location.pathname || !a.hash);
+      if (!toOtherPage) setNav(false);
+    });
   });
+  // Volver con "atrás" (bfcache): la página regresa con el menú cerrado
+  addEventListener('pageshow', (e) => { if (e.persisted && isOpen('is-nav-open')) setNav(false); });
 
   /* ---------- Búsqueda ---------- */
   const search = header.querySelector('.search');

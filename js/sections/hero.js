@@ -35,6 +35,12 @@
     setTimeout(() => hero.classList.add('is-falls'), 1200);   // la cascada arranca cuando la isla se asentó
     setTimeout(() => hero.classList.add('is-loops'), 2200);   // loops ambientales tras la entrada
   };
+  // Volver al Home en la misma sesión: todo ya está en su lugar, como cualquier interna
+  if (document.documentElement.classList.contains('is-return')) {
+    hero.classList.add('is-entered', 'is-falls', 'is-loops'); started = true;
+    const drop = () => setTimeout(() => document.documentElement.classList.remove('is-return'), 1000);
+    if (document.readyState === 'complete') drop(); else addEventListener('load', drop, { once: true });
+  }
   const boot = () => { if (island && island.decode) island.decode().then(start, start); else start(); setTimeout(start, 900); };
   if (document.documentElement.classList.contains('is-intro') && !window.__preDone) addEventListener('preloader:done', boot, { once: true }); else boot();
   const float = () => { if (!reduce.matches) hero.classList.add('is-floating'); };
@@ -93,7 +99,7 @@
   if (num && card) {
     const to = parseFloat(num.dataset.heroCount) || 0;
     const set = (v) => { num.textContent = Math.round(v) + '%'; };
-    if (reduce.matches) set(to);
+    if (reduce.matches || document.documentElement.classList.contains('is-return')) set(to);
     else {
       let started = false;
       const run = () => {

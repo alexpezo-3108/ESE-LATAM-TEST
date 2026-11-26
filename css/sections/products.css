@@ -70,7 +70,7 @@
 .s-products__stage {
   position: relative;
   margin: var(--space-xl) calc(var(--space-gutter) * -1) 0;
-  padding-top: calc(var(--pcard-w) * 0.43 + var(--space-md));
+  padding-top: calc(var(--pcard-w) * 0.3 + var(--space-md));
 }
 
 .s-products__track {
@@ -106,7 +106,7 @@
 .s-products__arrow {
   position: absolute;
   z-index: 20;
-  top: calc(var(--pcard-w) * 1.05 + var(--space-md) - 2rem);
+  top: calc(var(--pcard-w) * 0.92 + var(--space-md) - 2rem);
 }
 .s-products__arrow--prev { left: clamp(1rem, 15.2vw, 13.6875rem); }
 .s-products__arrow--next { right: clamp(1rem, 15.2vw, 13.6875rem); }
@@ -122,7 +122,7 @@
   .s-products__head   { order: 1; }
   .s-products__select { order: 2; display: grid; margin-top: var(--space-xl); }
   .s-products__tabs   { display: none; }
-  .s-products__stage  { order: 3; margin-top: var(--space-lg); }
+  .s-products__stage  { order: 3; margin-top: var(--space-xs); }
   .s-products__dots   { order: 4; display: flex; margin-top: var(--space-lg); }
   .s-products__cta    { order: 5; width: 100%; margin-top: var(--space-xl); }
   .s-products__cta .btn { display: flex; width: 100%; }
@@ -132,7 +132,7 @@
   .s-products__track {
     display: flex;
     gap: var(--space-md); /* las cards vecinas asoman a los lados */
-    padding: calc(var(--pcard-w) * 0.43 + var(--space-md)) calc(50% - var(--pcard-w) / 2) var(--space-xs);
+    padding: calc(var(--pcard-w) * 0.3 + var(--space-xs)) calc(50% - var(--pcard-w) / 2) var(--space-xs);
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
@@ -150,7 +150,7 @@
 .s-products__compact {
   display: flex; justify-content: center; align-items: stretch;
   gap: var(--space-md);
-  margin: var(--space-xl) 0 0; padding: calc(var(--pcard-w) * 0.43 + var(--space-md)) 0 var(--space-xs);
+  margin: var(--space-xl) 0 0; padding: calc(var(--pcard-w) * 0.3 + var(--space-md)) 0 var(--space-xs);
   list-style: none;
 }
 .s-products__compact[hidden], .s-products__stage[hidden], .s-products__dots[hidden] { display: none; }

@@ -11,6 +11,8 @@ import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm';
 import { animate, scroll } from 'https://cdn.jsdelivr.net/npm/motion@11.18.2/+esm';
 
 const root = document.documentElement;
+// Vuelta al Home en la misma sesión: se captura al cargar (hero.js quita la clase luego del load)
+const returning = root.classList.contains('is-return');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const desktop = matchMedia('(min-width: 64em)');
 
@@ -192,6 +194,7 @@ function initReveals() {
   });
 
   document.querySelectorAll('[data-reveal]').forEach((el) => {
+    if (returning && el.closest('.s-hero')) { done(el); return; }   // ya en su lugar, sin entrada
     if (!staggered.has(el)) once(el, () => reveal(el));
   });
 }

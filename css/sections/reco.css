@@ -8,7 +8,12 @@
 }
 
 /* Sin "Catálogo completo" arriba en desktop; en mobile queda al final */
-@media (min-width: 64em) { .s-products--reco .s-products__controls { display: none; } }
+@media (min-width: 64em) {
+  .s-products--reco .s-products__controls { display: none; }
+  /* Sin pestañas entre el texto y el carrusel: el carrusel sube y el cierre de la sección es más corto */
+  .s-products--reco .s-products__stage { margin-top: var(--space-xs); }
+  .s-products--reco .s-products__inner { padding-bottom: clamp(3rem, 1rem + 5vw, 6rem); }
+}
 .s-products__canvas { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
 .s-products__rings {
   position: absolute;

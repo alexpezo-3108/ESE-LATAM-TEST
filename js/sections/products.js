@@ -115,11 +115,14 @@
       compact.innerHTML = ps.map((p) => `<li class="s-products__compact-item">${window.ProductCard ? window.ProductCard.html(p) : ''}</li>`).join('');
     };
 
+    const wide = matchMedia('(min-width: 64em)');
+    wide.addEventListener('change', () => { const c = category; category = null; setCategory(c, false); });
     const setCategory = (cat, animate = true) => {
       if (cat === category) return;
       category = cat;
       list = all.filter((s) => s.dataset.category === cat);
-      const isCompact = !!fillMap && list.length > 0 && list.length <= COMPACT_MAX;
+      // Solo desktop: en mobile siempre el mismo carrusel (el select nunca se mueve)
+      const isCompact = !!fillMap && wide.matches && list.length > 0 && list.length <= COMPACT_MAX;
       const wasCompact = root.classList.contains('is-compact');
       root.classList.toggle('is-compact', isCompact);
       if (isCompact) {

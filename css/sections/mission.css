@@ -114,3 +114,6 @@
 @media (prefers-reduced-motion: reduce) {
   .s-mv__layer { transition: none !important; }
 }
+
+/* Mobile/tablet: sin pie (certificados, sectores y botón) para que Misión/Visión entre en pantalla */
+@media (max-width: 63.99em) { .s-mv__foot { display: none; } }
