@@ -768,3 +768,19 @@ a.chip { text-decoration: none; }
   transition: opacity 0.42s cubic-bezier(0.45, 0, 0.7, 0.4);
 }
 .is-pill:not(.is-nav-open) .site-header__contact .btn__icon--boxed::after { opacity: 1; transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Mobile: abrir/cerrar menú o buscador con un único ritmo (sin saltos):
+   pill, logo, botones y panel se mueven juntos con la misma curva y duración */
+@media (max-width: 63.99em) {
+  .site-header { --menu-dur: 0.5s; --menu-ease: cubic-bezier(0.65, 0, 0.35, 1); }
+  .site-header .site-header__inner::before { filter: none !important; transition: opacity var(--menu-dur) var(--menu-ease), transform var(--menu-dur) var(--menu-ease) !important; }
+  .site-header .site-header__logo,
+  .site-header .site-header__end,
+  .site-header.is-nav-open .site-header__logo,
+  .site-header.is-nav-open .site-header__end,
+  .site-header.is-search-open .site-header__logo { transition: transform var(--menu-dur) var(--menu-ease) !important; }
+  .site-header, .site-header.is-pill { transition: color var(--menu-dur) var(--menu-ease), transform var(--dur-base) var(--ease-main); }
+  .site-header .icon-btn, .site-header .nav-toggle { transition: background-color var(--menu-dur) var(--menu-ease), color var(--menu-dur) var(--menu-ease), transform var(--dur-fast) var(--ease-out); }
+  .nav, .search { transition: clip-path var(--menu-dur) var(--menu-ease), visibility 0s linear var(--menu-dur) !important; }
+  .is-nav-open .nav, .is-search-open .search { transition: clip-path var(--menu-dur) var(--menu-ease), visibility 0s linear 0s !important; }
+}

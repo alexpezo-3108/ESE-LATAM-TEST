@@ -241,7 +241,7 @@
 @media (prefers-reduced-motion: reduce) { .btn--split { --split-dur: 0.01s; } }
 /* ==========================================================================
    Botón principal (.btn--split) — sistema único
-   · Tamaño:  .btn--sm · (base 48 px) · .btn--lg (58 px). En mobile, .btn--lg baja a base.
+   · Tamaño:  uno solo (58 px) en desktop; en mobile se escala entero al 86 % (--split-scale).
    · Fondo donde va:
        (base)            fondos oscuros o foto → label navy, flecha en bloque blanco
        .btn--split-tint  fondos blancos/claros → bloque de la flecha en navy-50
@@ -254,9 +254,12 @@
 .btn--split-wide { --split-min: 13rem; }
 .btn--split-wide .btn__label { min-width: var(--split-min); }
 .btn--split.btn--block .btn__label { flex: 1; }
-@media (max-width: 47.99em) {
-  .btn--split.btn--lg { --btn-h: var(--size-btn); --btn-px: var(--space-ml); --btn-fs: var(--fs-sm); }
-}
+/* Un solo tamaño en desktop (el grande), sin importar .btn--sm / .btn--lg */
+.btn.btn--split { --split-scale: 1; --btn-h: calc(var(--size-btn-lg) * var(--split-scale)); --btn-px: calc(1.75rem * var(--split-scale)); --btn-fs: calc(var(--fs-base) * var(--split-scale)); --btn-slant: calc(0.75rem * var(--split-scale)); --split-r: calc(var(--radius-8) * var(--split-scale)); }
+.btn.btn--split .btn__icon i, .btn.btn--split .btn__icon svg { font-size: calc(var(--size-icon-lg) * var(--split-scale)); }
+.btn.btn--split-wide { --split-min: calc(13rem * var(--split-scale)); }
+/* Mobile: el mismo botón escalado en proporción (alto, texto, padding, diagonal, flecha y radio) */
+@media (max-width: 47.99em) { .btn.btn--split { --split-scale: 0.86; } }
 /* Fondos blancos/claros: bloque de la flecha (y el hover del label) en navy-50 */
 .btn--split-tint { --split-icon-bg: var(--color-navy-50); --split-hover-bg: var(--color-navy-50); }
 

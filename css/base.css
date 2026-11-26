@@ -129,8 +129,14 @@ html.lenis, html.lenis body { height: auto; }
    -------------------------------------------------------------------------- */
 @view-transition { navigation: auto; }
 .site-header { view-transition-name: site-header; }
-::view-transition-group(site-header) { animation: none; }
-::view-transition-old(site-header), ::view-transition-new(site-header) { animation: none; }
+/* Navbar: si cambia de estado (pill azul ↔ barra transparente), se funde de uno a otro
+   mientras la caja se ajusta; nunca se ven dos barras a la vez */
+::view-transition-group(site-header) { animation-duration: 0.5s; animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+::view-transition-old(site-header) { animation: hdr-out 0.25s cubic-bezier(0.45, 0, 0.7, 0.4) both; }
+::view-transition-new(site-header) { animation: hdr-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+::view-transition-image-pair(site-header) { isolation: auto; }
+@keyframes hdr-out { to { opacity: 0; } }
+@keyframes hdr-in { from { opacity: 0; } }
 ::view-transition-old(root) { animation: page-out 0.32s cubic-bezier(0.45, 0, 0.7, 0.4) both; }
 ::view-transition-new(root) { animation: page-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
 @keyframes page-out { to { opacity: 0; transform: translateY(-12px); } }
