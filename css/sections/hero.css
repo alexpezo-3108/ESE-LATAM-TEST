@@ -261,3 +261,8 @@
   .hl--leaf-bl { width: 26vw; bottom: -6%; }
   .hl--leaf-tr { width: 30vw; top: -6%; }
 }
+
+/* Celulares de alto intermedio (700–800 px, p. ej. Android 411×776): isla centrada bajo el botón */
+@media (max-width: 47.99em) and (min-height: 43.76em) and (max-height: 50em) {
+  .hl--island { right: auto; left: calc(50% - min(46vw, 12rem)); width: min(92vw, 24rem); }
+}
