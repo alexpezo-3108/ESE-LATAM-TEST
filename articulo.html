@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plantas de reciclaje en el Perú: un compromiso con el futuro — Blog ESE Latam</title>
+  <meta name="description" content="Cada peruano genera cerca de 0,83 kg de residuos municipales al día. Conoce cómo funcionan las plantas de reciclaje y dos casos que ya están transformando la gestión de residuos en el país.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap">
+  <!-- Íconos Phosphor (light + fill para logos sociales). En WP puede pasarse a sprite SVG. -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/header.css">
+  <link rel="stylesheet" href="css/sections/cases.css">
+  <link rel="stylesheet" href="css/sections/article.css">
+  <link rel="stylesheet" href="css/sections/footer.css">
+  <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->
+  <script>
+    (function (d) {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('js-motion');
+      setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.remove('js-motion'); }, 3000);
+    })(document.documentElement);
+  </script>
+  <script type="module" src="js/motion.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/cookies.js" defer></script>
+  <script src="js/sections/article.js" defer></script>
+  <script src="js/sections/cases.js" defer></script>
+  <script src="js/sections/case-titles.js" defer></script>
+  <script src="js/sections/footer.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header" data-solid>
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="ESE Latam — inicio">
+        <img src="assets/img/logo-ese.png" width="128" height="39" alt="">
+      </a>
+
+      <div class="site-header__end">
+        <nav class="nav" id="site-nav" aria-label="Principal">
+          <ul class="nav__list" role="list">
+            <li class="nav__item"><a class="nav__link" href="productos.html">Productos <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-sectores">
+                Sectores <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="nav__sub nav__sub--rich nav__sub--mega" id="sub-sectores" role="list">
+                <li><a class="nav__sublink" href="sector-municipalidades.html"><span class="nav__sublink-title">Municipalidades y gobiernos locales</span><span class="nav__sublink-desc">Ciudades más limpias y ordenadas</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
+                <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--all" href="soluciones.html">Ver todos los sectores <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="distribuidores.html">Distribuidores <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-nosotros">
+                Nosotros <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+                            <ul class="nav__sub nav__sub--rich" id="sub-nosotros" role="list">
+                <li><a class="nav__sublink" href="nosotros.html"><span class="nav__sublink-title">Quiénes somos</span><span class="nav__sublink-desc">Historia, misión y equipo de ESE LATAM</span></a></li>
+                <li><a class="nav__sublink" href="certificaciones.html"><span class="nav__sublink-title">Certificaciones</span><span class="nav__sublink-desc">Normas y sellos europeos</span></a></li>
+                <li><a class="nav__sublink" href="impacto.html"><span class="nav__sublink-title">Impacto</span><span class="nav__sublink-desc">Economía circular y método Circulogic</span></a></li>
+              </ul>
+            </li>
+            <li class="nav__item is-current"><a class="nav__link" href="blog.html" aria-current="page">Blog <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+          </ul>
+
+          <!-- Solo mobile -->
+          <div class="nav__footer">
+            <button class="nav__search" type="button" data-search-open><i class="ph-light ph-magnifying-glass" aria-hidden="true"></i> Buscar productos o sectores</button>
+            <a class="btn btn--secondary btn--block" href="contacto.html">
+              Contacto
+              <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <ul class="social" role="list">
+              <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="icon-btn site-header__search-btn" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search" data-search-toggle>
+            <i class="ph-bold ph-magnifying-glass" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i>
+          </button>
+          <a class="btn btn--secondary btn--sm site-header__contact" href="contacto.html">
+            Contacto
+            <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search" id="site-search" role="dialog" aria-label="Buscar">
+        <form class="search__form" role="search" action="/" method="get">
+          <label class="sr-only" for="search-input">Buscar productos o sectores</label>
+          <i class="search__icon ph-light ph-magnifying-glass" aria-hidden="true"></i>
+          <input class="search__input" id="search-input" name="s" type="search" placeholder="Busca productos, sectores o artículos" autocomplete="off" aria-controls="search-results">
+          <button class="search__clear" type="button" aria-label="Borrar búsqueda"><i class="ph-fill ph-x-circle" aria-hidden="true"></i></button>
+          <kbd class="search__kbd">ESC</kbd>
+        </form>
+        <div class="search__results" id="search-results" aria-live="polite" data-lenis-prevent></div>
+      </div>
+    </div>
+    <div class="search-backdrop" aria-hidden="true"></div>
+  </header>
+
+  <template id="tpl-search-idle">
+    <div class="search__group">
+      <h3 class="search__eyebrow">Búsquedas frecuentes</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Contenedor 1.100 L">Contenedor 1.100 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Certificación Blue Angel">Certificación Blue Angel</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores en Perú">Distribuidores en Perú</button></li>
+      </ul>
+    </div>
+    <div class="search__group">
+      <h3 class="search__eyebrow">Accesos rápidos</h3>
+      <ul class="chip-list" role="list">
+        <li><a class="chip" href="productos.html">Catálogo de productos</a></li>
+        <li><a class="chip" href="soluciones.html">Soluciones por sector</a></li>
+        <li><a class="chip" href="distribuidores.html">Encuentra un distribuidor</a></li>
+        <li><a class="chip" href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </template>
+
+  <template id="tpl-search-empty">
+    <div class="search__empty">
+      <p class="search__empty-title">No encontramos resultados para «{q}»</p>
+      <p class="search__empty-text">Revisa la ortografía o prueba con una búsqueda más general.</p>
+    </div>
+    <div class="search__suggest">
+      <h3 class="search__eyebrow">Prueba con</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores">Distribuidores</button></li>
+      </ul>
+    </div>
+    <p class="search__help">¿No encuentras lo que necesitas? <a href="contacto.html">Escríbenos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></p>
+  </template>
+
+  <main id="main">
+
+    <article class="s-post" aria-labelledby="post-title">
+      <header class="post-hero">
+        <div class="container">
+          <nav class="breadcrumb breadcrumb--dark" aria-label="Ruta de navegación" data-reveal="mask-x">
+            <ol class="breadcrumb__list" role="list">
+              <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html"><i class="ph-fill ph-house" aria-hidden="true"></i>Inicio</a></li>
+              <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><a class="breadcrumb__link" href="blog.html">Blog</a></li>
+              <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><span aria-current="page">Plantas de reciclaje en el Perú</span></li>
+            </ol>
+          </nav>
+          <div class="post-hero__head">
+            <a class="post-hero__cat" href="blog.html" data-reveal="mask-x" data-reveal-delay="0.05">Sostenibilidad</a>
+            <h1 class="post-hero__title" id="post-title" data-reveal="mask" data-reveal-delay="0.1">Plantas de reciclaje en el Perú: un compromiso con el futuro</h1>
+            <p class="post-hero__lead" data-reveal="mask" data-reveal-delay="0.25">Cada peruano genera cerca de 0,83 kg de residuos municipales al día. Conoce cómo funcionan las plantas de reciclaje y dos casos que ya están transformando la gestión de residuos en el país.</p>
+            <ul class="post-meta" role="list" data-reveal="mask" data-reveal-delay="0.35">
+              <li class="post-meta__item"><span class="post-meta__icon" aria-hidden="true"><i class="ph ph-map-pin"></i></span>Perú</li>
+              <li class="post-meta__item"><span class="post-meta__icon" aria-hidden="true"><i class="ph ph-calendar-blank"></i></span><time datetime="2024-02">Febrero 2024</time></li>
+            </ul>
+          </div>
+          <figure class="post-hero__figure" data-reveal="mask" data-reveal-delay="0.4">
+            <div class="post-hero__media" data-reveal-inner>
+              <!-- Imagen destacada (LCP, sin lazy): <img src="assets/img/blog/plantas-reciclaje-1920.webp" srcset="… 960w, … 1920w, … 2880w" sizes="(min-width: 90em) 90rem, 100vw" width="2880" height="1440" alt="Línea de segregación en una planta de reciclaje municipal" fetchpriority="high"> -->
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen destacada · 2880×1440</span></div>
+            </div>
+            <figcaption class="post-caption">Línea de segregación en una planta de reciclaje municipal.</figcaption>
+          </figure>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="post-body" data-reveal="up">
+          <p class="post-body__intro">Se estima que cada ciudadano en el Perú genera alrededor de 0,58 kg de residuos sólidos domiciliarios y 0,83 kg de residuos sólidos municipales al día. Esto nos sitúa entre los mayores generadores de residuos per cápita de América Latina y, a la vez, representa una gran oportunidad para el reciclaje.</p>
+          <p>Esta situación supone un reto considerable para los sistemas de gestión de residuos, que a menudo se ven sobrepasados por la cantidad de basura generada, con riesgos sanitarios y de contaminación ambiental. Para procesar estos desechos y convertirlos en nuevos materiales existen las plantas de reciclaje, que reducen la basura que llega a los vertederos y disminuyen el impacto ambiental.</p>
+
+          <h2>¿Qué son las plantas de reciclaje?</h2>
+          <p>Las plantas de reciclaje son instalaciones industriales donde los residuos se separan, procesan y transforman en nuevos materiales que vuelven a la cadena de producción. Cumplen el papel más importante del proceso: recuperan materiales útiles y reducen la cantidad de desechos que termina en los vertederos.</p>
+          <p>En el Perú son especialmente necesarias. Solo un pequeño porcentaje de los residuos reaprovechables se recicla y más de la mitad de la basura no se maneja adecuadamente: <strong>un 30 % termina en las calles</strong>, con graves efectos en el medio ambiente y la salud pública.</p>
+          <blockquote><p>“Implementar y optimizar plantas de reciclaje no solo mejora el tratamiento de residuos: mejora la calidad de vida y la sostenibilidad ambiental del país.”</p></blockquote>
+
+          <h2>Plantas de reciclaje exitosas en el Perú</h2>
+          <h3>Planta de la Municipalidad de Santiago de Surco</h3>
+          <p>Es la planta de reciclaje más grande del Perú. Tiene capacidad para procesar hasta 50 toneladas diarias de residuos reaprovechables, aunque actualmente gestiona entre 13 y 15 toneladas al día.</p>
+          <p>El proceso empieza en los hogares: las familias separan los materiales y los depositan en bolsas naranjas para su recolección. En la planta se hace una segregación minuciosa, un procedimiento poco extendido en el país, donde <strong>solo se recicla el 1,9 %</strong> de los residuos reaprovechables. Luego los materiales se agrupan y compactan para su uso final, cerrando el ciclo del reciclaje e impulsando una economía circular.</p>
+          <figure class="post-video">
+            <div class="post-video__frame" data-video data-youtube="">
+              <!-- Reemplazar por la miniatura del video: <img src="assets/img/blog/video-1.webp" alt="" loading="lazy"> -->
+              <div class="placeholder" aria-hidden="true"></div>
+              <button class="post-video__play" type="button" aria-label="Reproducir video: visitamos la Planta de Reciclaje de Surco, guiados por el ingeniero Rino Torres."><i class="ph-fill ph-play" aria-hidden="true"></i></button>
+            </div>
+            <figcaption class="post-caption">Video: visitamos la Planta de Reciclaje de Surco, guiados por el ingeniero Rino Torres.</figcaption>
+          </figure>
+          <h3>Centro de recuperación de Sinba en Villa El Salvador</h3>
+          <p>Sinba desarrolló el Centro Inclusivo de Recuperación Circular (CIRC), con el apoyo de Coca-Cola, Latitud R e Impulso BCP, para enfrentar un problema de fondo: en el Perú se recupera menos del 2 % de todos los residuos. El CIRC trabaja con recicladores y usa inteligencia artificial para reconocer y analizar los materiales, lo que facilita recuperar metales, plásticos, vidrio, papel y cartón.</p>
+          <p>Además, Sinba ofrece a los recicladores locales un modelo de negocio con programas de desarrollo empresarial, precios justos y capacitación técnica, que contribuye a su bienestar personal y profesional.</p>
+          <figure class="post-video">
+            <div class="post-video__frame" data-video data-youtube="">
+              <!-- Reemplazar por la miniatura del video: <img src="assets/img/blog/video-2.webp" alt="" loading="lazy"> -->
+              <div class="placeholder" aria-hidden="true"></div>
+              <button class="post-video__play" type="button" aria-label="Reproducir video: recorrido por las plantas de orgánicos e inorgánicos de Sinba, guiado por Paula Merchán."><i class="ph-fill ph-play" aria-hidden="true"></i></button>
+            </div>
+            <figcaption class="post-caption">Video: recorrido por las plantas de orgánicos e inorgánicos de Sinba, guiado por Paula Merchán.</figcaption>
+          </figure>
+          <h2>Conclusiones y recomendaciones</h2>
+          <p>Las plantas de reciclaje son vitales para gestionar los residuos de forma eficiente e impulsar una economía circular en el Perú. Para que aprovechen mejor su capacidad, el cambio debe empezar en casa:</p>
+          <ul>
+            <li>Implementa un sistema de separación de residuos en casa.</li>
+            <li>Reduce el consumo de productos desechables.</li>
+            <li>Participa en programas de reciclaje de tu comunidad.</li>
+          </ul>
+          <p>Adoptar estos hábitos no solo ayuda a las plantas a transformar más residuos en materiales útiles, sino que también construye conciencia ambiental en la comunidad y acerca al país a un futuro más limpio y sostenible.</p>
+
+          <footer class="post-foot">
+            <ul class="post-tags" role="list" aria-label="Etiquetas">
+              <li><a class="post-tags__item" href="blog.html">Reciclaje</a></li>
+              <li><a class="post-tags__item" href="blog.html">Perú</a></li>
+              <li><a class="post-tags__item" href="blog.html">Economía circular</a></li>
+            </ul>
+            <div class="post-foot__row">
+              <a class="btn btn--secondary btn--sm post-foot__back" href="blog.html">
+                <span class="btn__icon btn__icon--start" aria-hidden="true"><i class="ph ph-arrow-left"></i></span>
+                Volver al blog
+              </a>
+              <div class="post-share">
+                <span class="post-share__label">Compartir</span>
+                <ul class="post-share__list" role="list">
+                  <li><a class="social-btn social-btn--in" href="#" data-share="linkedin" target="_blank" rel="noopener" aria-label="Compartir en LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+                  <li><a class="social-btn social-btn--ig" href="#" target="_blank" rel="noopener" aria-label="ESE en Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+                  <li><a class="social-btn social-btn--fb" href="#" data-share="facebook" target="_blank" rel="noopener" aria-label="Compartir en Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+                  <li><button class="social-btn social-btn--link" type="button" data-copy-link aria-label="Copiar enlace"><i class="ph-bold ph-link" aria-hidden="true"></i><span class="post-share__toast" role="status" aria-live="polite"></span></button></li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </article>
+
+    <section class="s-cases s-related" aria-labelledby="related-title" data-cases>
+      <div class="container">
+        <header class="section-head s-related__head">
+          <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Sigue leyendo</p>
+          <h2 class="heading" id="related-title" data-reveal="mask" data-reveal-delay="0.1">
+            <span class="heading__light" data-line>Entradas</span> <span class="heading__bold" data-line>relacionadas</span>
+          </h2>
+        </header>
+        <!-- En WP: 4 entradas de la misma categoría/etiquetas, excluyendo la actual -->
+        <ul class="s-cases__list" role="list" data-cases-track>
+          <li class="case" data-reveal="mask" data-reveal-delay="0.00">
+            <a class="case__link" href="articulo.html">
+              <div class="case__media" aria-hidden="true"><div class="placeholder"></div></div>
+              <div class="case__tags">
+                <span class="case__tag">Gestión urbana</span>
+              </div>
+              <div class="case__bottom">
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Cómo elegir el contenedor adecuado para tu municipio</h3>
+                    <div class="case__more"><p class="case__desc">Texto de ejemplo: resumen breve del artículo que se despliega al pasar el cursor.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="case" data-reveal="mask" data-reveal-delay="0.08">
+            <a class="case__link" href="articulo.html">
+              <div class="case__media" aria-hidden="true"><div class="placeholder"></div></div>
+              <div class="case__tags">
+                <span class="case__tag case__tag--accent">Caso de éxito</span>
+                <span class="case__tag">Chile</span>
+              </div>
+              <div class="case__bottom">
+                <div class="case__stats"><div><span class="case__stat-n">+1.500</span><span class="case__stat-l">Contenedores instalados</span></div><div><span class="case__stat-n">38</span><span class="case__stat-l">Sedes atendidas</span></div></div>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Juegos Panamericanos y Parapanamericanos Santiago 2023</h3>
+                    <div class="case__more"><p class="case__desc">Equipamos las sedes con soluciones de segregación para un evento de escala continental.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="case" data-reveal="mask" data-reveal-delay="0.16">
+            <a class="case__link" href="articulo.html">
+              <div class="case__media" aria-hidden="true"><div class="placeholder"></div></div>
+              <div class="case__tags">
+                <span class="case__tag">Gestión de residuos</span>
+              </div>
+              <div class="case__bottom">
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Los contenedores ESE y la Norma Técnica Peruana NTP-ISO 900</h3>
+                    <div class="case__more"><p class="case__desc">Nuestros contenedores cumplen el código de colores para la segregación de residuos sólidos.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="case" data-reveal="mask" data-reveal-delay="0.24">
+            <a class="case__link" href="articulo.html">
+              <div class="case__media" aria-hidden="true"><div class="placeholder"></div></div>
+              <div class="case__tags">
+                <span class="case__tag">Representantes</span>
+              </div>
+              <div class="case__bottom">
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Feria Expo Industria Ecuador 2023</h3>
+                    <div class="case__more"><p class="case__desc">Presentamos nuestra línea de contenedores junto a nuestro representante en Ecuador.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <ol class="dots s-cases__dots" role="list" aria-label="Paginación de entradas" data-cases-dots></ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="site-footer__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="site-footer__top">
+        <nav class="site-footer__col" aria-label="Soluciones">
+          <h2>Soluciones</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="soluciones.html">Sectores</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="distribuidores.html">Distribuidores</a></li>
+            <li><a href="#">Casos de éxito</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col" aria-label="ESE LATAM">
+          <h2>ESE LATAM</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="certificaciones.html">Certificaciones</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col site-footer__col--legal" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="terminos-y-condiciones.html">Términos y condiciones</a></li>
+            <li><a href="politica-de-cookies.html">Política de cookies</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__about">
+          <p class="site-footer__tagline">Distribuimos contenedores de residuos sólidos fabricados en Alemania y Francia. <span>Calidad europea, transformando la recolección de residuos en Latinoamérica.</span></p>
+          <p class="site-footer__eyebrow">Síguenos</p>
+          <ul class="social social--light" role="list">
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><span class="brand-icon brand-icon--youtube" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="site-footer__copy">© 2026 ESE LATAM. Todos los derechos reservados.</p>
+      <div class="site-footer__brand" aria-hidden="true">
+        <span class="site-footer__logo" data-reveal="rise"></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

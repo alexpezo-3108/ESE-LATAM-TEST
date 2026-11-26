@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certificaciones — ESE Latam</title>
+  <meta name="description" content="Certificaciones de calidad, seguridad y sostenibilidad que respaldan los contenedores ESE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap">
+  <!-- Íconos Phosphor (light + fill para logos sociales). En WP puede pasarse a sprite SVG. -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/header.css">
+  <link rel="stylesheet" href="css/sections/page-hero.css">
+  <link rel="stylesheet" href="css/sections/cert-list.css">
+  <link rel="stylesheet" href="css/sections/cert-why.css">
+  <link rel="stylesheet" href="css/sections/tests.css">
+  <link rel="stylesheet" href="css/sections/goals.css">
+  <link rel="stylesheet" href="css/sections/blue-angel.css">
+  <link rel="stylesheet" href="css/sections/challenges.css">
+  <link rel="stylesheet" href="css/sections/cases.css">
+  <link rel="stylesheet" href="css/sections/hdpe.css">
+  <link rel="stylesheet" href="css/sections/cta.css">
+  <link rel="stylesheet" href="css/sections/footer.css">
+  <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->
+  <script>
+    (function (d) {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('js-motion');
+      setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.remove('js-motion'); }, 3000);
+    })(document.documentElement);
+  </script>
+  <script type="module" src="js/motion.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/cookies.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/sections/cert-list.js" defer></script>
+  <script src="js/sections/tests.js" defer></script>
+  <script src="js/sections/goals.js" defer></script>
+  <script src="js/sections/blue-angel.js" defer></script>
+  <script src="js/sections/lit-steps.js" defer></script>
+  <script src="js/sections/cases.js" defer></script>
+  <script src="js/sections/cta.js" defer></script>
+  <script src="js/sections/case-titles.js" defer></script>
+  <script src="js/sections/footer.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="ESE Latam — inicio">
+        <img src="assets/img/logo-ese.png" width="128" height="39" alt="">
+      </a>
+
+      <div class="site-header__end">
+        <nav class="nav" id="site-nav" aria-label="Principal">
+          <ul class="nav__list" role="list">
+            <li class="nav__item"><a class="nav__link" href="productos.html">Productos <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-sectores">
+                Sectores <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="nav__sub nav__sub--rich nav__sub--mega" id="sub-sectores" role="list">
+                <li><a class="nav__sublink" href="sector-municipalidades.html"><span class="nav__sublink-title">Municipalidades y gobiernos locales</span><span class="nav__sublink-desc">Ciudades más limpias y ordenadas</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
+                <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--all" href="soluciones.html">Ver todos los sectores <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="distribuidores.html">Distribuidores <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub is-current">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-nosotros" aria-current="page">
+                Nosotros <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+                            <ul class="nav__sub nav__sub--rich" id="sub-nosotros" role="list">
+                <li><a class="nav__sublink" href="nosotros.html" aria-current="page"><span class="nav__sublink-title">Quiénes somos</span><span class="nav__sublink-desc">Historia, misión y equipo de ESE LATAM</span></a></li>
+                <li><a class="nav__sublink" href="certificaciones.html"><span class="nav__sublink-title">Certificaciones</span><span class="nav__sublink-desc">Normas y sellos europeos</span></a></li>
+                <li><a class="nav__sublink" href="impacto.html"><span class="nav__sublink-title">Impacto</span><span class="nav__sublink-desc">Economía circular y método Circulogic</span></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="blog.html">Blog <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+          </ul>
+
+          <!-- Solo mobile -->
+          <div class="nav__footer">
+            <button class="nav__search" type="button" data-search-open><i class="ph-light ph-magnifying-glass" aria-hidden="true"></i> Buscar productos o sectores</button>
+            <a class="btn btn--secondary btn--block" href="contacto.html">
+              Contacto
+              <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <ul class="social" role="list">
+              <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="icon-btn site-header__search-btn" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search" data-search-toggle>
+            <i class="ph-bold ph-magnifying-glass" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i>
+          </button>
+          <a class="btn btn--secondary btn--sm site-header__contact" href="contacto.html">
+            Contacto
+            <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search" id="site-search" role="dialog" aria-label="Buscar">
+        <form class="search__form" role="search" action="/" method="get">
+          <label class="sr-only" for="search-input">Buscar productos o sectores</label>
+          <i class="search__icon ph-light ph-magnifying-glass" aria-hidden="true"></i>
+          <input class="search__input" id="search-input" name="s" type="search" placeholder="Busca productos, sectores o artículos" autocomplete="off" aria-controls="search-results">
+          <button class="search__clear" type="button" aria-label="Borrar búsqueda"><i class="ph-fill ph-x-circle" aria-hidden="true"></i></button>
+          <kbd class="search__kbd">ESC</kbd>
+        </form>
+        <div class="search__results" id="search-results" aria-live="polite" data-lenis-prevent></div>
+      </div>
+    </div>
+    <div class="search-backdrop" aria-hidden="true"></div>
+  </header>
+
+  <template id="tpl-search-idle">
+    <div class="search__group">
+      <h3 class="search__eyebrow">Búsquedas frecuentes</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Contenedor 1.100 L">Contenedor 1.100 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Certificación Blue Angel">Certificación Blue Angel</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores en Perú">Distribuidores en Perú</button></li>
+      </ul>
+    </div>
+    <div class="search__group">
+      <h3 class="search__eyebrow">Accesos rápidos</h3>
+      <ul class="chip-list" role="list">
+        <li><a class="chip" href="productos.html">Catálogo de productos</a></li>
+        <li><a class="chip" href="soluciones.html">Soluciones por sector</a></li>
+        <li><a class="chip" href="distribuidores.html">Encuentra un distribuidor</a></li>
+        <li><a class="chip" href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </template>
+
+  <template id="tpl-search-empty">
+    <div class="search__empty">
+      <p class="search__empty-title">No encontramos resultados para «{q}»</p>
+      <p class="search__empty-text">Revisa la ortografía o prueba con una búsqueda más general.</p>
+    </div>
+    <div class="search__suggest">
+      <h3 class="search__eyebrow">Prueba con</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores">Distribuidores</button></li>
+      </ul>
+    </div>
+    <p class="search__help">¿No encuentras lo que necesitas? <a href="contacto.html">Escríbenos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></p>
+  </template>
+
+  <main id="main">
+    <section class="s-page-hero" aria-labelledby="page-hero-title" data-cursor="light">
+      <div class="s-page-hero__media" data-reveal="mask">
+        <div class="s-page-hero__parallax" data-parallax="0.15">
+        <div class="s-page-hero__media-inner" data-reveal-inner>
+          <!-- Reemplazar por la imagen definitiva (sin lazy: es el LCP):
+          <img src="assets/img/certificaciones-hero-1920.jpg"
+               srcset="assets/img/nosotros-hero-1280.jpg 1280w, assets/img/nosotros-hero-1920.jpg 1920w, assets/img/nosotros-hero-2880.jpg 2880w"
+               sizes="100vw" width="2880" height="1500" alt="" fetchpriority="high" decoding="async"> -->
+          <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen hero certificaciones · 2880×1500</span></div>
+        </div>
+        </div>
+      </div>
+
+      <div class="s-page-hero__inner container">
+        <nav class="breadcrumb" aria-label="Ruta de navegación" data-reveal="mask-x" data-reveal-delay="0.1">
+          <ol class="breadcrumb__list" role="list">
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html"><i class="ph-fill ph-house" aria-hidden="true"></i>Inicio</a></li>
+            <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><span aria-current="page">Certificaciones</span></li>
+          </ol>
+        </nav>
+
+        <div class="s-page-hero__body">
+          <div class="s-page-hero__content">
+            <h1 class="s-page-hero__title" id="page-hero-title" data-reveal="mask" data-reveal-delay="0.2">
+              <span class="s-page-hero__title-light" data-line>Calidad certificada</span>
+              <span class="s-page-hero__title-bold" data-line>que nos respalda</span>
+            </h1>
+            <p class="s-page-hero__lead" data-reveal="mask" data-reveal-delay="0.4">Cumplimos los ensayos de resistencia estructural alemanes y europeos más estrictos de la industria, con certificaciones auditables en calidad, seguridad y sostenibilidad.</p>
+          </div>
+
+          <a class="scroll-cue s-page-hero__cue" href="#contenido" data-reveal="mask-x" data-reveal-delay="0.6">
+            <span class="scroll-cue__label">Descubre más</span>
+            <span class="scroll-cue__icon" aria-hidden="true"><i class="ph-light ph-caret-double-down"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-certlist" id="contenido" aria-labelledby="certlist-title" data-certlist>
+      <div class="container">
+        <header class="section-head section-head--center s-certlist__head">
+          <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Respaldo comprobado</p>
+          <h2 class="heading heading--inline" id="certlist-title" data-reveal="mask" data-reveal-delay="0.1">
+            <span class="heading__light" data-line>Nuestras</span>
+            <span class="heading__bold" data-line>certificaciones</span>
+          </h2>
+          <p class="s-certlist__lead" data-reveal="mask" data-reveal-delay="0.2">Cumplimos de forma auditable y transparente con cada normativa internacional de seguridad, ecología y calidad, para compras públicas y corporativas de primer nivel.</p>
+        </header>
+
+        <div class="s-certlist__filters" data-reveal="up" data-reveal-delay="0.25">
+          <div class="tabs tabs--pill s-certlist__tabs" role="tablist" aria-label="Categorías de certificación" data-tabs>
+            <span class="tabs__indicator" aria-hidden="true"></span>
+            <button class="tabs__tab" type="button" role="tab" aria-selected="true" aria-controls="certlist-grid" data-value="todas">Todas (8)</button>
+            <button class="tabs__tab" type="button" role="tab" aria-selected="false" aria-controls="certlist-grid" data-value="ambiental" tabindex="-1">Ambiental (2)</button>
+            <button class="tabs__tab" type="button" role="tab" aria-selected="false" aria-controls="certlist-grid" data-value="calidad" tabindex="-1">Calidad y gestión (3)</button>
+            <button class="tabs__tab" type="button" role="tab" aria-selected="false" aria-controls="certlist-grid" data-value="producto" tabindex="-1">Producto y seguridad (3)</button>
+          </div>
+          <label class="select s-certlist__select">
+            <span class="select__label">Filtrar por categoría</span>
+            <select class="select__input" data-certlist-select>
+              <option value="todas">Todas (8)</option>
+              <option value="ambiental">Ambiental (2)</option>
+              <option value="calidad">Calidad y gestión (3)</option>
+              <option value="producto">Producto y seguridad (3)</option>
+            </select>
+            <i class="select__icon ph-bold ph-caret-down" aria-hidden="true"></i>
+          </label>
+        </div>
+
+        <div class="s-certlist__frame" data-reveal="up" data-reveal-delay="0.3">
+          <ul class="s-certlist__grid" id="certlist-grid" role="list">
+            <li class="cert-card-item" data-cat="ambiental">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="Blue Angel: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Ambiental</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">Blue Angel</span>
+                <span class="cert-card__desc">Garantiza que nuestros contenedores se fabrican con plástico reciclado, inofensivo para las personas, los animales y el medio ambiente.</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/blue-angel.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>Recibimos El Ángel Azul en 2016, siendo los primeros fabricantes del mundo en obtenerlo para contenedores de residuos. Para lograrlo, exigimos a nuestros proveedores plástico sostenible, certificado según EuCertPlast.</p><p>El sello garantiza que el contenedor tiene mínimo 80 % de plástico reciclado, inofensivo para las personas, los animales y el medio ambiente, y prepara a los gobiernos locales para las compras públicas sostenibles.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="producto">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="RAL: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Producto y seguridad</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">RAL</span>
+                <span class="cert-card__desc">Sello alemán de calidad para contenedores de residuos y materiales reciclables (RAL-GZ 951/1).</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/ral.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>Es el sello de calidad más exigente del mundo para contenedores de residuos, otorgado en exclusiva por la GGAWB en Alemania. Va más allá de la norma EN 840, con ensayos adicionales y más estrictos.</p><p>El laboratorio acreditado SKZ inspecciona nuestras plantas y prueba muestras de producción periódicamente. Todos los contenedores que salen de nuestras plantas llevan el sello RAL, sean de material reciclado o virgen.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="producto">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="DIN: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Producto y seguridad</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">DIN</span>
+                <span class="cert-card__desc">Norma alemana que asegura dimensiones y resistencia según el estándar europeo EN 840.</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/din.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>Cuando aún nos llamábamos OttO, fuimos pioneros en fabricar contenedores de residuos y tuvimos la patente del modelo estándar. Esa experiencia sirvió de base al CEN/DIN para crear la norma DIN EN 840.</p><p>Sus partes definen ruedas, capacidad, dimensiones y diseño. El sello impreso en el contenedor garantiza que cumple la norma, y el laboratorio SKZ acredita que estamos autorizados para marcarlo como “EN 840”.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="producto">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="DEKRA: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Producto y seguridad</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">DEKRA</span>
+                <span class="cert-card__desc">Inspección y certificación técnica independiente de la calidad y seguridad del producto.</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/dekra.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>DEKRA es líder mundial en inspección, verificación y certificación, y opera como organismo independiente acreditado internacionalmente. Su marca acredita que el producto fue probado minuciosamente y cumple las normas de funcionamiento y seguridad de la Unión Europea.</p><p>Para nuestros clientes significa menos riesgos de fallas, mayor confianza en cada compra y la tranquilidad de contar con un contenedor verificado por un tercero independiente.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="calidad">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="ISO 50001: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Calidad y gestión</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">ISO 50001</span>
+                <span class="cert-card__desc">Gestión eficiente de la energía en nuestros procesos de fabricación.</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/lloyds.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>Cada año, Lloyd’s Register (LRQA) audita el Sistema de Gestión de la Energía de nuestras plantas de Neuruppin y Olpe, en Alemania, para verificar que cumplimos nuestras metas de eficiencia.</p><p>Nuestras instalaciones son cada vez más eficientes energéticamente, y lo complementamos con acciones para optimizar el consumo en cada etapa. Fabricar con menos energía también reduce la huella de carbono de cada contenedor que entregamos.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="calidad">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="ISO 9001: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Calidad y gestión</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">ISO 9001</span>
+                <span class="cert-card__desc">Sistema de gestión de la calidad, del diseño a la entrega.</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/lloyds.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>Cada año, Lloyd’s Register (LRQA) audita nuestro Sistema de Gestión de la Calidad en la producción y venta de contenedores, una certificación que mantenemos desde 1995.</p><p>Buscamos la mejora continua para eliminar los costos de la no calidad, involucramos a nuestro equipo en los objetivos de la compañía y aumentamos la satisfacción de nuestros clientes con un mismo estándar en cada contenedor.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="ambiental">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="ISO 14001: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Ambiental</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">ISO 14001</span>
+                <span class="cert-card__desc">Sistema de gestión ambiental de nuestras operaciones.</span>
+                <span class="cert-card__logo"><img src="assets/img/certificaciones/lloyds.png" alt="" loading="lazy" decoding="async"></span>
+                <template class="cert-card__detail"><p>Cada año, Lloyd’s Register (LRQA) audita nuestro Sistema de Gestión Ambiental, una certificación que mantenemos desde 2001 en la producción y venta de contenedores.</p><p>Seguimos mejorando el equilibrio entre medio ambiente, sociedad y economía: reducimos los impactos ambientales de nuestras actividades, usamos los recursos de forma eficiente y mitigamos los efectos de condiciones externas a la organización.</p></template>
+              </button>
+            </li>
+            <li class="cert-card-item" data-cat="calidad">
+              <button class="cert-card" type="button" aria-haspopup="dialog" aria-label="ISO 45001: ver más información">
+                <span class="cert-card__top"><span class="cert-card__tag">Calidad y gestión</span><span class="cert-card__go" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></span>
+                <span class="cert-card__name">ISO 45001</span>
+                <span class="cert-card__desc">Sistema de gestión de la seguridad y salud en el trabajo.</span>
+                <span class="cert-card__logo"><span class="placeholder" aria-hidden="true"><span class="placeholder__label">ISO 45001 · logo pendiente</span></span></span>
+                <template class="cert-card__detail"><p>Nuestra planta de producción en Neuruppin, Alemania, cuenta con un sistema de gestión de seguridad y salud en el trabajo certificado por DEKRA según ISO 45001.</p><p>Un lugar de trabajo sano y seguro es nuestra prioridad número uno, y la certificación nos compromete con la mejora continua: riesgos identificados y controlados, capacitación permanente del personal e indicadores de seguridad auditados.</p></template>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <button class="btn btn--sm btn--primary btn--block s-certlist__more" type="button" data-certlist-more aria-expanded="false" aria-controls="certlist-grid">Ver más certificaciones <i class="ph-bold ph-caret-down" aria-hidden="true"></i></button>
+      </div>
+    </section>
+    <section class="s-why" aria-labelledby="why-title">
+      <div class="container s-why__grid">
+        <div class="s-why__copy">
+          <header class="section-head">
+            <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Por qué elegir lo certificado</p>
+            <h2 class="heading" id="why-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Marcando</span>
+              <span class="heading__bold" data-line>la diferencia</span>
+            </h2>
+            <p class="s-why__lead" data-reveal="mask" data-reveal-delay="0.2">Nuestra producción certificada y el cumplimiento estricto de las directivas europeas aseguran contenedores más seguros, durables y sostenibles: menos fallas, compras responsables y una inversión que se protege en el tiempo.</p>
+          </header>
+          <div class="s-why__proof" data-reveal="up" data-reveal-delay="0.3">
+            <ul class="avatars avatars--spaced" role="list" aria-label="Algunas de nuestras certificaciones">
+              <li><span class="avatar" tabindex="0" aria-describedby="tip-why-blue-angel"><img src="assets/img/certificaciones/blue-angel.png" width="44" height="44" alt="Blue Angel" loading="lazy"><span class="tooltip" role="tooltip" id="tip-why-blue-angel">Blue Angel</span></span></li>
+              <li><span class="avatar" tabindex="0" aria-describedby="tip-why-ral"><img src="assets/img/certificaciones/ral.png" width="44" height="44" alt="RAL" loading="lazy"><span class="tooltip" role="tooltip" id="tip-why-ral">RAL</span></span></li>
+              <li><span class="avatar" tabindex="0" aria-describedby="tip-why-din"><img src="assets/img/certificaciones/din.png" width="44" height="44" alt="DIN" loading="lazy"><span class="tooltip" role="tooltip" id="tip-why-din">DIN</span></span></li>
+              <li><span class="avatar" tabindex="0" aria-describedby="tip-why-dekra"><img src="assets/img/certificaciones/dekra.png" width="44" height="44" alt="DEKRA" loading="lazy"><span class="tooltip" role="tooltip" id="tip-why-dekra">DEKRA</span></span></li>
+            </ul>
+            <p class="s-why__proof-text"><strong>8 certificaciones</strong><span>Auditadas por terceros</span></p>
+          </div>
+        </div>
+
+        <div class="s-why__media placeholder" data-reveal="mask" data-reveal-delay="0.15"><span class="placeholder__label">imagen · contenedor certificado</span></div>
+
+        <div class="s-why__data" data-reveal="up" data-reveal-delay="0.25">
+          <dl class="s-why__list">
+            <div class="s-why__row"><dt>Años de experiencia</dt><dd>+80 años</dd></div>
+            <div class="s-why__row"><dt>Plástico reciclado</dt><dd>80 %</dd></div>
+            <div class="s-why__row"><dt>Norma europea</dt><dd>EN 840</dd></div>
+            <div class="s-why__row"><dt>Certificaciones</dt><dd>8</dd></div>
+            <div class="s-why__row"><dt>Auditorías externas</dt><dd>Anuales</dd></div>
+            <div class="s-why__row"><dt>Sello de calidad</dt><dd>100 %</dd></div>
+          </dl>
+          <p class="s-why__claim">Cada contenedor sale de planta con su sello grabado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-tests" aria-labelledby="tests-title">
+      <div class="container">
+        <header class="section-head section-head--center s-tests__head">
+          <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Pruebas de rigurosidad</p>
+          <h2 class="heading s-tests__title" id="tests-title" data-reveal="mask" data-reveal-delay="0.1">
+            <span class="heading__light" data-line>¿Qué hace que sea</span>
+            <span class="heading__bold" data-line>excelente?</span>
+          </h2>
+          <p class="s-tests__lead" data-reveal="mask" data-reveal-delay="0.2">Antes de llegar a tu ciudad o industria, cada contenedor ESE pasa por pruebas que simulan años de uso real: caídas, impactos, presión y exposición al clima.</p>
+        </header>
+        <div class="pd-tests" data-tests data-reveal="up" data-reveal-delay="0.25">
+          <p class="pd-tests__label">Selecciona una prueba</p>
+            <button class="pd-test is-active" type="button" aria-pressed="true" aria-controls="pd-video" data-test="0" style="--o:1">
+              <span class="pd-test__thumb" aria-hidden="true"></span>
+              <span class="pd-test__copy"><span class="pd-test__title">Caída libre</span><span class="pd-test__desc">Resiste impactos reales sin quebrarse ni deformarse.</span></span>
+              <i class="ph ph-caret-down pd-test__caret" aria-hidden="true"></i>
+            </button>
+            <button class="pd-test" type="button" aria-pressed="false" aria-controls="pd-video" data-test="1" style="--o:2">
+              <span class="pd-test__thumb" aria-hidden="true"></span>
+              <span class="pd-test__copy"><span class="pd-test__title">Elevación</span><span class="pd-test__desc">Verificamos la compatibilidad con los camiones recolectores más usados.</span></span>
+              <i class="ph ph-caret-down pd-test__caret" aria-hidden="true"></i>
+            </button>
+            <button class="pd-test" type="button" aria-pressed="false" aria-controls="pd-video" data-test="2" style="--o:3">
+              <span class="pd-test__thumb" aria-hidden="true"></span>
+              <span class="pd-test__copy"><span class="pd-test__title">Guillotina</span><span class="pd-test__desc">Comprobamos que tapa y bordes resistan cortes e impactos.</span></span>
+              <i class="ph ph-caret-down pd-test__caret" aria-hidden="true"></i>
+            </button>
+            <button class="pd-test" type="button" aria-pressed="false" aria-controls="pd-video" data-test="3" style="--o:5">
+              <span class="pd-test__thumb" aria-hidden="true"></span>
+              <span class="pd-test__copy"><span class="pd-test__title">Impacto de bala</span><span class="pd-test__desc">Medimos la resistencia estructural frente a golpes del uso diario.</span></span>
+              <i class="ph ph-caret-down pd-test__caret" aria-hidden="true"></i>
+            </button>
+            <button class="pd-test" type="button" aria-pressed="false" aria-controls="pd-video" data-test="4" style="--o:6">
+              <span class="pd-test__thumb" aria-hidden="true"></span>
+              <span class="pd-test__copy"><span class="pd-test__title">Rodado de ruedas</span><span class="pd-test__desc">Miles de ciclos simulados garantizan un traslado suave y duradero.</span></span>
+              <i class="ph ph-caret-down pd-test__caret" aria-hidden="true"></i>
+            </button>
+            <button class="pd-test" type="button" aria-pressed="false" aria-controls="pd-video" data-test="5" style="--o:7">
+              <span class="pd-test__thumb" aria-hidden="true"></span>
+              <span class="pd-test__copy"><span class="pd-test__title">Impermeabilidad</span><span class="pd-test__desc">Material que no absorbe líquidos ni genera filtraciones.</span></span>
+              <i class="ph ph-caret-down pd-test__caret" aria-hidden="true"></i>
+            </button>
+          <p class="pd-tests__count" aria-live="polite" data-tests-count>1 de 6 pruebas</p>
+          <div class="pd-video" id="pd-video" role="region" aria-label="Video: Caída libre" data-tests-video>
+            <button class="pd-video__play" type="button" aria-label="Reproducir video de la prueba"><i class="ph-fill ph-play" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-goals" id="origen" aria-labelledby="origen-title" data-goals>
+      <div class="container">
+        <div class="section-intro">
+          <header class="section-head">
+            <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Desde el origen</p>
+            <h2 class="heading" id="origen-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Calidad superior</span>
+              <span class="heading__bold" data-line>desde el origen</span>
+            </h2>
+          </header>
+          <div class="section-intro__side">
+            <p class="section-intro__text" data-reveal="mask" data-reveal-delay="0.2">Cada etapa, del diseño a la entrega, está pensada para que el contenedor dure más y funcione mejor en la calle.</p>
+          </div>
+        </div>
+
+        <ol class="s-goals__list" role="list">
+            <li class="goal goal--no-cta" data-goal style="--i:0">
+              <article class="goal__inner">
+                <div class="goal__body">
+                  <div class="goal__top">
+                    <span class="goal__tag"><i class="ph-light ph-compass-tool" aria-hidden="true"></i>Ingeniería</span>
+                    <span class="goal__num">01</span>
+                  </div>
+                  <div class="goal__copy">
+                    <h3 class="goal__title">Diseño con propósito</h3>
+                    <p class="goal__text">Cada contenedor ESE es el resultado de un estudio de biomecánica y optimización urbana. Con nervaduras reforzadas para absorber la tensión de elevación y una tapa aerodinámica, cada detalle tiene el propósito de durar y facilitar la labor del operario.</p>
+                  </div>
+                </div>
+                <div class="goal__media">
+                  <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen diseño con propósito</span></div>
+                </div>
+              </article>
+            </li>
+            <li class="goal goal--no-cta" data-goal style="--i:1">
+              <article class="goal__inner">
+                <div class="goal__body">
+                  <div class="goal__top">
+                    <span class="goal__tag"><i class="ph-light ph-gear-six" aria-hidden="true"></i>Fabricación</span>
+                    <span class="goal__num">02</span>
+                  </div>
+                  <div class="goal__copy">
+                    <h3 class="goal__title">Calidad consistente</h3>
+                    <p class="goal__text">Mediante un moldeo por inyección avanzado logramos una homogeneidad perfecta en el polietileno de alta densidad (PEAD). Esto garantiza un espesor de pared uniforme, tenacidad al impacto constante y protección certificada contra la degradación solar.</p>
+                  </div>
+                </div>
+                <div class="goal__media">
+                  <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen calidad consistente</span></div>
+                </div>
+              </article>
+            </li>
+            <li class="goal goal--no-cta" data-goal style="--i:2">
+              <article class="goal__inner">
+                <div class="goal__body">
+                  <div class="goal__top">
+                    <span class="goal__tag"><i class="ph-light ph-scan" aria-hidden="true"></i>Transparencia</span>
+                    <span class="goal__num">03</span>
+                  </div>
+                  <div class="goal__copy">
+                    <h3 class="goal__title">Trazabilidad</h3>
+                    <p class="goal__text">Garantizamos la transparencia con un número de serie indeleble de por vida. Con chips RFID integrados de fábrica es posible rastrear el origen del plástico reciclado y verificar informes de conformidad en segundos.</p>
+                  </div>
+                </div>
+                <div class="goal__media">
+                  <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen trazabilidad</span></div>
+                </div>
+              </article>
+            </li>
+            <li class="goal goal--no-cta" data-goal style="--i:3">
+              <article class="goal__inner">
+                <div class="goal__body">
+                  <div class="goal__top">
+                    <span class="goal__tag"><i class="ph-light ph-lightbulb" aria-hidden="true"></i>Innovación</span>
+                    <span class="goal__num">04</span>
+                  </div>
+                  <div class="goal__copy">
+                    <h3 class="goal__title">Mejora continua</h3>
+                    <p class="goal__text">Nuestras soluciones evolucionan con la retroalimentación de operarios de aseo urbano de todo el mundo. Perfeccionamos la amortiguación acústica, agilizamos el acoplamiento y desarrollamos resinas circulares sin perder rigidez.</p>
+                  </div>
+                </div>
+                <div class="goal__media">
+                  <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen mejora continua</span></div>
+                </div>
+              </article>
+            </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="s-ba" aria-labelledby="ba-title" data-ba>
+      <div class="s-ba__frame" data-particles="45" data-cursor="light">
+        <canvas class="s-ba__canvas" aria-hidden="true"></canvas>
+        <div class="container s-ba__inner">
+          <header class="section-head section-head--center s-ba__head">
+            <p class="eyebrow eyebrow--on-dark" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Economía circular</p>
+            <h2 class="heading heading--on-dark heading--inline" id="ba-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Estándar</span>
+              <span class="heading__bold" data-line>Blue Angel</span>
+            </h2>
+            <p class="s-ba__lead" data-reveal="mask" data-reveal-delay="0.2">Cada etapa de nuestro proceso de ingeniería está diseñada para cumplir con los estándares de sostenibilidad <strong>más rigurosos</strong> del mundo.</p>
+          </header>
+
+          <div class="s-ba__stage" data-reveal="up" data-reveal-delay="0.25">
+            <svg class="s-ba__arc" viewBox="0 0 960 480" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="ba-arc-a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#009FDF"></stop><stop offset="1" stop-color="#66C5EC"></stop></linearGradient>
+              </defs>
+              <path d="M160 480 A364.5 364.5 0 0 1 470 290.14" fill="none" stroke="url(#ba-arc-a)" stroke-width="22"></path>
+              <path d="M490 290.14 A364.5 364.5 0 0 1 800 480" fill="none" stroke="#FDFDFD" stroke-width="22"></path>
+              <path class="s-ba__pulse" d="M160 480 A364.5 364.5 0 0 1 800 480" pathLength="1" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" data-ba-pulse></path>
+              <g class="s-ba__chev" data-ba-chev><path d="M468 279 l10 11 -10 11 M484 279 l10 11 -10 11" fill="none" stroke="#CCECF9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></g>
+            </svg>
+            <ol class="s-ba__steps" role="list">
+            <li class="ba-step" data-ba-step="0" data-name="Recuperación y reciclaje" data-desc="Recuperamos contenedores al final de su vida útil y residuos plásticos, y los trituramos para obtener material reciclado.">
+              <button class="ba-step__btn" type="button" aria-label="Recuperación y reciclaje"><img src="assets/img/blue-angel/reciclaje.png" alt="" loading="lazy" decoding="async"></button>
+            </li>
+            <li class="ba-step" data-ba-step="1" data-name="Control de la materia prima" data-desc="Medimos y verificamos cada lote de plástico reciclado, certificado según EuCertPlast, antes de entrar a producción.">
+              <button class="ba-step__btn" type="button" aria-label="Control de la materia prima"><img src="assets/img/blue-angel/medicion.png" alt="" loading="lazy" decoding="async"></button>
+            </li>
+            <li class="ba-step" data-ba-step="2" data-name="Fabricación de contenedores nuevos" data-desc="Inyectamos el material en contenedores con un mínimo de 80 % de plástico reciclado, sin perder resistencia.">
+              <button class="ba-step__btn" type="button" aria-label="Fabricación de contenedores nuevos"><img src="assets/img/blue-angel/fabricacion.png" alt="" loading="lazy" decoding="async"></button>
+            </li>
+            <li class="ba-step" data-ba-step="3" data-name="Producción en serie" data-desc="Cada unidad sale de planta con el sello Blue Angel y la norma EN 840 grabados: la misma calidad en todas.">
+              <button class="ba-step__btn" type="button" aria-label="Producción en serie"><img src="assets/img/blue-angel/serie.png" alt="" loading="lazy" decoding="async"></button>
+            </li>
+            <li class="ba-step" data-ba-step="4" data-name="Inspección y auditoría" data-desc="Auditorías externas verifican el estándar cada año. Al final de su vida útil, el contenedor vuelve a iniciar el ciclo.">
+              <button class="ba-step__btn" type="button" aria-label="Inspección y auditoría"><img src="assets/img/blue-angel/inspeccion.png" alt="" loading="lazy" decoding="async"></button>
+            </li>
+            </ol>
+            <div class="s-ba__caption" aria-live="polite">
+              <p class="s-ba__name" data-ba-name></p>
+              <p class="s-ba__desc" data-ba-desc></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-chal s-chal--guide" id="validar" aria-labelledby="valid-title" data-lit>
+      <div class="container">
+        <div class="s-chal__grid">
+          <div class="s-chal__aside">
+            <header class="section-head">
+              <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Guía práctica</p>
+              <h2 class="heading" id="valid-title" data-reveal="mask" data-reveal-delay="0.1">
+                <span class="heading__light" data-line>Valida certificados</span>
+                <span class="heading__bold" data-line>originales</span>
+              </h2>
+            </header>
+            <p class="s-chal__lead" data-reveal="mask" data-reveal-delay="0.2">Detectar sellos falsificados y validar los legítimos es clave para asegurar el cumplimiento normativo de cada compra. Sigue estos cuatro pasos.</p>
+            <div class="s-chal__media" data-reveal="mask" data-reveal-delay="0.3">
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen · sello EN 840 en relieve</span></div>
+            </div>
+          </div>
+          <ol class="chal-list" role="list">
+            <li class="chal chal--step" data-lit-step>
+              <span class="chal__num">01</span>
+              <h3 class="chal__title">Reconoce sellos válidos</h3>
+              <ul class="chal__points" role="list">
+                <li class="chal__problem">El marcado EN 840 debe estar moldeado en relieve sobre el polietileno (frente, tapa o lateral). Si está impreso en un sticker adhesivo, es una imitación.</li>
+                <li class="chal__solution"><strong>Recomendación:</strong> pide el informe original de ensayos mecánicos del laboratorio.</li>
+              </ul>
+            </li>
+            <li class="chal chal--step" data-lit-step>
+              <span class="chal__num">02</span>
+              <h3 class="chal__title">Evita imitaciones</h3>
+              <ul class="chal__points" role="list">
+                <li class="chal__problem">Desconfía de precios muy por debajo del mercado y de contenedores sin número de serie, sin sello RAL o con logos impresos sobre la superficie.</li>
+                <li class="chal__solution"><strong>Recomendación:</strong> compara el peso y el espesor de pared con la ficha técnica oficial.</li>
+              </ul>
+            </li>
+            <li class="chal chal--step" data-lit-step>
+              <span class="chal__num">03</span>
+              <h3 class="chal__title">Verifica el certificado</h3>
+              <ul class="chal__points" role="list">
+                <li class="chal__problem">Solicita el certificado vigente del laboratorio y confirma que el número de registro, la fecha y el modelo coincidan con el producto que recibes.</li>
+                <li class="chal__solution"><strong>Recomendación:</strong> consulta su validez en la base de datos del organismo certificador.</li>
+              </ul>
+            </li>
+            <li class="chal chal--step" data-lit-step>
+              <span class="chal__num">04</span>
+              <h3 class="chal__title">Valida con ESE</h3>
+              <ul class="chal__points" role="list">
+                <li class="chal__problem">Ante cualquier duda, envía el número de serie del contenedor a tu representante ESE y te confirmamos su origen y certificaciones.</li>
+                <li class="chal__solution"><strong>Recomendación:</strong> compra siempre a través de un distribuidor autorizado.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-cases" id="casos" aria-labelledby="cases-title" data-cases>
+      <div class="container">
+        <div class="section-intro">
+          <header class="section-head">
+            <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Casos reales</p>
+            <h2 class="heading" id="cases-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Casos reales en</span>
+              <span class="heading__bold" data-line>gestión urbana</span>
+            </h2>
+          </header>
+          <div class="section-intro__side">
+            <p class="section-intro__text" data-reveal="mask" data-reveal-delay="0.2">Proyectos que cumplen estándares de eficiencia, seguridad y sostenibilidad.</p>
+            <div class="s-cases__cta-top" data-reveal="mask-x" data-reveal-delay="0.35">
+              <a class="btn btn--sm btn--secondary " href="#">
+                Ver todos los casos
+                <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ul class="s-cases__list" role="list" data-cases-track>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.00">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-01.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 1</span></div>
+                </div>
+                <span class="case__tag">Reciclaje</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Plantas de reciclaje en el Perú: Un Compromiso con el Futuro</h3>
+                    <div class="case__more"><p class="case__desc">Cómo las plantas de reciclaje están cambiando la gestión de residuos en las ciudades peruanas.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.08">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-02.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 2</span></div>
+                </div>
+                <span class="case__tag">Gestión de residuos</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Los contenedores ESE y la Norma Técnica Peruana NTP-ISO 900.058</h3>
+                    <div class="case__more"><p class="case__desc">Nuestros contenedores cumplen el código de colores para la segregación de residuos sólidos.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.16">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-03.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 3</span></div>
+                </div>
+                <span class="case__tag">Sostenibilidad</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Juegos Panamericanos y Parapanamericanos Santiago 2023</h3>
+                    <div class="case__more"><p class="case__desc">Equipamos las sedes con soluciones de segregación para un evento de escala continental.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.24">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-04.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 4</span></div>
+                </div>
+                <span class="case__tag">Representantes</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Feria Expo Industria Ecuador 2023</h3>
+                    <div class="case__more"><p class="case__desc">Presentamos nuestra línea de contenedores junto a nuestro representante en Ecuador.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+        </ul>
+        <ol class="dots s-cases__dots" role="list" aria-label="Paginación de casos" data-cases-dots></ol>
+        <div class="s-cases__cta-bottom">
+          <a class="btn btn--sm btn--secondary " href="#">
+                Ver todos los casos
+                <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-cta" id="contacto" aria-labelledby="cta-title">
+      <div class="s-cta__frame" data-cursor="light">
+        <div class="s-cta__bg" data-parallax="0.08" aria-hidden="true">
+          <img src="assets/img/cta-ciudad-1920.webp" srcset="assets/img/cta-ciudad-960.webp 960w, assets/img/cta-ciudad-1920.webp 1920w" sizes="100vw" width="1920" height="1282" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="s-cta__panel" data-reveal="mask" data-reveal-delay="0.05">
+          <p class="eyebrow eyebrow--on-dark"><span class="eyebrow__dot" aria-hidden="true"></span>Contactemos</p>
+          <h2 class="s-cta__title" id="cta-title" data-light-text>¿Necesitas asesoría? <strong>Te ayudamos a elegir con criterio</strong></h2>
+          <div class="s-cta__bottom">
+            <p class="s-cta__text" data-reveal="mask" data-reveal-delay="0.3">Desarrollamos configuraciones a la medida de cualquier exigencia operativa. Contáctanos para recibir asesoría especializada y diseñar tu sistema óptimo.</p>
+            <div class="s-cta__actions" data-reveal="mask-x" data-reveal-delay="0.45">
+              <a class="btn btn--primary btn--split btn--lg btn--split-wide" href="contacto.html">
+                <span class="btn__label">Contáctanos</span>
+                <span class="btn__icon"><i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="cert-modal" aria-labelledby="cert-modal-title" data-cert-modal>
+      <div class="cert-modal__panel">
+        <div class="cert-modal__head">
+          <div class="cert-modal__logo" data-cm-logo></div>
+          <div class="cert-modal__intro">
+            <span class="cert-card__tag" data-cm-tag></span>
+            <h2 class="cert-modal__title" id="cert-modal-title" data-cm-name></h2>
+            <p class="cert-modal__desc" data-cm-desc></p>
+          </div>
+          <button class="icon-btn cert-modal__close" type="button" aria-label="Cerrar" data-cm-close><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="cert-modal__body" data-cm-body></div>
+        <div class="cert-modal__nav">
+          <button class="cert-modal__step" type="button" data-cm-prev><i class="ph-bold ph-caret-left" aria-hidden="true"></i><span data-cm-prev-name></span></button>
+          <span class="cert-modal__count" data-cm-count></span>
+          <button class="cert-modal__step" type="button" data-cm-next><span data-cm-next-name></span><i class="ph-bold ph-caret-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </dialog>
+
+  </main>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="site-footer__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="site-footer__top">
+        <nav class="site-footer__col" aria-label="Soluciones">
+          <h2>Soluciones</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="soluciones.html">Sectores</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="distribuidores.html">Distribuidores</a></li>
+            <li><a href="#">Casos de éxito</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col" aria-label="ESE LATAM">
+          <h2>ESE LATAM</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="certificaciones.html">Certificaciones</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col site-footer__col--legal" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="terminos-y-condiciones.html">Términos y condiciones</a></li>
+            <li><a href="politica-de-cookies.html">Política de cookies</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__about">
+          <p class="site-footer__tagline">Distribuimos contenedores de residuos sólidos fabricados en Alemania y Francia. <span>Calidad europea, transformando la recolección de residuos en Latinoamérica.</span></p>
+          <p class="site-footer__eyebrow">Síguenos</p>
+          <ul class="social social--light" role="list">
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><span class="brand-icon brand-icon--youtube" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="site-footer__copy">© 2026 ESE LATAM. Todos los derechos reservados.</p>
+      <div class="site-footer__brand" aria-hidden="true">
+        <span class="site-footer__logo" data-reveal="rise"></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

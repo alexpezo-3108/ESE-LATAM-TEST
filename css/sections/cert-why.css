@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Certificaciones — "Marcando la diferencia" (.s-why): texto · imagen · datos
+   ========================================================================== */
+.s-why { padding-block: var(--space-section); background: var(--color-bg); }
+.s-why__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1fr); /* laterales iguales, imagen al centro: composición equilibrada */ gap: clamp(var(--space-lg), 1rem + 1.5vw, var(--space-2xl)); align-items: stretch; }
+.s-why__copy { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-2xl); }
+.s-why__lead { max-width: 34rem; color: var(--color-text-muted); line-height: var(--lh-relaxed); text-wrap: pretty; }
+.s-why__proof { display: flex; align-items: center; gap: var(--space-md); }
+.s-why__proof-text { display: grid; gap: 2px; }
+.s-why__proof-text strong { font-size: var(--fs-md); font-weight: var(--fw-medium); color: var(--color-navy-500); }
+.s-why__proof-text span { font-size: var(--fs-sm); color: var(--color-text-muted); }
+
+.s-why__media { min-height: clamp(28rem, 20rem + 18vw, 45rem); border-radius: var(--radius-24, 1.5rem); }
+
+.s-why__data { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-2xl); padding: clamp(var(--space-lg), 1rem + 1vw, var(--space-2xl)); border-radius: var(--radius-24, 1.5rem); background: var(--color-navy-50); }
+.s-why__list { margin: 0; }
+.s-why__row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-md); padding-block: clamp(var(--space-md), 0.75rem + 0.8vw, var(--space-ml)); border-bottom: 1px solid var(--color-grey-300); }
+.s-why__row:first-child { padding-top: var(--space-xs); }
+.s-why__row dt { font-size: var(--fs-sm); color: var(--color-text-muted); }
+.s-why__row dd { margin: 0; font-size: clamp(1.25rem, 1rem + 0.6vw, 1.625rem); font-weight: var(--fw-medium); line-height: 1.1; color: var(--color-navy-500); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.s-why__claim { max-width: 26rem; font-size: clamp(1.25rem, 1rem + 0.6vw, 1.625rem); font-weight: var(--fw-medium); line-height: 1.2; color: var(--color-navy-500); text-wrap: balance; }
+
+/* Título siempre en dos líneas: "Marcando" / "la diferencia" */
+.s-why .heading .heading__light,
+.s-why .heading .heading__bold { display: block; }
+@media (min-width: 80em) { .s-why .heading .heading__bold { white-space: nowrap; } }
+
+@media (max-width: 63.99em) {
+  .s-why__grid { grid-template-columns: minmax(0, 1fr); }
+  .s-why__copy { gap: var(--space-lg); }
+  .s-why__media { min-height: 0; aspect-ratio: 350 / 240; }
+  .s-why__data { gap: var(--space-xl); }
+}

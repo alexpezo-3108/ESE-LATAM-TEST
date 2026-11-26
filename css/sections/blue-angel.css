@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Estándar Blue Angel (.s-ba) — ciclo de 5 etapas sobre un arco; la etapa activa
+   sube al centro y las demás rotan por el arco (izquierda → centro → derecha)
+   ========================================================================== */
+.s-ba { --frame-inset: clamp(0.25rem, -0.4rem + 2.6vw, 2rem); padding: var(--frame-inset); background: var(--color-bg); }
+.s-ba__frame {
+  position: relative; isolation: isolate; overflow: hidden;
+  border-radius: var(--radius-24, 1.5rem);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-blue-500) 88%, var(--color-navy-500)) 0%, color-mix(in srgb, var(--color-blue-300) 70%, var(--color-blue-500)) 45%, var(--color-blue-100) 100%);
+  color: var(--color-on-dark);
+}
+.s-ba__canvas { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+.s-ba__inner { padding-block: clamp(var(--space-3xl), 2rem + 4vw, 6rem) clamp(var(--space-2xl), 1.5rem + 3vw, 4.5rem); }
+.s-ba__lead { max-width: 46rem; line-height: var(--lh-relaxed); color: var(--color-on-dark); text-wrap: balance; }
+.s-ba__lead strong { font-weight: var(--fw-semibold); }
+
+.s-ba__stage { position: relative; width: min(100%, 60rem); margin: clamp(var(--space-xl), 1rem + 2vw, var(--space-3xl)) auto 0; aspect-ratio: 960 / 500; }
+.s-ba__arc { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: auto; }
+/* Pulso de luz que recorre el arco en el sentido del flujo al cambiar de etapa */
+.s-ba__pulse { stroke-dasharray: 0.14 1.2; stroke-dashoffset: 0.14; opacity: 0; filter: drop-shadow(0 0 8px rgb(255 255 255 / 0.9)); mix-blend-mode: soft-light; }
+.s-ba__chev { transform-box: fill-box; transform-origin: center; }
+.s-ba__steps { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+
+/* Posiciones sobre el arco (centro del objeto, en % del escenario) */
+.ba-step {
+  --x: 50%; --y: 50%; --w: 13%;
+  position: absolute; left: var(--x); top: var(--y); width: var(--w);
+  translate: -50% -50%;
+  transition: left 0.9s cubic-bezier(0.65, 0, 0.35, 1), top 0.9s cubic-bezier(0.65, 0, 0.35, 1), width 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.45s var(--ease-out);
+}
+.ba-step[data-slot="0"] { --x: 9%;  --y: 76%; --w: 17%; z-index: 1; }
+.ba-step[data-slot="1"] { --x: 27%; --y: 50%; --w: 12.5%; z-index: 2; }
+.ba-step[data-slot="2"] { --x: 50%; --y: 27%; --w: 27%; z-index: 3; }
+.ba-step[data-slot="3"] { --x: 76%; --y: 50%; --w: 15%; z-index: 2; }
+.ba-step[data-slot="4"] { --x: 92%; --y: 78%; --w: 12.5%; z-index: 1; }
+.ba-step.is-fading { opacity: 0; transition: opacity 0.35s var(--ease-out); }
+.ba-step.is-wrapping { transition: none; opacity: 0; }
+.ba-step__btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+.ba-step__btn img { display: block; width: 100%; height: auto; filter: drop-shadow(0 1rem 1.25rem rgb(0 30 96 / 0.22)); transition: transform var(--dur-base) var(--ease-out); }
+.ba-step:not([data-slot="2"]) .ba-step__btn:hover img { transform: translateY(-4px) scale(1.04); }
+.ba-step[data-slot="2"] .ba-step__btn { cursor: default; }
+
+.s-ba__caption { position: absolute; left: 50%; bottom: 3%; translate: -50% 0; display: grid; justify-items: center; gap: var(--space-2xs); width: min(22rem, 36%); text-align: center; color: var(--color-navy-500); transition: opacity 0.3s var(--ease-out); }
+.s-ba__caption.is-swapping { opacity: 0; }
+.s-ba__name { font-size: var(--fs-sm); font-weight: var(--fw-semibold); line-height: 1.25; text-wrap: balance; }
+.s-ba__desc { font-size: 0.875rem /* 14 · local */; line-height: 1.45; color: color-mix(in srgb, var(--color-navy-500) 80%, transparent); text-wrap: pretty; }
+
+@media (max-width: 47.99em) {
+  .s-ba__stage { aspect-ratio: 960 / 640; }
+  .s-ba__arc { width: 100%; }
+  .ba-step[data-slot="0"] { --x: 10%; --y: 80%; --w: 20%; }
+  .ba-step[data-slot="1"] { --x: 24%; --y: 56%; --w: 15%; }
+  .ba-step[data-slot="2"] { --x: 50%; --y: 33%; --w: 30%; }
+  .ba-step[data-slot="3"] { --x: 77%; --y: 56%; --w: 18%; }
+  .ba-step[data-slot="4"] { --x: 91%; --y: 82%; --w: 15%; }
+  .s-ba__caption { width: 44%; bottom: 2%; }
+  .s-ba__desc { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ba-step { transition: none; } }

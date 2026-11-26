@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Footer (.site-footer)
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: radial-gradient(ellipse 60% 70% at 55% 45%, var(--color-navy-400) 0%, var(--color-navy-500) 70%);
+  color: var(--color-on-dark);
+}
+/* Líneas diagonales muy suaves */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(135deg,
+    color-mix(in srgb, var(--color-bg) 3%, transparent) 0 1px,
+    transparent 1px 6px);
+  pointer-events: none;
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: repeat(3, max-content) minmax(0, 1fr);
+  gap: var(--space-xl) clamp(var(--space-xl), 1rem + 6vw, 7.5rem);
+  padding-top: clamp(var(--space-3xl), 2rem + 4vw, 7.5rem);
+}
+
+.site-footer__col h2,
+.site-footer__eyebrow {
+  margin-bottom: var(--space-md);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-navy-100);
+}
+.site-footer__links { display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
+.site-footer__links a {
+  position: relative;
+  display: inline-block;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  color: var(--color-on-dark);
+}
+.site-footer__links a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.site-footer__links a:hover::after { transform: scaleX(1); transform-origin: left center; }
+
+.site-footer__about { justify-self: end; max-width: 26rem; }
+.site-footer__tagline { font-size: var(--fs-md); font-weight: var(--fw-medium); line-height: 1.35; }
+.site-footer__tagline span { display: block; color: var(--color-navy-100); font-weight: var(--fw-regular); }
+.site-footer__about .site-footer__eyebrow { margin-top: var(--space-2xl); }
+
+.social--light .social__link { background: var(--color-bg); color: var(--color-navy-500); }
+.social--light .social__link:hover { color: var(--color-navy-400); }
+
+.site-footer__copy {
+  margin-top: clamp(var(--space-2xl), 1rem + 3vw, 4.5rem);
+  font-size: var(--fs-sm);
+  color: var(--color-navy-100);
+}
+
+/* Logo gigante: sube desde abajo al entrar (data-reveal="rise") */
+.site-footer__brand {
+  overflow: hidden;
+  margin-top: clamp(var(--space-xl), 1rem + 4vw, 5rem);
+}
+.site-footer__logo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1760 / 347;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--color-navy-100) 85%, transparent) 0%,
+    color-mix(in srgb, var(--color-navy-300) 45%, transparent) 100%);
+  -webkit-mask: url("../../assets/img/logo-ese-footer.png") center bottom / contain no-repeat;
+  mask: url("../../assets/img/logo-ese-footer.png") center bottom / contain no-repeat;
+}
+
+@media (max-width: 63.99em) {
+  .site-footer__top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer__about { grid-column: 1 / -1; grid-row: 1; justify-self: start; }
+}
+
+@media (max-width: 47.99em) {
+  .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--space-2xl); padding-top: var(--space-3xl); }
+  .site-footer__col--legal { grid-column: 1 / -1; }
+  .site-footer__tagline { font-size: var(--fs-md); }
+  .site-footer__about .site-footer__eyebrow { margin-top: var(--space-xl); }
+}
+
+/* --------------------------------------------------------------------------
+   Luz que sigue al cursor (solo punteros finos; activado por footer.js)
+   -------------------------------------------------------------------------- */
+.site-footer__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(40rem circle at var(--mx, 50%) var(--my, 40%),
+    color-mix(in srgb, var(--color-blue-500) 12%, transparent) 0%,
+    color-mix(in srgb, var(--color-blue-500) 5%, transparent) 40%,
+    transparent 75%);
+}
+
+/* Íconos de redes un poco más grandes (el contenedor no cambia) */
+.site-footer .social__link i, .site-footer .social__link .brand-icon { font-size: 1.5rem; }

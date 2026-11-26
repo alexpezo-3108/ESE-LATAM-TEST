@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Contacto (.s-contact) — datos a la izquierda, formulario a la derecha.
+   Campos, checkbox y aviso: ver "Formulario" en components.css.
+   ========================================================================== */
+.s-contact { padding-bottom: var(--space-section); background: var(--color-bg); }
+.s-contact__grid { display: grid; grid-template-columns: minmax(0, 30rem) minmax(0, 1fr); gap: clamp(var(--space-2xl), 4.2vw, 5rem); align-items: start; max-width: 90rem; margin-inline: auto; }
+.s-contact__aside { position: sticky; top: calc(var(--header-h) + var(--space-md)); display: grid; gap: var(--space-2xl); }
+
+.contact-list { display: grid; gap: var(--space-sm); list-style: none; }
+.contact-card { position: relative; display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); border-radius: var(--radius-16); background: var(--color-navy-50); transition: background-color var(--dur-fast) var(--ease-out); }
+.contact-card__icon { flex: none; display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--gradient-navy); color: var(--color-on-dark); font-size: 1.25rem; }
+.contact-card__body { display: grid; gap: var(--space-3xs); min-width: 0; }
+.contact-card__title { font-size: var(--fs-md); font-weight: var(--fw-medium); color: var(--color-text); }
+.contact-card__value { font-size: var(--fs-base); color: var(--color-text-muted); text-decoration: none; overflow-wrap: anywhere; }
+a.contact-card__value:hover { color: var(--color-navy-500); }
+.contact-card__end { flex: none; margin-left: auto; }
+.contact-card__arrow { position: relative; z-index: 1; font-size: 1.125rem; color: var(--color-navy-500); pointer-events: none; transition: transform var(--dur-fast) var(--ease-out); }
+.contact-card__cover { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.contact-card:has(.contact-card__cover):hover { background: color-mix(in srgb, var(--color-navy-100) 45%, var(--color-navy-50)); }
+.contact-card:has(.contact-card__cover):hover .contact-card__arrow { transform: translate(2px, -2px); }
+
+.contact-follow { display: grid; gap: var(--space-xs); padding-inline: var(--space-3xs); }
+.contact-follow__title { font-size: var(--fs-base); font-weight: var(--fw-medium); color: var(--color-text); }
+.contact-follow__text { font-size: var(--fs-sm); color: var(--color-text-muted); }
+.contact-follow__list { display: flex; gap: var(--space-sm); margin-top: var(--space-xs); list-style: none; }
+
+.contact-form { display: grid; }
+.contact-form[hidden] { display: none; }
+.contact-form .form-alert { margin-bottom: var(--space-xl); }
+.contact-form__submit { justify-content: center; margin-top: var(--space-xl); transition: opacity var(--dur-base) var(--ease-out); }
+.contact-form__submit[aria-busy="true"] { pointer-events: none; opacity: 0.72; }
+.contact-form__submit [data-contact-icon].ph-circle-notch { animation: contact-spin 0.9s linear infinite; }
+@keyframes contact-spin { to { transform: rotate(360deg); } }
+.contact-form__note { margin-top: var(--space-xl); font-size: var(--fs-sm); text-align: center; color: var(--color-text-muted); }
+
+/* Éxito */
+.contact-done { display: grid; justify-items: center; gap: var(--space-md); padding: clamp(2.5rem, 1rem + 5vw, 6rem) clamp(1.5rem, 1rem + 3vw, 4.5rem); border-radius: var(--radius-16); background: var(--color-navy-50); text-align: center; outline: 0; }
+.contact-done[hidden] { display: none; }
+.contact-done__check { position: relative; display: grid; place-items: center; width: 4.5rem; height: 4.5rem; margin-bottom: var(--space-xs); }
+.contact-done__halo { position: absolute; inset: 0; border-radius: 50%; background: var(--color-success-light); transform: scale(0); }
+.contact-done__svg { position: relative; width: 3.25rem; height: 3.25rem; overflow: visible; }
+.contact-done__circle { fill: var(--color-success); transform-origin: 50% 50%; transform: scale(0); }
+.contact-done__tick { stroke: #fff; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 34; stroke-dashoffset: 34; }
+.contact-done.is-in .contact-done__halo { animation: done-halo 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s forwards; }
+.contact-done.is-in .contact-done__circle { animation: done-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards; }
+.contact-done.is-in .contact-done__tick { animation: done-tick 0.45s var(--ease-out) 0.55s forwards; }
+.contact-done.is-in .contact-done__title,
+.contact-done.is-in .contact-done__text,
+.contact-done.is-in .contact-done__actions { animation: done-up 0.7s var(--ease-out) both; }
+.contact-done.is-in .contact-done__title { animation-delay: 0.45s; }
+.contact-done.is-in .contact-done__text { animation-delay: 0.55s; }
+.contact-done.is-in .contact-done__actions { animation-delay: 0.65s; }
+@keyframes done-halo { 0% { transform: scale(0); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes done-pop { to { transform: scale(1); } }
+@keyframes done-tick { to { stroke-dashoffset: 0; } }
+@keyframes done-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.contact-done__title { font-size: clamp(1.375rem, 1rem + 1vw, 1.75rem); font-weight: var(--fw-medium); line-height: var(--lh-snug); color: var(--color-text); text-wrap: balance; }
+.contact-done__text { max-width: 46rem; font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--color-text-muted); text-wrap: pretty; }
+.contact-done__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); margin-top: var(--space-sm); }
+
+/* Confeti (canvas a pantalla completa, lo crea js/confetti.js) */
+.confetti-canvas { position: fixed; inset: 0; z-index: 90; width: 100%; height: 100%; pointer-events: none; }
+
+/* Panel de demo — quitar en producción */
+.demo-panel { position: fixed; left: var(--space-md); bottom: var(--space-md); z-index: 95; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); max-width: calc(100% - 2 * var(--space-md)); padding: var(--space-xs); border-radius: var(--radius-12); background: var(--color-neutral-900); box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.2); font-size: var(--fs-xs); }
+.demo-panel__title { padding-inline: var(--space-xs); color: var(--color-grey-500); text-transform: uppercase; letter-spacing: 0.06em; }
+.demo-panel button { padding: 0.45rem 0.7rem; border: 0; border-radius: var(--radius-8); background: rgb(255 255 255 / 0.1); color: #fff; font: inherit; cursor: pointer; }
+.demo-panel button:hover { background: var(--color-blue-500); }
+
+@media (max-width: 63.99em) {
+  .s-contact__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-3xl); }
+  .s-contact__main { order: -1; }
+  .s-contact__aside { position: static; }
+  .contact-follow { justify-items: center; text-align: center; }
+}
+@media (max-width: 47.99em) {
+  .contact-card { padding: var(--space-md); }
+  .contact-card__icon { width: 2.75rem; height: 2.75rem; font-size: 1.125rem; }
+  /* Solo ícono: sin gap ni padding heredados del .btn, para que quede centrado */
+  .contact-card .btn--whatsapp { --btn-px: 0; display: flex; align-items: center; justify-content: center; line-height: 0; width: 2.5rem; min-width: 0; height: 2.5rem; padding: 0; gap: 0; border-radius: 50%; font-size: 0; }
+  .contact-card .btn--whatsapp .btn__icon { display: grid; place-items: center; width: auto; height: auto; margin: 0; font-size: 1.25rem; }
+  .contact-done__actions .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-done.is-in * { animation-duration: 0.01ms !important; animation-delay: 0s !important; }
+}

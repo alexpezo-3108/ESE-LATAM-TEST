@@ -1,0 +1,770 @@
+/* ==========================================================================
+   Header (.site-header) + navegación (.nav) + búsqueda (.search)
+   ========================================================================== */
+.site-header {
+  --pill-pad-x: 1.75rem;   /* 28 · separación contenido ↔ borde del pill */
+  --pill-pad-y: 0.6875rem; /* 11 · pill de 66px con controles de 44 */
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  color: var(--color-on-dark);
+  transition: transform var(--dur-base) var(--ease-main);
+}
+.site-header--static { position: relative; }
+
+/* Se oculta al bajar, reaparece al subir */
+.site-header.is-hidden { transform: translateY(-100%); }
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding-block: var(--header-pad-y);
+}
+
+/* ---------- Estado pill (al bajar o con la búsqueda abierta) ----------
+   El fondo se abre desde el centro con clip-path; logo y acciones se
+   desplazan hacia adentro con transform (sin cambiar el layout). */
+.site-header__inner::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--header-pad-y) - var(--pill-pad-y)) var(--space-gutter);
+  z-index: -1;
+  border-radius: var(--radius-full);
+  /* Mismo fondo navy que el pill activo: al salir solo se desvanece (sin flash blanco) */
+  background: radial-gradient(ellipse 70% 160% at 55% 50%, color-mix(in srgb, var(--color-navy-400) 92%, transparent) 0%, color-mix(in srgb, var(--color-navy-500) 92%, transparent) 75%);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+          backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: inset 0 0 0 0.5px color-mix(in srgb, var(--color-on-dark) 35%, transparent), 0 0.75rem 2rem -0.75rem color-mix(in srgb, var(--color-navy-500) 45%, transparent);
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1); /* fade suave de entrada y salida */
+}
+.site-header__logo,
+.site-header__end { transition: transform var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+
+.site-header.is-pill { color: var(--color-navy-500); }
+/* inset negativo abajo/lados para no recortar la sombra */
+.is-pill .site-header__inner::before { opacity: 1; }
+.is-pill .site-header__logo { transform: translateX(var(--pill-pad-x)); }
+.is-pill .site-header__end { transform: translateX(calc(var(--pill-pad-x) * -1)); }
+.is-pill .icon-btn,
+.is-pill .nav-toggle { background: var(--color-grey-100); }
+@media (min-width: 64em) {
+  .is-pill .nav__link,
+  .is-pill .nav__toggle { color: var(--color-text); }
+}
+
+/* Logo teñido con currentColor (blanco sobre hero, navy con menú abierto).
+   En WordPress puede reemplazarse por el SVG inline con fill="currentColor". */
+.site-header__logo {
+  display: block;
+  flex-shrink: 0;
+  width: var(--logo-w);
+  aspect-ratio: 128 / 39;
+  color: inherit;
+  background: currentColor;
+  -webkit-mask: url("../../assets/img/logo-ese.png") center / contain no-repeat;
+  mask: url("../../assets/img/logo-ese.png") center / contain no-repeat;
+}
+.site-header__logo:hover { color: inherit; }
+.site-header__logo img { width: 100%; visibility: hidden; }
+
+.site-header__end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-ml);
+}
+
+.site-header__search-btn .ph-x { display: none; }
+.is-search-open .site-header__search-btn .ph-x { display: inline-block; }
+.is-search-open .site-header__search-btn .ph-magnifying-glass { display: none; }
+
+/* ---------- Nav (desktop) ---------- */
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__item { position: relative; }
+
+.nav__link,
+.nav__toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  cursor: pointer;
+}
+.nav__link:hover,
+.nav__toggle:hover { color: inherit; }
+
+/* Subrayado que se dibuja */
+.nav__link::after,
+.nav__toggle::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nav__link:hover::after,
+.nav__toggle:hover::after,
+.nav__link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.nav__chevron {
+  font-size: 0.875rem;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nav__item.is-open .nav__chevron { transform: rotate(180deg); }
+
+/* Ítem con submenú abierto: pill de fondo (padding compensado con margen, sin layout shift) */
+@media (min-width: 64em) {
+  .nav__toggle {
+    margin-inline: calc(var(--space-sm) * -1);
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .nav__toggle::after { inset: auto var(--space-sm) var(--space-3xs); }
+  .nav__item.is-open > .nav__toggle { background: color-mix(in srgb, var(--color-bg) 14%, transparent); }
+  .nav__item.is-open > .nav__toggle::after { transform: scaleX(0); }
+  .is-pill .nav__item.is-open > .nav__toggle { background: var(--color-grey-100); color: var(--color-navy-500); }
+  /* Página actual: sin fondo, solo peso */
+  .nav__item.is-current > .nav__toggle,
+  .nav__item.is-current > .nav__link { font-weight: var(--fw-semibold); }
+  .nav__item.is-current > .nav__toggle::after { transform: scaleX(0); }
+}
+/* Hover: sin subrayado; aparece directamente el pill (igual que con el submenú abierto) */
+@media (min-width: 64em) {
+  .nav__link::after,
+  .nav__toggle::after { display: none; }
+  .nav__link {
+    margin-inline: calc(var(--space-sm) * -1);
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .nav__link[aria-current="page"] { font-weight: var(--fw-semibold); }
+  .nav__link:hover,
+  .nav__toggle:hover { background: color-mix(in srgb, var(--color-bg) 14%, transparent); }
+  .is-pill .nav__link:hover,
+  .is-pill .nav__toggle:hover { background: var(--color-grey-100); color: var(--color-navy-500); }
+}
+.nav__arrow { display: none; }
+
+/* Puente invisible para que el hover no se corte al bajar al panel */
+.nav__item--has-sub::before {
+  content: "";
+  position: absolute;
+  inset: 100% calc(var(--space-sm) * -1) auto;
+  height: calc(var(--space-ml) + var(--space-sm));
+}
+
+.nav__sub {
+  position: absolute;
+  top: calc(100% + var(--space-ml) + var(--space-sm)); /* 12px bajo el pill */
+  left: calc(var(--space-sm) * -1);
+  min-width: 17rem;
+  margin: 0;
+  padding: var(--space-xs);
+  list-style: none;
+  border-radius: var(--radius-12);
+  background: var(--color-bg);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0 round var(--radius-12));
+  transition:
+    clip-path var(--dur-fast) var(--ease-out),
+    visibility 0s linear var(--dur-fast);
+}
+.nav__item.is-open .nav__sub {
+  visibility: visible;
+  clip-path: inset(0 0 0 0 round var(--radius-12));
+  transition:
+    clip-path var(--dur-fast) var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+.nav__sublink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-sm);
+  border-radius: var(--radius-8);
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nav__sublink:hover {
+  color: var(--color-navy-500);
+  background: var(--color-navy-50);
+  transform: translateX(var(--space-3xs));
+}
+.nav__sublink--all,
+.nav__sublink--all:hover { color: var(--color-blue-500); }
+
+/* Submenú con descripción (--rich), centrado en el ítem; --mega = 2 columnas */
+.nav__sublink-title { display: block; }
+.nav__sublink-desc { display: none; }
+@media (min-width: 64em) {
+  .nav__sub--rich {
+    left: 50%;
+    width: 22.5rem;
+    transform: translateX(-50%);
+    box-shadow: 0 1rem 2.5rem -1rem color-mix(in srgb, var(--color-navy-500) 25%, transparent);
+  }
+  .nav__item.is-open .nav__sub--rich { clip-path: inset(-3rem -3rem -3rem -3rem round var(--radius-12)); }
+  .nav__sub--mega {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 41.25rem;
+  }
+  .nav__sub--rich .nav__sublink {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3xs);
+    padding: var(--space-sm) var(--space-md);
+  }
+  .nav__sub--rich .nav__sublink:hover { background: var(--color-navy-50); transform: none; }
+  .nav__sub--rich .nav__sublink-title { font-size: var(--fs-base); font-weight: var(--fw-medium); color: var(--color-navy-500); }
+  .nav__sub--rich .nav__sublink-desc { display: block; font-size: var(--fs-sm); color: var(--color-text-muted); }
+  .nav__sub-footer {
+    grid-column: 1 / -1;
+    margin-top: var(--space-3xs);
+    padding-top: var(--space-3xs);
+    border-top: 1px solid var(--color-grey-100);
+  }
+  .nav__sub-footer .nav__sublink { flex-direction: row; align-items: center; font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+  .nav__sub-footer .nav__sublink:hover { background: none; }
+  .nav__sub-footer .nav__sublink i { transition: transform var(--dur-fast) var(--ease-out); }
+  .nav__sub-footer .nav__sublink:hover i { transform: translateX(3px); }
+}
+
+.nav__footer { display: none; }
+
+
+/* ---------- Burger / cerrar ---------- */
+.nav-toggle {
+  display: none;
+  position: relative;
+  width: var(--size-control);
+  height: var(--size-control);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-bg);
+  cursor: pointer;
+}
+.nav-toggle__bar {
+  position: absolute;
+  left: 32%;
+  right: 32%;
+  height: 1.5px;
+  background: var(--color-navy-500);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.nav-toggle__bar:nth-child(1) { top: calc(50% - 3px); }
+.nav-toggle__bar:nth-child(2) { top: calc(50% + 2px); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) { transform: translateY(2.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { transform: translateY(-2.5px) rotate(-45deg); }
+
+/* ==========================================================================
+   Búsqueda — desktop: panel bajo el header · mobile: pantalla completa
+   ========================================================================== */
+.search-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: color-mix(in srgb, var(--color-navy-500) 40%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.42s cubic-bezier(0.45, 0, 0.7, 0.4), visibility 0s linear 0.42s;
+}
+.is-search-open .search-backdrop { opacity: 1; visibility: visible; transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s; }
+
+.search {
+  position: absolute;
+  top: calc(100% - var(--header-pad-y) + var(--pill-pad-y) + var(--space-md));
+  right: var(--space-gutter);
+  width: min(62.5rem, calc(100% - var(--space-gutter) * 2));
+  padding: var(--pill-pad-x);
+  border-radius: var(--radius-16);
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: 0 1.5rem 3rem -1rem color-mix(in srgb, var(--color-navy-500) 28%, transparent);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0 round var(--radius-16));
+  transition:
+    clip-path var(--dur-base) var(--ease-out),
+    visibility 0s linear var(--dur-base);
+}
+.is-search-open .search {
+  visibility: visible;
+  clip-path: inset(-4rem -4rem -4rem -4rem round var(--radius-16));
+  transition:
+    clip-path var(--dur-base) var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+.search__form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  height: var(--size-input);
+  padding-inline: var(--space-ml) var(--space-ml);
+  border: 1.5px solid var(--color-blue-500);
+  border-radius: var(--radius-12);
+  background: var(--color-grey-50);
+  color: var(--color-navy-500);
+}
+.search__icon { flex-shrink: 0; font-size: var(--size-icon-lg); }
+
+.search__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--fs-base);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search__input::placeholder { color: var(--color-grey-600); }
+.search__input::-webkit-search-cancel-button { display: none; }
+
+.search__kbd {
+  flex-shrink: 0;
+  padding: var(--space-3xs) var(--space-xs);
+  border: 1px solid var(--color-grey-300);
+  border-radius: var(--radius-4);
+  color: var(--color-grey-700);
+  font-family: inherit;
+  font-size: 0.6875rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+.search__clear {
+  display: none;
+  place-items: center;
+  flex-shrink: 0;
+  padding: var(--space-3xs);
+  border: 0;
+  background: none;
+  color: var(--color-grey-500);
+  font-size: var(--size-icon-lg);
+  cursor: pointer;
+}
+.search__clear:hover { color: var(--color-grey-700); }
+
+.search__results {
+  max-height: calc(100vh - 16rem);
+  overflow-x: hidden;   /* la flecha del enlace se desplaza al hover: sin barra horizontal */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.search__results:not(:empty) { margin-top: var(--space-lg); }
+
+.search__group + .search__group { margin-top: var(--space-md); }
+.search__eyebrow {
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-grey-700);
+}
+.search__list { display: grid; gap: var(--space-3xs); margin: 0; padding: 0; list-style: none; }
+.search__all { margin-top: var(--space-lg); }
+.search__group .chip-list { gap: var(--space-xs); }
+a.chip { text-decoration: none; }
+
+/* Pie de resultados: desktop = atajos + link · mobile = botón */
+.search__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-ml);
+  border-top: 1px solid var(--color-grey-100);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+.search__foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-blue-500);
+}
+.search__foot a i { transition: transform var(--dur-fast) var(--ease-out); }
+.search__foot a:hover i { transform: translateX(3px); }
+.search__all { display: none; }
+
+.search__empty { padding-block: var(--space-xl) var(--space-md); text-align: center; }
+.search__empty-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  color: var(--color-text);
+}
+.search__empty-text {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+.search__suggest { margin-top: var(--space-xl); }
+
+.search__help {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-xl);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+.search__help a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-blue-500);
+}
+.search__help a i { transition: transform var(--dur-fast) var(--ease-out); }
+.search__help a:hover i { transform: translateX(3px); }
+
+/* Resultado */
+.search-item {
+  display: grid;
+  grid-template-columns: var(--size-thumb) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xs);
+  border-radius: var(--radius-12);
+  color: var(--color-text);
+}
+.search-item:hover,
+.search-item:focus-visible,
+.search-item.is-active { background: var(--color-navy-50); color: var(--color-text); }
+.search-item__thumb {
+  display: grid;
+  place-items: center;
+  width: var(--size-thumb);
+  height: var(--size-thumb);
+  overflow: hidden;
+  border-radius: var(--radius-8);
+  background: var(--color-grey-50);
+  color: var(--color-navy-500);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+}
+/* La foto entra completa en la miniatura (sin recorte) */
+.search-item__thumb img { display: block; width: auto; height: auto; max-width: calc(100% - 6px); max-height: calc(100% - 6px); object-fit: contain; }
+.search-item__title {
+  display: block;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-body);
+}
+.search-item__title mark { background: none; color: var(--color-blue-500); }
+.search-item__meta {
+  display: block;
+  margin-top: var(--space-3xs);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--color-text-muted);
+}
+.search-item__arrow {
+  font-size: var(--size-icon);
+  color: var(--color-grey-600);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.search-item:hover .search-item__arrow { color: var(--color-navy-500); transform: translate(2px, -2px); }
+
+/* ==========================================================================
+   Mobile / tablet (< 1024px)
+   ========================================================================== */
+@media (max-width: 63.99em) {
+  .site-header { --pill-pad-x: 1rem; --pill-pad-y: 0.5rem; }
+  .site-header__contact { display: none; }
+  .nav-toggle { display: inline-block; }
+
+  /* Menú o búsqueda abiertos: header blanco a todo ancho, sin pill */
+  .site-header.is-nav-open,
+  .site-header.is-search-open { color: var(--color-navy-500); }
+  .is-nav-open .site-header__inner::before,
+  .is-search-open .site-header__inner::before { opacity: 0; }
+  .is-nav-open .site-header__logo,
+  .is-search-open .site-header__logo,
+  .is-nav-open .site-header__end,
+  .is-search-open .site-header__end { transform: none; }
+  .is-nav-open .nav-toggle,
+  .is-search-open .nav-toggle { background: var(--color-grey-100); }
+  .is-nav-open .site-header__search-btn,
+  .is-search-open .site-header__search-btn { display: none; }
+  .search-backdrop { display: none; }
+
+  /* Paneles a pantalla completa (comparten estructura) */
+  .nav,
+  .search {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: none;
+    visibility: hidden;
+    clip-path: inset(0 0 100% 0);
+    transition:
+      clip-path var(--dur-base) var(--ease-main),
+      visibility 0s linear var(--dur-base);
+  }
+  .nav { padding: calc(var(--header-h) + var(--space-xs)) var(--space-gutter) var(--space-xl); }
+  .search { top: 0; right: 0; padding: calc(var(--header-h) + var(--space-ml)) var(--space-gutter) var(--space-xl); }
+
+  .is-nav-open .nav,
+  .is-search-open .search {
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+    transition:
+      clip-path var(--dur-base) var(--ease-main),
+      visibility 0s linear 0s;
+  }
+
+  /* Lista */
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav__item { border-bottom: 1px solid var(--color-grey-100); }
+  .nav__link,
+  .nav__toggle {
+    justify-content: space-between;
+    width: 100%;
+    padding-block: var(--space-ml);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+  }
+  .nav__link:hover,
+  .nav__toggle:hover { color: var(--color-navy-500); }
+  .nav__link::after,
+  .nav__toggle::after,
+  .nav__item--has-sub::before { display: none; }
+
+  .nav__arrow {
+    display: inline-block;
+    font-size: var(--size-icon-lg);
+    color: var(--color-navy-300);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .nav__link:hover .nav__arrow { transform: translateX(3px); }
+  .nav__chevron { font-size: var(--size-icon-lg); color: var(--color-navy-500); }
+
+  .nav__sub {
+    position: static;
+    display: none;
+    min-width: 0;
+    padding: 0 0 var(--space-md);
+    border-radius: 0;
+    background: none;
+    visibility: visible;
+    clip-path: none;
+  }
+  .nav__item.is-open .nav__sub { display: block; }
+  .nav__sublink {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--fs-base);
+  }
+  .nav__sublink:hover { background: none; }
+
+  /* Pie del menú: buscador, contacto, redes */
+  .nav__footer {
+    display: grid;
+    gap: var(--space-md);
+    padding-top: 0;
+  }
+  .nav__search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    height: var(--size-btn);
+    margin-top: var(--space-3xs);
+    padding-inline: var(--space-ml);
+    border: 0;
+    border-radius: var(--radius-8);
+    background: var(--color-grey-50);
+    color: var(--color-grey-600);
+    font-family: inherit;
+    font-size: var(--fs-sm);
+    text-align: left;
+    cursor: text;
+  }
+  .nav__search i { font-size: var(--size-icon-lg); color: var(--color-navy-500); }
+
+  /* Búsqueda mobile */
+  .search__kbd { display: none; }
+  .search__foot { display: none; }
+  .search__all { display: flex; }
+  .search__clear { display: grid; }
+  .search__input:placeholder-shown ~ .search__clear { display: none; }
+  .search__results { max-height: none; overflow: visible; }
+  .search__results:not(:empty) { margin-top: var(--space-ml); }
+  .search__empty-title { font-size: var(--fs-md); }
+}
+
+/* Menú mobile: buscador separado de la navegación; contacto y redes al fondo */
+@media (max-width: 63.99em) {
+  .nav { display: flex; flex-direction: column; }
+  .nav__footer { flex: 1 0 auto; grid-template-rows: auto minmax(var(--space-xl), 1fr) auto auto; margin-top: var(--space-xl); }
+  .nav__footer > .btn { grid-row: 3; }
+  .nav__footer > .social { grid-row: 4; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; margin-top: var(--space-xs); }
+}
+
+/* Buscar a la altura de Contacto; Contacto con un poco más de aire */
+@media (min-width: 64em) {
+  .site-header__search-btn { --icon-btn-size: var(--size-btn-sm); }
+  .site-header__contact { --btn-px: var(--space-lg); }
+}
+
+/* El texto del header cambia de color al mismo ritmo que el fondo, sin dejar rastro */
+.site-header { transition: color 0.6s cubic-bezier(0.64, 0, 0.78, 0), transform var(--dur-base) var(--ease-main); }
+.site-header.is-pill { transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform var(--dur-base) var(--ease-main); }
+/* Salida: se desvanece suave y se disuelve en blur, sin moverse */
+.site-header:not(.is-pill) .site-header__inner::before {
+  filter: blur(6px);
+  transition: opacity 0.42s cubic-bezier(0.45, 0, 0.7, 0.4), filter 0.42s cubic-bezier(0.45, 0, 0.7, 0.4);
+}
+/* Entrada: fade suave y baja a su lugar */
+.is-pill .site-header__inner::before {
+  filter: none;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Submenús ricos: el título de cada opción con más peso que su descripción */
+@media (min-width: 64em) {
+  .nav__sub--rich .nav__sublink-title { font-weight: var(--fw-semibold); color: var(--color-navy-500); }
+}
+
+/* ---------- Páginas claras sin hero de imagen [data-solid] ----------
+   Arriba: sin pill, contenido navy sobre el fondo claro. */
+.site-header[data-solid]:not(.is-pill) { color: var(--color-navy-500); }
+@media (min-width: 64em) {
+  .site-header[data-solid]:not(.is-pill) .nav__link,
+  .site-header[data-solid]:not(.is-pill) .nav__toggle { color: var(--color-text); }
+  .site-header[data-solid]:not(.is-pill) .nav__link:hover,
+  .site-header[data-solid]:not(.is-pill) .nav__toggle:hover,
+  .site-header[data-solid]:not(.is-pill) .nav__item.is-open > .nav__toggle { background: var(--color-grey-100); color: var(--color-navy-500); }
+}
+.site-header[data-solid]:not(.is-pill) .icon-btn,
+.site-header[data-solid]:not(.is-pill) .nav-toggle { background: var(--color-grey-100); }
+
+/* ---------- Pill al hacer scroll: navy como el footer + borde blanco sutil ---------- */
+.site-header.is-pill:not(.is-nav-open) { color: var(--color-on-dark); }
+.is-pill:not(.is-nav-open) .site-header__inner::before {
+  background: radial-gradient(ellipse 70% 160% at 55% 50%, color-mix(in srgb, var(--color-navy-400) 92%, transparent) 0%, color-mix(in srgb, var(--color-navy-500) 92%, transparent) 75%);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+          backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: inset 0 0 0 0.5px color-mix(in srgb, var(--color-on-dark) 35%, transparent), 0 0.75rem 2rem -0.75rem color-mix(in srgb, var(--color-navy-500) 45%, transparent);
+}
+.is-pill:not(.is-nav-open) .icon-btn { background: var(--color-bg); color: var(--color-navy-500); }
+.is-pill:not(.is-nav-open) .nav-toggle { background: var(--color-bg); }
+@media (min-width: 64em) {
+  .is-pill .nav__link,
+  .is-pill .nav__toggle { color: var(--color-on-dark); }
+  .is-pill .nav__link:hover,
+  .is-pill .nav__toggle:hover,
+  .is-pill .nav__item.is-open > .nav__toggle { background: color-mix(in srgb, var(--color-on-dark) 14%, transparent); color: var(--color-on-dark); }
+}
+/* Contacto pasa a su estilo blanco (btn--light) dentro del pill navy */
+.is-pill:not(.is-nav-open) .site-header__contact {
+  --btn-fill: var(--color-navy-50);
+  --btn-color: var(--color-navy-500);
+  --btn-color-hover: var(--color-navy-500);
+}
+.is-pill:not(.is-nav-open) .site-header__contact .btn__icon--boxed { color: var(--color-on-dark); }
+@media (max-width: 63.99em) {
+  .is-search-open .site-header__inner::before { opacity: 0; }
+  .site-header.is-search-open { color: var(--color-navy-500); }
+}
+
+/* ---------- Mobile: burger encaja en el borde derecho del pill ----------
+   (mismo aire a la derecha que arriba/abajo) */
+@media (max-width: 63.99em) {
+  /* margin (no transform): no atrapa el panel fijo del menú y el botón queda en el mismo lugar abierto o cerrado */
+  /* Mobile: logo y botones NO se mueven nunca (arriba, pill, menú abierto).
+     Es el pill el que crece: queda a 8px del círculo del menú y del logo.
+     Sin transform en el header → el panel fijo del menú no queda atrapado al cerrar. */
+  .site-header.is-pill .site-header__end,
+  .site-header.is-pill .site-header__logo,
+  .site-header.is-nav-open .site-header__end,
+  .site-header.is-nav-open .site-header__logo,
+  .site-header.is-search-open .site-header__end,
+  .site-header.is-search-open .site-header__logo { transform: none; margin: 0; transition: none; }
+  .site-header__inner::before { inset-inline: calc(var(--space-gutter) - var(--pill-pad-y)); }
+  /* El panel del menú vive dentro de .site-header__end: con transform activo,
+     el fixed queda atrapado hasta que termina la transición. Al abrir, se quita al instante. */
+  .is-nav-open .site-header__end,
+  .is-nav-open .site-header__logo,
+  .is-search-open .site-header__end,
+  .is-search-open .site-header__logo { transition: none; }
+}
+
+/* Contacto: azul ↔ blanco con fade (los degradados no se interpolan → capa blanca que aparece encima del fondo) */
+.site-header__contact { transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform var(--dur-fast) var(--ease-out); }
+.site-header__contact::after {
+  content: ""; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  background: var(--color-bg); opacity: 0;
+  transition: opacity 0.42s cubic-bezier(0.45, 0, 0.7, 0.4);
+}
+.is-pill:not(.is-nav-open) .site-header__contact::after { opacity: 1; transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.site-header__contact .btn__icon--boxed { position: relative; isolation: isolate; transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform var(--dur-fast) var(--ease-out); }
+.site-header__contact .btn__icon--boxed::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: var(--gradient-navy); opacity: 0;
+  transition: opacity 0.42s cubic-bezier(0.45, 0, 0.7, 0.4);
+}
+.is-pill:not(.is-nav-open) .site-header__contact .btn__icon--boxed::after { opacity: 1; transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1); }

@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Sección: Hero de página interna (.s-page-hero) — Nosotros y similares
+   ========================================================================== */
+.s-page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-neutral-900);
+  color: var(--color-on-dark);
+}
+.s-page-hero__media { position: absolute; inset: -8% 0; z-index: -2; }
+.s-page-hero__parallax,
+.s-page-hero__media-inner,
+.s-page-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.s-page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-image-overlay);
+  pointer-events: none;
+}
+
+.s-page-hero__inner {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: max(100svh, 40rem);
+  padding-block: calc(var(--header-h) + var(--space-md)) var(--space-2xl);
+}
+
+/* Desktop grande: contenido centrado y "Descubre más" abajo a la derecha */
+.s-page-hero__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  gap: var(--space-xl);
+}
+.s-page-hero__content { grid-column: 1; grid-row: 1; display: grid; gap: var(--space-xl); }
+.s-page-hero__cue { grid-column: 2; grid-row: 2; align-self: end; }
+.s-page-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xs); }
+.s-page-hero__media-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+.s-page-hero__title {
+  font-size: clamp(2.25rem, 1.6rem + 2vw, 3.75rem); /* 36 → 60; menor que el H1 del home */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.s-page-hero__title-light { display: block; font-weight: var(--fw-extralight); }
+.s-page-hero__title-bold  { display: block; font-weight: var(--fw-semibold); }
+
+.s-page-hero__lead {
+  max-width: 34rem;
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  color: color-mix(in srgb, var(--color-on-dark) 88%, transparent);
+  text-wrap: pretty;
+}
+
+/* Laptop: "Descubre más" se alinea con el párrafo */
+@media (min-width: 64em) and (max-width: 99.99em) {
+  .s-page-hero__inner { padding-bottom: var(--space-3xl); }
+  .s-page-hero__body { grid-template-rows: 1fr; }
+  .s-page-hero__cue { grid-row: 1; align-self: end; margin-bottom: var(--space-2xs); }
+  .s-page-hero__content { padding-top: var(--space-4xl); }
+}
+
+/* Tablet / mobile: todo apilado, cue abajo a la izquierda */
+@media (max-width: 63.99em) {
+  .s-page-hero__actions .btn { width: 100%; }
+  .s-page-hero__inner { padding-bottom: var(--space-xl); }
+  .s-page-hero__body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto; }
+  .s-page-hero__content { align-self: center; gap: var(--space-lg); }
+  .s-page-hero__title-light,
+  .s-page-hero__title-bold { display: inline; }
+  .s-page-hero__title-light::after { content: " "; }
+  .s-page-hero__cue { grid-column: 1; grid-row: 2; justify-self: start; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Scroll cue "Descubre más"
+   -------------------------------------------------------------------------- */
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--color-on-dark);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+.scroll-cue__icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-on-dark) 55%, transparent);
+  border-radius: 50%;
+  font-size: 1.375rem;
+  overflow: hidden;
+  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.scroll-cue__icon i { animation: cue-drop 2.2s var(--ease-main) infinite; }
+.scroll-cue:hover .scroll-cue__icon { background: color-mix(in srgb, var(--color-on-dark) 14%, transparent); border-color: var(--color-on-dark); }
+@keyframes cue-drop {
+  0%, 20% { transform: translateY(0); opacity: 1; }
+  45% { transform: translateY(110%); opacity: 0; }
+  46% { transform: translateY(-110%); opacity: 0; }
+  70%, 100% { transform: translateY(0); opacity: 1; }
+}
+@media (max-width: 63.99em) { .scroll-cue__icon { width: 2.75rem; font-size: 1.125rem; } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue__icon i { animation: none; } }
+
+/* Heroes sin botón: el bloque de texto sube un poco (los que tienen botón quedan igual) */
+.s-page-hero__content:not(:has(.s-page-hero__actions)) { translate: 0 calc(-1 * clamp(1.5rem, 0.5rem + 3vw, 4rem)); }

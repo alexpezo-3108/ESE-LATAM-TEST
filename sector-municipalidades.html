@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Municipalidades y gobiernos locales — ESE Latam</title>
+  <meta name="description" content="Sistemas de contención para ciudades más limpias y ordenadas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap">
+  <!-- Íconos Phosphor (light + fill para logos sociales). En WP puede pasarse a sprite SVG. -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/header.css">
+  <link rel="stylesheet" href="css/sections/page-hero.css">
+  <link rel="stylesheet" href="css/sections/challenges.css">
+  <link rel="stylesheet" href="css/sections/desafios.css">
+  <link rel="stylesheet" href="css/sections/allies.css">
+  <link rel="stylesheet" href="css/sections/products.css">
+  <link rel="stylesheet" href="css/sections/reco.css">
+  <link rel="stylesheet" href="css/sections/certs.css">
+  <link rel="stylesheet" href="css/sections/cycle.css">
+  <link rel="stylesheet" href="css/sections/cases.css">
+  <link rel="stylesheet" href="css/sections/cta.css">
+  <link rel="stylesheet" href="css/sections/footer.css">
+  <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->
+  <script>
+    (function (d) {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('js-motion');
+      setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.remove('js-motion'); }, 3000);
+    })(document.documentElement);
+  </script>
+  <script type="module" src="js/motion.js"></script>
+  <script src="js/data/colors.js" defer></script>
+  <script src="js/data/products.js" defer></script>
+  <script src="js/card-swatches.js" defer></script>
+  <script src="js/data/sector-reco.js" defer></script>
+  <script src="js/product-card.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/cookies.js" defer></script>
+  <script src="js/sections/desafios.js" defer></script>
+  <script src="js/sections/allies.js" defer></script>
+  <script src="js/sections/products.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/sections/cycle.js" defer></script>
+  <script src="js/sections/cases.js" defer></script>
+  <script src="js/sections/cta.js" defer></script>
+  <script src="js/sections/case-titles.js" defer></script>
+  <script src="js/sections/footer.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="ESE Latam — inicio">
+        <img src="assets/img/logo-ese.png" width="128" height="39" alt="">
+      </a>
+
+      <div class="site-header__end">
+        <nav class="nav" id="site-nav" aria-label="Principal">
+          <ul class="nav__list" role="list">
+            <li class="nav__item"><a class="nav__link" href="productos.html">Productos <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub is-current">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-sectores">
+                Sectores <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="nav__sub nav__sub--rich nav__sub--mega" id="sub-sectores" role="list">
+                <li><a class="nav__sublink" href="sector-municipalidades.html" aria-current="page"><span class="nav__sublink-title">Municipalidades y gobiernos locales</span><span class="nav__sublink-desc">Ciudades más limpias y ordenadas</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
+                <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--all" href="soluciones.html">Ver todos los sectores <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="distribuidores.html">Distribuidores <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-nosotros">
+                Nosotros <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+                            <ul class="nav__sub nav__sub--rich" id="sub-nosotros" role="list">
+                <li><a class="nav__sublink" href="nosotros.html" aria-current="page"><span class="nav__sublink-title">Quiénes somos</span><span class="nav__sublink-desc">Historia, misión y equipo de ESE LATAM</span></a></li>
+                <li><a class="nav__sublink" href="certificaciones.html"><span class="nav__sublink-title">Certificaciones</span><span class="nav__sublink-desc">Normas y sellos europeos</span></a></li>
+                <li><a class="nav__sublink" href="impacto.html"><span class="nav__sublink-title">Impacto</span><span class="nav__sublink-desc">Economía circular y método Circulogic</span></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="blog.html">Blog <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+          </ul>
+
+          <!-- Solo mobile -->
+          <div class="nav__footer">
+            <button class="nav__search" type="button" data-search-open><i class="ph-light ph-magnifying-glass" aria-hidden="true"></i> Buscar productos o sectores</button>
+            <a class="btn btn--secondary btn--block" href="contacto.html">
+              Contacto
+              <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <ul class="social" role="list">
+              <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="icon-btn site-header__search-btn" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search" data-search-toggle>
+            <i class="ph-bold ph-magnifying-glass" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i>
+          </button>
+          <a class="btn btn--secondary btn--sm site-header__contact" href="contacto.html">
+            Contacto
+            <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search" id="site-search" role="dialog" aria-label="Buscar">
+        <form class="search__form" role="search" action="/" method="get">
+          <label class="sr-only" for="search-input">Buscar productos o sectores</label>
+          <i class="search__icon ph-light ph-magnifying-glass" aria-hidden="true"></i>
+          <input class="search__input" id="search-input" name="s" type="search" placeholder="Busca productos, sectores o artículos" autocomplete="off" aria-controls="search-results">
+          <button class="search__clear" type="button" aria-label="Borrar búsqueda"><i class="ph-fill ph-x-circle" aria-hidden="true"></i></button>
+          <kbd class="search__kbd">ESC</kbd>
+        </form>
+        <div class="search__results" id="search-results" aria-live="polite" data-lenis-prevent></div>
+      </div>
+    </div>
+    <div class="search-backdrop" aria-hidden="true"></div>
+  </header>
+
+  <template id="tpl-search-idle">
+    <div class="search__group">
+      <h3 class="search__eyebrow">Búsquedas frecuentes</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Contenedor 1.100 L">Contenedor 1.100 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Certificación Blue Angel">Certificación Blue Angel</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores en Perú">Distribuidores en Perú</button></li>
+      </ul>
+    </div>
+    <div class="search__group">
+      <h3 class="search__eyebrow">Accesos rápidos</h3>
+      <ul class="chip-list" role="list">
+        <li><a class="chip" href="productos.html">Catálogo de productos</a></li>
+        <li><a class="chip" href="soluciones.html">Soluciones por sector</a></li>
+        <li><a class="chip" href="distribuidores.html">Encuentra un distribuidor</a></li>
+        <li><a class="chip" href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </template>
+
+  <template id="tpl-search-empty">
+    <div class="search__empty">
+      <p class="search__empty-title">No encontramos resultados para «{q}»</p>
+      <p class="search__empty-text">Revisa la ortografía o prueba con una búsqueda más general.</p>
+    </div>
+    <div class="search__suggest">
+      <h3 class="search__eyebrow">Prueba con</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores">Distribuidores</button></li>
+      </ul>
+    </div>
+    <p class="search__help">¿No encuentras lo que necesitas? <a href="contacto.html">Escríbenos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></p>
+  </template>
+
+  <main id="main">
+
+    <section class="s-page-hero" aria-labelledby="page-hero-title" data-cursor="light">
+      <div class="s-page-hero__media" data-reveal="mask">
+        <div class="s-page-hero__parallax" data-parallax="0.15">
+        <div class="s-page-hero__media-inner" data-reveal-inner>
+          <!-- Reemplazar por la imagen definitiva (sin lazy: es el LCP):
+          <img src="assets/img/sector-municipalidades-hero-1920.webp"
+               srcset="assets/img/sector-municipalidades-hero-1280.webp 1280w, assets/img/sector-municipalidades-hero-1920.webp 1920w, assets/img/sector-municipalidades-hero-2880.webp 2880w"
+               sizes="100vw" width="2880" height="1922" alt="" fetchpriority="high" decoding="async"> -->
+          <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen hero sector · 2880×1500</span></div>
+        </div>
+        </div>
+      </div>
+
+      <div class="s-page-hero__inner container">
+        <nav class="breadcrumb" aria-label="Ruta de navegación" data-reveal="mask-x" data-reveal-delay="0.1">
+          <ol class="breadcrumb__list" role="list">
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html"><i class="ph-fill ph-house" aria-hidden="true"></i>Inicio</a></li>
+            <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><a class="breadcrumb__link" href="soluciones.html">Soluciones</a></li>
+            <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><span aria-current="page">Municipalidades</span></li>
+          </ol>
+        </nav>
+
+        <div class="s-page-hero__body">
+          <div class="s-page-hero__content">
+            <h1 class="s-page-hero__title" id="page-hero-title" data-reveal="mask" data-reveal-delay="0.2">
+              <span class="s-page-hero__title-light" data-line>Municipalidades y</span>
+              <span class="s-page-hero__title-bold" data-line>gobiernos locales</span>
+            </h1>
+            <p class="s-page-hero__lead" data-reveal="mask" data-reveal-delay="0.4">Sistemas de contención para ciudades más limpias y ordenadas.</p>
+            <div class="s-page-hero__actions" data-reveal="mask-x" data-reveal-delay="0.5">
+              <a class="btn btn--sm btn--primary btn--split" href="#contacto">
+                <span class="btn__label">Cotiza tu proyecto</span>
+                <span class="btn__icon"><i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+
+          <a class="scroll-cue s-page-hero__cue" href="#contenido" data-reveal="mask-x" data-reveal-delay="0.6">
+            <span class="scroll-cue__label">Descubre más</span>
+            <span class="scroll-cue__icon" aria-hidden="true"><i class="ph-light ph-caret-double-down"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-dc" id="desafios" aria-labelledby="dc-title" data-dc>
+      <!-- Textos 03–06: provisionales, pendientes de confirmar con la clienta -->
+      <div class="s-dc__track" data-dc-track>
+        <div class="s-dc__pin" data-pin>
+          <div class="container s-dc__frame">
+            <div class="s-dc__aside">
+              <h2 class="eyebrow s-dc__eyebrow" id="dc-title"><span class="eyebrow__dot" aria-hidden="true"></span>Desafíos en la gestión urbana</h2>
+              <ol class="s-dc__list" role="list">
+                <li><button class="s-dc__item is-active" type="button" data-dc-item="0" data-title="Robo y|vandalismo" data-problem="Contenedores que sufren robos o vandalismo en la vía pública, generando gasto recurrente de reposición." data-solution="Contamos con el sistema de seguridad Dinova, con llave que bloquea el contenedor y evita que sea extraído de su parante, protegiendo la inversión municipal." aria-current="step"><span class="s-dc__mark" aria-hidden="true"></span><span class="s-dc__iname">Robo y vandalismo</span></button></li>
+                <li><button class="s-dc__item" type="button" data-dc-item="1" data-title="Residuos|en vías" data-problem="Acumulación de residuos en esquinas, calles, veredas y espacios públicos." data-solution="Red de contenedores de distintas capacidades (240 L, 1.100 L, Dinova 50 L) ubicados estratégicamente para centralizar el acopio y evitar el desborde."><span class="s-dc__mark" aria-hidden="true"></span><span class="s-dc__iname">Residuos en vías</span></button></li>
+                <li><button class="s-dc__item" type="button" data-dc-item="2" data-title="Imagen|urbana" data-problem="Contenedores deteriorados o mal ubicados que afectan la estética y la percepción de limpieza de la ciudad." data-solution="Contenedores de diseño moderno y colores estandarizados para la segregación, que se integran al entorno y mejoran la imagen urbana."><span class="s-dc__mark" aria-hidden="true"></span><span class="s-dc__iname">Imagen urbana</span></button></li>
+                <li><button class="s-dc__item" type="button" data-dc-item="3" data-title="Riesgos|sanitarios" data-problem="Residuos expuestos que atraen vectores y generan malos olores, poniendo en riesgo la salud pública." data-solution="Contenedores con tapa hermética y materiales de fácil limpieza que contienen los olores y evitan la proliferación de plagas."><span class="s-dc__mark" aria-hidden="true"></span><span class="s-dc__iname">Riesgos sanitarios</span></button></li>
+                <li><button class="s-dc__item" type="button" data-dc-item="4" data-title="Espacios|deteriorados" data-problem="Parques, plazas y vías afectados por el abandono de residuos y la falta de puntos de acopio." data-solution="Papeleras urbanas Dinova y contenedores distribuidos en espacios públicos para mantenerlos limpios y en buen estado."><span class="s-dc__mark" aria-hidden="true"></span><span class="s-dc__iname">Espacios deteriorados</span></button></li>
+                <li><button class="s-dc__item" type="button" data-dc-item="5" data-title="Zonas de|alto volumen" data-problem="Mercados y zonas comerciales donde el volumen de residuos supera la capacidad de recolección." data-solution="Contenedores de 1.100 L y sistemas semi soterrados Bagio Smart y Urban Bin para grandes volúmenes con menor frecuencia de recojo."><span class="s-dc__mark" aria-hidden="true"></span><span class="s-dc__iname">Zonas de alto volumen</span></button></li>
+              </ol>
+              <p class="s-dc__hint">Desliza para recorrer los 6 desafíos <i class="ph ph-arrow-down" aria-hidden="true"></i></p>
+            </div>
+            <div class="s-dc__media" data-dc-swipe>
+              <p class="s-dc__title s-dc__title--navy" aria-hidden="true"><span class="s-dc__t"><span class="s-dc__ti" data-dc-title>Robo y<br>vandalismo</span></span></p>
+              <div class="s-dc__photo">
+                <!-- <img src="assets/img/sector-municipalidades-desafios.jpg" width="1600" height="1820" alt="" loading="lazy" decoding="async"> -->
+                <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen desafíos</span></div>
+                <span class="s-dc__shade" aria-hidden="true"></span>
+              </div>
+              <div class="s-dc__clip" aria-hidden="true">
+                <p class="s-dc__title s-dc__title--white"><span class="s-dc__t"><span class="s-dc__ti" data-dc-title>Robo y<br>vandalismo</span></span></p>
+              </div>
+              <p class="s-dc__mtitle" aria-live="polite"><span class="s-dc__t"><span class="s-dc__ti" data-dc-title>Robo y<br>vandalismo</span></span></p>
+              <span class="s-dc__mnum" aria-hidden="true" data-dc-num>.01</span>
+              <div class="s-dc__bar" aria-hidden="true"><span class="s-dc__seg is-on"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span></div>
+            </div>
+            <div class="s-dc__panel" data-dc-swipe>
+              <div class="s-dc__body" data-dc-body>
+                <div class="s-dc__group">
+                  <span class="s-dc__label s-dc__label--red">El desafío</span>
+                  <p class="s-dc__text" data-dc-problem>Contenedores que sufren robos o vandalismo en la vía pública, generando gasto recurrente de reposición.</p>
+                </div>
+                <hr class="s-dc__rule">
+                <div class="s-dc__group">
+                  <span class="s-dc__label s-dc__label--blue">Con ESE</span>
+                  <p class="s-dc__text s-dc__text--sol" data-dc-solution>Contamos con el sistema de seguridad Dinova, con llave que bloquea el contenedor y evita que sea extraído de su parante, protegiendo la inversión municipal.</p>
+                </div>
+              </div>
+              <span class="s-dc__num" aria-hidden="true" data-dc-num>.01</span>
+            </div>
+            <div class="s-dc__ctrl">
+              <button class="icon-btn icon-btn--lg icon-btn--navy icon-btn--prev" type="button" aria-label="Desafío anterior" data-dc-prev disabled><i class="ph-bold ph-arrow-left" aria-hidden="true"></i></button>
+              <div class="s-dc__count">
+                <span><span data-dc-cur>01</span> / 06</span>
+                <span class="s-dc__msegs" aria-hidden="true"><span class="s-dc__seg is-on"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span><span class="s-dc__seg"></span></span>
+              </div>
+              <button class="icon-btn icon-btn--lg icon-btn--navy" type="button" aria-label="Desafío siguiente" data-dc-next><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-chal s-chal--stats" id="contenido" aria-label="Desafíos · Métricas">
+      <div class="container">
+        <ul class="chal-stats" role="list">
+          <li class="chal-stat">
+            <span class="chal-stat__mask"><span class="chal-stat__value" data-reveal="rise" data-reveal-delay="0.10" data-count="120" data-count-prefix="+">+120</span></span>
+            <span class="chal-stat__mask"><span class="chal-stat__label" data-reveal="rise" data-reveal-delay="0.18">Municipios atendidos<br>en Latinoamérica</span></span>
+          </li>
+          <li class="chal-stat">
+            <span class="chal-stat__mask"><span class="chal-stat__value" data-reveal="rise" data-reveal-delay="0.22" data-count="10" data-count-suffix="+">10+</span></span>
+            <span class="chal-stat__mask"><span class="chal-stat__label" data-reveal="rise" data-reveal-delay="0.30">Años de vida útil<br>por contenedor</span></span>
+          </li>
+          <li class="chal-stat">
+            <span class="chal-stat__mask"><span class="chal-stat__value" data-reveal="rise" data-reveal-delay="0.34" data-count="1100" data-count-suffix=" L">1.100 L</span></span>
+            <span class="chal-stat__mask"><span class="chal-stat__label" data-reveal="rise" data-reveal-delay="0.42">Capacidad máxima<br>por contenedor</span></span>
+          </li>
+          <li class="chal-stat">
+            <span class="chal-stat__mask"><span class="chal-stat__value" data-reveal="rise" data-reveal-delay="0.46" data-count="8">8</span></span>
+            <span class="chal-stat__mask"><span class="chal-stat__label" data-reveal="rise" data-reveal-delay="0.54">Certificaciones<br>internacionales</span></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="s-brand-band" aria-label="Soluciones">
+      <div class="brand-band" data-marquee>
+        <ul class="marquee__track brand-band__track" role="list">
+          <li class="brand-band__item"><span class="brand-band__word">Soluciones</span><span class="brand-band__mark" aria-hidden="true"></span></li>
+          <li class="brand-band__item"><span class="brand-band__word">Soluciones</span><span class="brand-band__mark" aria-hidden="true"></span></li>
+          <li class="brand-band__item"><span class="brand-band__word">Soluciones</span><span class="brand-band__mark" aria-hidden="true"></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="s-products s-products--reco" id="soluciones" aria-labelledby="reco-title" data-products>
+      <div class="s-products__frame" data-particles="40" data-cursor="light">
+        <canvas class="s-products__canvas" aria-hidden="true"></canvas>
+        <span class="s-products__rings" aria-hidden="true"></span>
+        <div class="s-products__inner container">
+          <header class="s-products__head section-head section-head--center">
+            <p class="eyebrow eyebrow--on-dark" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Soluciones recomendadas</p>
+            <h2 class="heading heading--on-dark heading--inline" id="reco-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Equipamiento para</span>
+              <span class="heading__bold" data-line>tu municipio</span>
+            </h2>
+            <p class="s-products__lead" data-reveal="mask" data-reveal-delay="0.2">Elegimos cada contenedor según la densidad, el clima y la logística de recolección de tu ciudad. HDPE certificado y compatible con camiones de volteo mecánico (EN 840).</p>
+          </header>
+          <div class="s-products__controls">
+            <div class="s-products__cta" data-reveal="mask-x" data-reveal-delay="0.3">
+              <a class="btn btn--sm btn--secondary" href="index.html#productos">
+                Catálogo completo
+                <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="s-products__stage" data-reveal="mask" data-reveal-delay="0.3">
+            <button class="icon-btn icon-btn--lg icon-btn--navy icon-btn--light icon-btn--prev s-products__arrow s-products__arrow--prev" type="button" aria-label="Producto anterior" aria-controls="reco-track" data-products-prev><i class="ph-bold ph-arrow-left" aria-hidden="true"></i></button>
+            <ul data-pc-variant="dark" data-pc-fill='{"reco":[]}' data-pc-sector="municipalidades" class="s-products__track" id="reco-track" role="list" aria-live="polite" data-products-track></ul>
+            <button class="icon-btn icon-btn--lg icon-btn--navy icon-btn--light s-products__arrow s-products__arrow--next" type="button" aria-label="Producto siguiente" aria-controls="reco-track" data-products-next><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="s-products__dots" data-products-dots></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="s-certs" id="certificaciones" aria-labelledby="certs-title">
+      <div class="container">
+        <div class="section-intro">
+          <header class="section-head">
+            <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Estándar global</p>
+            <h2 class="heading" id="certs-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Nuestras</span>
+              <span class="heading__bold" data-line>Certificaciones</span>
+            </h2>
+          </header>
+          <div class="section-intro__side">
+            <p class="section-intro__text" data-reveal="mask" data-reveal-delay="0.2">Dependiendo de la exigencia del entorno y las líneas de producto, nuestras certificaciones respaldan nuestra durabilidad y eficiencia.</p>
+            <div data-reveal="mask-x" data-reveal-delay="0.35">
+              <a class="btn btn--sm btn--secondary" href="#certificaciones">
+                Ver todas las certificaciones
+                <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-certs__rail">
+        <div class="container">
+          <ul class="s-certs__list" role="list">
+            <li class="cert" data-reveal="mask" data-reveal-delay="0.0">
+              <div class="cert__logo">
+                <img src="assets/img/certificaciones/blue-angel.png" width="288" height="248" alt="Sello Blue Angel" loading="lazy" decoding="async">
+              </div>
+              <h3 class="cert__name">Blue Angel</h3>
+              <p class="cert__desc">Bajo impacto ambiental</p>
+            </li>
+            <li class="cert" data-reveal="mask" data-reveal-delay="0.1">
+              <div class="cert__logo">
+                <img src="assets/img/certificaciones/lloyds.png" width="288" height="246" alt="Sello Lloyd's Register" loading="lazy" decoding="async">
+              </div>
+              <h3 class="cert__name">Lloyd's Register</h3>
+              <p class="cert__desc">Gestión de calidad ISO 9001</p>
+            </li>
+            <li class="cert" data-reveal="mask" data-reveal-delay="0.2">
+              <div class="cert__logo">
+                <img src="assets/img/certificaciones/ral.png" width="192" height="165" alt="Sello RAL" loading="lazy" decoding="async">
+              </div>
+              <h3 class="cert__name">RAL</h3>
+              <p class="cert__desc">Sello de calidad RAL</p>
+            </li>
+            <li class="cert" data-reveal="mask" data-reveal-delay="0.3">
+              <div class="cert__logo">
+                <img src="assets/img/certificaciones/din.png" width="192" height="165" alt="Sello DIN" loading="lazy" decoding="async">
+              </div>
+              <h3 class="cert__name">DIN</h3>
+              <p class="cert__desc">Estándares de ingeniería alemana</p>
+            </li>
+            <li class="cert" data-reveal="mask" data-reveal-delay="0.4">
+              <div class="cert__logo">
+                <img src="assets/img/certificaciones/dekra.png" width="192" height="165" alt="Sello DEKRA" loading="lazy" decoding="async">
+              </div>
+              <h3 class="cert__name">DEKRA</h3>
+              <p class="cert__desc">Inspección y certificación técnica</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-cyc" id="ciclo-de-vida" aria-label="Circulogic: ciclo de vida del contenedor" aria-roledescription="carrusel" data-cycle>
+      <div class="s-cyc__frame" data-particles="40" data-cursor="light" data-reveal="mask">
+        <div class="cyc__bgs" aria-hidden="true">
+          <span class="cyc__bg cyc__bg--1 is-active" data-cyc-bg></span>
+          <span class="cyc__bg cyc__bg--2" data-cyc-bg></span>
+          <span class="cyc__bg cyc__bg--3" data-cyc-bg></span>
+          <span class="cyc__bg cyc__bg--4" data-cyc-bg></span>
+          <span class="cyc__bg cyc__bg--5" data-cyc-bg></span>
+        </div>
+        <canvas class="cyc__canvas" aria-hidden="true"></canvas>
+        <div class="cyc__wheel" aria-hidden="true">
+          <span class="cyc__disc"></span>
+          <span class="cyc__mark"></span>
+          <svg class="cyc__arc" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49.9" pathLength="360"></circle></svg>
+          <ul class="cyc__nodes" role="list">
+            <li class="cyc__node is-active" style="--k: 0" data-cyc-node><i class="ph-fill ph-trash" aria-hidden="true"></i></li>
+            <li class="cyc__node" style="--k: 1" data-cyc-node><i class="ph-fill ph-arrow-fat-lines-up" aria-hidden="true"></i></li>
+            <li class="cyc__node" style="--k: 2" data-cyc-node><i class="ph-fill ph-package" aria-hidden="true"></i></li>
+            <li class="cyc__node" style="--k: 3" data-cyc-node><i class="ph-fill ph-recycle" aria-hidden="true"></i></li>
+            <li class="cyc__node" style="--k: 4" data-cyc-node><i class="ph-fill ph-fire" aria-hidden="true"></i></li>
+          </ul>
+        </div>
+        <div class="cyc__inner">
+          <div class="cyc__top">
+            <p class="cyc__kicker"><span class="cyc__kicker-long">Circulogic · ESE Latam en la economía circular</span><span class="cyc__kicker-short">Circulogic</span></p>
+            <div class="cyc__progress">
+              <ol class="cyc__segs" role="list" aria-hidden="true"><li class="cyc__seg is-done"></li><li class="cyc__seg"></li><li class="cyc__seg"></li><li class="cyc__seg"></li><li class="cyc__seg"></li></ol>
+              <p class="cyc__count" aria-live="polite"><span data-cyc-current>01</span> / 05</p>
+            </div>
+          </div>
+          <div class="cyc__body">
+            <div class="cyc__panels">
+            <div class="cyc__panel is-active" id="cyc-panel-0" role="group" aria-roledescription="etapa" aria-label="01 de 05: Distribución" data-cyc-panel>
+              <p class="cyc__num" aria-hidden="true">01</p>
+              <h3 class="cyc__title">Distribución</h3>
+              <p class="cyc__text">Realizamos mantenimiento, reparaciones y reemplazo de piezas para mantener cada contenedor operativo durante el mayor tiempo posible.</p>
+            </div>
+            <div class="cyc__panel" id="cyc-panel-1" role="group" aria-roledescription="etapa" aria-label="02 de 05: Reacondicionamiento" data-cyc-panel hidden>
+              <p class="cyc__num" aria-hidden="true">02</p>
+              <h3 class="cyc__title">Reacondicionamiento</h3>
+              <p class="cyc__text">Renovamos y adaptamos el contenedor para responder a nuevas necesidades, usos o entornos, prolongando así su vida útil.</p>
+            </div>
+            <div class="cyc__panel" id="cyc-panel-2" role="group" aria-roledescription="etapa" aria-label="03 de 05: Recuperación de componentes" data-cyc-panel hidden>
+              <p class="cyc__num" aria-hidden="true">03</p>
+              <h3 class="cyc__title">Recuperación de componentes</h3>
+              <p class="cyc__text">Rescatamos y reutilizamos piezas como ruedas, tapas, ejes y accesorios para incorporarlas en otros contenedores.</p>
+            </div>
+            <div class="cyc__panel" id="cyc-panel-3" role="group" aria-roledescription="etapa" aria-label="04 de 05: Reciclaje" data-cyc-panel hidden>
+              <p class="cyc__num" aria-hidden="true">04</p>
+              <h3 class="cyc__title">Reciclaje</h3>
+              <p class="cyc__text">Transformamos el plástico recuperado en materia prima para fabricar nuevos contenedores y otros productos de alta calidad.</p>
+            </div>
+            <div class="cyc__panel" id="cyc-panel-4" role="group" aria-roledescription="etapa" aria-label="05 de 05: Vertedero / incineración" data-cyc-panel hidden>
+              <p class="cyc__num" aria-hidden="true">05</p>
+              <h3 class="cyc__title">Vertedero / incineración</h3>
+              <p class="cyc__text">Solo cuando ya no es posible reparar, reacondicionar, reutilizar componentes ni reciclar el material, el contenedor pasa a incineración o disposición final.</p>
+            </div>
+            </div>
+            <div class="cyc__nav">
+              <button class="cyc__btn cyc__btn--prev" type="button" aria-label="Etapa anterior" data-cyc-prev><i class="ph-bold ph-arrow-left" aria-hidden="true"></i></button>
+              <button class="cyc__btn cyc__btn--next" type="button" aria-label="Etapa siguiente" data-cyc-next><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="cyc__media">
+            <div class="cyc__img is-active" data-cyc-img>
+              <!-- <img src="assets/img/circulogic-etapa-01.webp" width="640" height="720" alt="" loading="lazy" decoding="async"> -->
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen etapa 01</span></div>
+            </div>
+            <div class="cyc__img" data-cyc-img>
+              <!-- <img src="assets/img/circulogic-etapa-02.webp" width="640" height="720" alt="" loading="lazy" decoding="async"> -->
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen etapa 02</span></div>
+            </div>
+            <div class="cyc__img" data-cyc-img>
+              <!-- <img src="assets/img/circulogic-etapa-03.webp" width="640" height="720" alt="" loading="lazy" decoding="async"> -->
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen etapa 03</span></div>
+            </div>
+            <div class="cyc__img" data-cyc-img>
+              <!-- <img src="assets/img/circulogic-etapa-04.webp" width="640" height="720" alt="" loading="lazy" decoding="async"> -->
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen etapa 04</span></div>
+            </div>
+            <div class="cyc__img" data-cyc-img>
+              <!-- <img src="assets/img/circulogic-etapa-05.webp" width="640" height="720" alt="" loading="lazy" decoding="async"> -->
+              <div class="placeholder" aria-hidden="true"><span class="placeholder__label">imagen etapa 05</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-cases" id="casos" aria-labelledby="cases-title" data-cases>
+      <div class="container">
+        <div class="section-intro">
+          <header class="section-head">
+            <p class="eyebrow" data-reveal="mask-x"><span class="eyebrow__dot" aria-hidden="true"></span>Casos reales</p>
+            <h2 class="heading" id="cases-title" data-reveal="mask" data-reveal-delay="0.1">
+              <span class="heading__light" data-line>Casos reales en</span>
+              <span class="heading__bold" data-line>gestión urbana</span>
+            </h2>
+          </header>
+          <div class="section-intro__side">
+            <p class="section-intro__text" data-reveal="mask" data-reveal-delay="0.2">Proyectos que cumplen estándares de eficiencia, seguridad y sostenibilidad.</p>
+            <div class="s-cases__cta-top" data-reveal="mask-x" data-reveal-delay="0.35">
+              <a class="btn btn--sm btn--secondary " href="#">
+                Ver todos los casos
+                <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ul class="s-cases__list" role="list" data-cases-track>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.00">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-01.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 1</span></div>
+                </div>
+                <span class="case__tag">Reciclaje</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Plantas de reciclaje en el Perú: Un Compromiso con el Futuro</h3>
+                    <div class="case__more"><p class="case__desc">Cómo las plantas de reciclaje están cambiando la gestión de residuos en las ciudades peruanas.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.08">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-02.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 2</span></div>
+                </div>
+                <span class="case__tag">Gestión de residuos</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Los contenedores ESE y la Norma Técnica Peruana NTP-ISO 900.058</h3>
+                    <div class="case__more"><p class="case__desc">Nuestros contenedores cumplen el código de colores para la segregación de residuos sólidos.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.16">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-03.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 3</span></div>
+                </div>
+                <span class="case__tag">Sostenibilidad</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Juegos Panamericanos y Parapanamericanos Santiago 2023</h3>
+                    <div class="case__more"><p class="case__desc">Equipamos las sedes con soluciones de segregación para un evento de escala continental.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+            <li class="case" data-reveal="mask" data-reveal-delay="0.24">
+              <a class="case__link" href="#">
+                <div class="case__media" aria-hidden="true">
+                  <!-- <img src="assets/img/casos/caso-04.webp" width="856" height="960" alt="" loading="lazy" decoding="async"> -->
+                  <div class="placeholder"><span class="placeholder__label">foto caso 4</span></div>
+                </div>
+                <span class="case__tag">Representantes</span>
+                <div class="case__foot">
+                  <div class="case__copy">
+                    <h3 class="case__title">Feria Expo Industria Ecuador 2023</h3>
+                    <div class="case__more"><p class="case__desc">Presentamos nuestra línea de contenedores junto a nuestro representante en Ecuador.</p></div>
+                  </div>
+                  <span class="case__arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span>
+                </div>
+              </a>
+            </li>
+        </ul>
+        <ol class="dots s-cases__dots" role="list" aria-label="Paginación de casos" data-cases-dots></ol>
+        <div class="s-cases__cta-bottom">
+          <a class="btn btn--sm btn--secondary " href="#">
+                Ver todos los casos
+                <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="s-cta" id="contacto" aria-labelledby="cta-title">
+      <div class="s-cta__frame" data-cursor="light">
+        <div class="s-cta__bg" data-parallax="0.08" aria-hidden="true">
+          <img src="assets/img/cta-ciudad-1920.webp" srcset="assets/img/cta-ciudad-960.webp 960w, assets/img/cta-ciudad-1920.webp 1920w" sizes="100vw" width="1920" height="1282" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="s-cta__panel" data-reveal="mask" data-reveal-delay="0.05">
+          <p class="eyebrow eyebrow--on-dark"><span class="eyebrow__dot" aria-hidden="true"></span>Contactemos</p>
+          <h2 class="s-cta__title" id="cta-title" data-light-text>¿Listo para optimizar la gestión de residuos de <strong>tu municipio</strong>?</h2>
+          <div class="s-cta__bottom">
+            <p class="s-cta__text" data-reveal="mask" data-reveal-delay="0.3">Desarrollamos soluciones para gobiernos locales que optimizan la gestión de residuos, fortalecen el reciclaje y mejoran la experiencia ciudadana.</p>
+            <div class="s-cta__actions" data-reveal="mask-x" data-reveal-delay="0.45">
+              <a class="btn btn--primary btn--split btn--lg btn--split-wide" href="contacto.html">
+                <span class="btn__label">Contáctanos</span>
+                <span class="btn__icon"><i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="site-footer__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="site-footer__top">
+        <nav class="site-footer__col" aria-label="Soluciones">
+          <h2>Soluciones</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="soluciones.html">Sectores</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="distribuidores.html">Distribuidores</a></li>
+            <li><a href="#">Casos de éxito</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col" aria-label="ESE LATAM">
+          <h2>ESE LATAM</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="certificaciones.html">Certificaciones</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col site-footer__col--legal" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="terminos-y-condiciones.html">Términos y condiciones</a></li>
+            <li><a href="politica-de-cookies.html">Política de cookies</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__about">
+          <p class="site-footer__tagline">Distribuimos contenedores de residuos sólidos fabricados en Alemania y Francia. <span>Calidad europea, transformando la recolección de residuos en Latinoamérica.</span></p>
+          <p class="site-footer__eyebrow">Síguenos</p>
+          <ul class="social social--light" role="list">
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><span class="brand-icon brand-icon--youtube" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="site-footer__copy">© 2026 ESE LATAM. Todos los derechos reservados.</p>
+      <div class="site-footer__brand" aria-hidden="true">
+        <span class="site-footer__logo" data-reveal="rise"></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

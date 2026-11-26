@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Sección: HDPE, el futuro es circular (.s-hdpe) — bento
+   ========================================================================== */
+.s-hdpe { padding-block: var(--space-4xl); background: var(--color-bg); }
+.s-hdpe .section-intro { margin-bottom: var(--space-3xl); }
+.s-hdpe .section-intro__side .btn { justify-self: start; }
+
+.hdpe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.3fr;
+  grid-template-rows: repeat(2, minmax(18.875rem, auto));
+  gap: var(--space-md);
+}
+.hdpe-card { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-xl); min-width: 0; }
+.bento-card.hdpe-card:not(.bento-card--blue) { background: #EFF0F0; }
+.hdpe-card--circ    { grid-column: 1 / 3; grid-row: 1; justify-content: center; align-items: center; text-align: center; gap: var(--space-2xs); }
+.hdpe-card--recycle { grid-column: 3; grid-row: 1; }
+.hdpe-card--impact  { grid-column: 4; grid-row: 1 / 3; }
+.hdpe-card--dur     { grid-column: 1; grid-row: 2; }
+.hdpe-card--eco     { grid-column: 2 / 4; grid-row: 2; flex-direction: row; padding: var(--space-sm); }
+
+.hdpe-card__title { font-size: var(--fs-xl); font-weight: var(--fw-medium); line-height: var(--lh-snug); color: var(--color-text); }
+.hdpe-card--dur .hdpe-card__title { color: var(--color-navy-500); }
+.hdpe-card__sub { margin-top: var(--space-2xs); font-size: var(--fs-md); color: var(--color-text-muted); }
+.hdpe-card--circ .hdpe-card__title { color: var(--color-on-dark); }
+.hdpe-card--circ .hdpe-card__sub { margin: 0; color: color-mix(in srgb, var(--color-on-dark) 65%, var(--color-blue-500)); }
+.hdpe-card__stat { font-size: var(--fs-counter); font-weight: var(--fw-semibold); line-height: 1; letter-spacing: -0.02em; color: var(--color-navy-500); font-variant-numeric: tabular-nums; }
+
+.hdpe-chips { display: grid; justify-items: start; gap: var(--space-xs); list-style: none; }
+.hdpe-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-2xs) var(--space-md) var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  background: var(--color-grey-25);
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+}
+.hdpe-chip i { font-size: 1.25em; color: var(--color-blue-500); }
+
+.hdpe-card--impact { position: relative; overflow: hidden; border-radius: var(--radius-16); background: var(--color-navy-500); }
+.hdpe-card--impact img,
+.hdpe-card--impact .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-main); }
+.hdpe-card--impact:hover img,
+.hdpe-card--impact:hover .placeholder { transform: scale(1.04); }
+.hdpe-card__overlay { position: relative; padding: var(--space-lg); background: linear-gradient(to bottom, rgb(0 20 60 / 0.55), transparent); }
+.hdpe-card__overlay .hdpe-card__title { font-size: var(--fs-ml); color: var(--color-on-dark); }
+.hdpe-card__kicker { margin-bottom: var(--space-2xs); font-size: var(--fs-xs); letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in srgb, var(--color-on-dark) 80%, transparent); }
+
+.hdpe-card__eco-copy { order: -1; display: flex; flex-direction: column; justify-content: space-between; flex: 1; padding: var(--space-md) var(--space-sm) var(--space-sm); }
+.hdpe-card__eco-copy .hdpe-card__sub { margin: 0; }
+.hdpe-card__media { position: relative; flex: 0 0 44%; overflow: hidden; border-radius: var(--radius-8); }
+.hdpe-card__media img,
+.hdpe-card__media .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 89.99em) {
+  .hdpe-grid { grid-template-columns: 1.3fr 1fr 1.3fr 1.72fr; }
+}
+@media (max-width: 63.99em) {
+  .s-hdpe { padding-block: var(--space-3xl); }
+  .s-hdpe .section-intro { margin-bottom: var(--space-xl); }
+  .hdpe-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: var(--space-sm); }
+  .hdpe-card--circ, .hdpe-card--recycle, .hdpe-card--impact, .hdpe-card--dur, .hdpe-card--eco { grid-column: 1; grid-row: auto; }
+  .hdpe-card--circ { min-height: 7.5rem; padding: var(--space-lg); }
+  .hdpe-card--recycle, .hdpe-card--dur { gap: var(--space-2xs); }
+  .hdpe-card--eco { flex-direction: column; gap: var(--space-xl); padding: var(--space-sm) var(--space-sm) var(--space-xl); }
+  .hdpe-card__eco-copy { order: 0; padding: 0 var(--space-sm); gap: var(--space-3xs); }
+  .hdpe-card__media { flex: none; aspect-ratio: 326 / 200; }
+  .hdpe-card--impact { aspect-ratio: 350 / 380; justify-content: flex-start; }
+}
+@media (max-width: 47.99em) {
+  .s-hdpe .section-intro__side .btn { justify-self: stretch; }
+}

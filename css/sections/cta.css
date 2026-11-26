@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Sección: CTA (.s-cta) — foto + panel de vidrio, título que "se enciende"
+   ========================================================================== */
+.s-cta {
+  --frame-inset: clamp(0.25rem, -0.4rem + 2.6vw, 2rem);
+  padding: var(--frame-inset);
+  background: var(--color-bg);
+}
+
+.s-cta__frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  padding: clamp(2rem, 1rem + 4vw, 6.25rem) clamp(1rem, -1rem + 6vw, 11.25rem);
+  border-radius: var(--radius-16);
+  color: var(--color-on-dark);
+}
+.s-cta__bg {
+  position: absolute;
+  inset: -8% 0;
+  z-index: -2;
+}
+.s-cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+.s-cta__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--color-navy-500) 22%, transparent);
+  pointer-events: none;
+}
+
+.s-cta__panel {
+  width: 100%;
+  max-width: 87.25rem;
+  padding: clamp(2rem, 1rem + 3vw, 6.875rem) clamp(1.5rem, 0.5rem + 6vw, 8.75rem);
+  border-radius: var(--radius-16);
+  background: color-mix(in srgb, var(--color-neutral-900) 45%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+  backdrop-filter: blur(24px) saturate(1.1);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-bg) 30%, transparent);
+}
+
+.s-cta__title {
+  max-width: 52rem;
+  margin-top: var(--space-xl);
+  font-size: clamp(2.25rem, 1.5rem + 2.6vw, 4.5rem);
+  font-weight: var(--fw-extralight);
+  line-height: 1.1;
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+}
+.s-cta__title strong { font-weight: var(--fw-semibold); }
+
+/* Palabras: apagadas → encendidas según el scroll */
+.s-cta__word {
+  color: color-mix(in srgb, var(--color-bg) 22%, transparent);
+  text-shadow: 0 0 0 transparent;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    text-shadow var(--dur-base) var(--ease-out);
+}
+.s-cta__word.is-lit {
+  color: var(--color-on-dark);
+  text-shadow: 0 0 1.25rem color-mix(in srgb, var(--color-blue-100) 35%, transparent);
+}
+
+.s-cta__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl) var(--space-2xl);
+  margin-top: clamp(var(--space-xl), 1rem + 3vw, 4rem);
+  padding-top: clamp(var(--space-xl), 1rem + 2vw, 2.5rem);
+  border-top: 1px solid color-mix(in srgb, var(--color-bg) 35%, transparent);
+}
+.s-cta__text { flex: 1 1 24rem; max-width: 41rem; line-height: 1.6; }
+
+@media (max-width: 47.99em) {
+  .s-cta__frame { border-radius: var(--radius-12); padding: var(--space-md); }
+  .s-cta__panel { padding: var(--space-xl) var(--space-lg); }
+  .s-cta__bottom { margin-top: var(--space-lg); padding-top: 0; border-top: 0; }
+  .s-cta__text { flex-basis: 100%; }
+  .s-cta__actions { width: 100%; }
+}
+
+@media (max-width: 47.99em) {
+  .s-cta__panel { min-width: 0; }
+  .s-cta__title { font-size: clamp(1.625rem, 0.95rem + 3.6vw, 2.125rem); line-height: 1.12; text-wrap: wrap; overflow-wrap: break-word; }
+  .s-cta__frame { padding: var(--space-xs); }
+  .s-cta__panel { padding: var(--space-xl) var(--space-md); }
+  .s-cta__text { min-width: 0; flex: 1 1 100%; }
+}

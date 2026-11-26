@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Soluciones recomendadas (páginas de sector) — variante de .s-products
+   ========================================================================== */
+.s-products--reco .s-products__frame {
+  background:
+    radial-gradient(ellipse 28% 30% at 50% 60%, color-mix(in srgb, #009FDF 22%, transparent), transparent 100%),
+    linear-gradient(180deg, #001E60 0%, #000D29 100%);
+}
+
+/* Sin "Catálogo completo" arriba en desktop; en mobile queda al final */
+@media (min-width: 64em) { .s-products--reco .s-products__controls { display: none; } }
+.s-products__canvas { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+.s-products__rings {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  z-index: -1;
+  width: min(140vw, 72rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: repeating-radial-gradient(circle,
+    transparent 0 calc(16.66% - 1px),
+    color-mix(in srgb, var(--color-on-dark) 10%, transparent) calc(16.66% - 1px) 16.66%);
+  -webkit-mask: radial-gradient(circle, #000 0 50%, transparent 50%);
+          mask: radial-gradient(circle, #000 0 50%, transparent 50%);
+  pointer-events: none;
+}
+
+@media (max-width: 63.99em) {
+  .s-products--reco .s-products__stage { position: relative; }
+  .s-products--reco .s-products__arrow {
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    top: calc(var(--pcard-w) * 0.43 + var(--space-md) + var(--pcard-w) * 0.62);
+    font-size: 1rem;
+  }
+  .s-products--reco .s-products__arrow--prev { left: calc(50% - var(--pcard-w) / 2 - 1.375rem); }
+  .s-products--reco .s-products__arrow--next { right: calc(50% - var(--pcard-w) / 2 - 1.375rem); }
+}

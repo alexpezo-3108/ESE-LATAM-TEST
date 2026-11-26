@@ -1,0 +1,366 @@
+/* ==========================================================================
+   Productos — hero catálogo (.s-cat): carrusel de producto sobre cielo
+   ========================================================================== */
+/* Tema por producto: todo el fondo cambia de color (azul · verde · naranja · morado), animable */
+@property --sky-1 { syntax: "<color>"; inherits: true; initial-value: #011B42; }
+@property --sky-2 { syntax: "<color>"; inherits: true; initial-value: #022B65; }
+@property --sky-3 { syntax: "<color>"; inherits: true; initial-value: #00468B; }
+@property --sky-4 { syntax: "<color>"; inherits: true; initial-value: #005C9E; }
+@property --sky-5 { syntax: "<color>"; inherits: true; initial-value: #1F78C8; }
+@property --hz    { syntax: "<color>"; inherits: true; initial-value: #5FB2EF; }
+.s-cat[data-theme="blue"] {
+  --sky-1: #011B42; --sky-2: #022B65; --sky-3: #00468B; --sky-4: #005C9E; --sky-5: #1F78C8; --hz: #5FB2EF;
+}
+.s-cat[data-theme="green"] {
+  --sky-1: #0A4A2E; --sky-2: #0D5A37; --sky-3: #16703F; --sky-4: #1E7C45; --sky-5: #2F9A5C; --hz: #5ED39A;
+}
+.s-cat[data-theme="orange"] {
+  --sky-1: #8A3A14; --sky-2: #A34A1C; --sky-3: #BA5A22; --sky-4: #C9681E; --sky-5: #E07A32; --hz: #F9B47C;
+}
+.s-cat[data-theme="purple"] {
+  --sky-1: #241C6E; --sky-2: #2D2482; --sky-3: #3B2FA6; --sky-4: #4A3BBE; --sky-5: #6553D6; --hz: #9C8DF2;
+}
+.s-cat {
+  transition: --sky-1 0.9s ease, --sky-2 0.9s ease, --sky-3 0.9s ease, --sky-4 0.9s ease, --sky-5 0.9s ease, --hz 0.9s ease;
+  --cat-h: clamp(17rem, calc((100svh - 34rem) * 1.38), 31rem); /* lo que queda de pantalla tras textos y controles */          /* alto del producto central */
+  --cat-x1: clamp(9.5rem, 21vw, 25rem);         /* separación laterales */
+  --cat-x2: clamp(15rem, 34vw, 40rem);          /* separación extremos */
+  --cat-dur: 0.6s;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100svh;
+  color: var(--color-on-dark);
+  --cat-base: calc(var(--space-lg) + var(--cat-h) * 0.082); /* piso real del producto (PNG con 8% de aire abajo) */
+  background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 18%, var(--sky-3) 42%, var(--sky-4) 62%, var(--sky-5) 100%); /* cielo (base Figma, contraste reforzado) */
+}
+.s-cat__inner {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + var(--space-md)) clamp(3.5rem, 6vw, 6.5rem);
+}
+.s-cat__intro { position: relative; z-index: 2; align-self: start; display: grid; gap: var(--space-xs); max-width: 28rem; }
+.s-cat__intro .breadcrumb { margin-bottom: 0; }
+
+.s-cat__show { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 0; min-width: 0; }
+
+/* Nombre del producto (cambia con el carrusel) */
+.s-cat__head { position: relative; z-index: 2; margin-top: var(--space-xl); display: grid; justify-items: center; gap: var(--space-sm); text-align: center; }
+.s-cat__name { text-align: center; font-size: clamp(2rem, 0.9rem + 3.1vw, 4rem); line-height: 1; }
+.s-cat__name-in { display: inline-block; transition: opacity 0.25s var(--ease-out), transform 0.35s var(--ease-out); }
+.s-cat__name.is-swapping .s-cat__name-in { opacity: 0; transform: translateY(0.4em); }
+
+/* Escenario */
+.s-cat__stage { position: relative; z-index: 0; width: 100%; height: calc(var(--cat-h) + var(--space-lg)); margin-top: calc(var(--cat-h) * -0.1); touch-action: pan-y; }
+.s-cat__track { position: absolute; inset: 0; z-index: 1; margin: 0; padding: 0; list-style: none; }
+.s-cat__item {
+  --x: 0px; --s: 1; --y: 0px;
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-lg);
+  height: var(--cat-h);
+  transform-origin: 50% 91.8%;
+  transform: translateX(-50%) translate(var(--x), var(--y)) scale(var(--s));
+  transition: transform var(--cat-dur) var(--ease-main), opacity var(--cat-dur) var(--ease-out), filter var(--cat-dur) var(--ease-out);
+}
+.s-cat__item.no-anim { transition: none; }
+.s-cat__item[data-pos="0"]  { z-index: 5; --y: calc(var(--cat-h) * 0.03); }
+.s-cat__item[data-pos="1"],
+.s-cat__item[data-pos="-1"] { --s: 0.5; z-index: 4; opacity: 0.6; filter: blur(1.5px) saturate(0.7); }
+.s-cat__item[data-pos="2"],
+.s-cat__item[data-pos="-2"] { --s: 0.3; z-index: 3; opacity: 0.35; filter: blur(2.5px) saturate(0.6); }
+.s-cat__item[data-pos="far"] { --s: 0.2; z-index: 2; opacity: 0; pointer-events: none; }
+.s-cat__item[data-pos="1"]  { --x: var(--cat-x1); }
+.s-cat__item[data-pos="-1"] { --x: calc(var(--cat-x1) * -1); }
+.s-cat__item[data-pos="2"]  { --x: var(--cat-x2); }
+.s-cat__item[data-pos="-2"] { --x: calc(var(--cat-x2) * -1); }
+.s-cat__item[data-side="r"][data-pos="far"] { --x: calc(var(--cat-x2) * 1.3); }
+.s-cat__item[data-side="l"][data-pos="far"] { --x: calc(var(--cat-x2) * -1.3); }
+.s-cat__hit { display: block; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+.s-cat__item[data-pos="0"] .s-cat__hit { cursor: default; }
+.s-cat__item img {
+  display: block;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  transition: filter var(--cat-dur) var(--ease-out);
+}
+/* Activo: glow azul + sombra al piso */
+.s-cat__item[data-pos="0"] img { filter: drop-shadow(0 0 1.75rem color-mix(in srgb, var(--hz) 50%, transparent)); transition: filter 0.3s var(--ease-out); }
+.s-cat__item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--cat-h) * 0.082 - 0.15rem);
+  width: 46%;
+  height: 0.8rem;
+  border-radius: 35% / 50%;
+  background: rgb(0 13 41 / 0.42);
+  filter: blur(5px);
+  transform: translateX(-50%);
+  z-index: -1;
+}
+/* --------------------------------------------------------------------------
+   Fondo (orden Figma, de atrás hacia adelante): halo · ciudad · anillos · piso · bruma · reflejo
+   Ancla .s-cat__bg = punto del piso bajo el producto central
+   -------------------------------------------------------------------------- */
+.s-cat__bg { position: absolute; left: 50%; bottom: var(--cat-base); z-index: 0; width: 0; height: 0; pointer-events: none; }
+.s-cat__bg > * { position: absolute; left: 0; translate: -50% 0; }
+.s-cat__halo {
+  bottom: calc(var(--cat-h) * -0.36);
+  width: calc(var(--cat-h) * 1.5);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--hz) 55%, #fff 15%), color-mix(in srgb, var(--hz) 30%, transparent) 45%, transparent 100%);
+  filter: blur(1.5rem);
+  animation: cat-halo 5s ease-in-out infinite alternate;
+}
+@keyframes cat-halo { from { opacity: 0.75; scale: 0.95; } to { opacity: 1; scale: 1.04; } }
+/* Ciudad: silueta celeste (máscara del skyline), fundida en la base y alejada */
+.s-cat__city {
+  bottom: calc(var(--cat-h) * 0.03);
+  width: calc(var(--cat-h) * 3.1);
+  height: calc(var(--cat-h) * 1.08);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--hz) 45%, #fff 20%) 0%, color-mix(in srgb, var(--hz) 60%, transparent) 60%, transparent 100%);
+  -webkit-mask:
+    url("../../assets/img/skyline-city.png") center bottom / 100% 100% no-repeat,
+    linear-gradient(180deg, #000 45%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask:
+    url("../../assets/img/skyline-city.png") center bottom / 100% 100% no-repeat,
+    linear-gradient(180deg, #000 45%, transparent 100%);
+          mask-composite: intersect;
+  opacity: 0.22;
+}
+/* Anillos recortados en el horizonte: nunca se ven sobre el piso */
+.s-cat__rings {
+  bottom: calc(var(--cat-h) * 0.02);
+  width: 300vw;
+  height: 200vh;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(0deg, transparent 0, #000 calc(var(--cat-h) * 0.14));
+          mask: linear-gradient(0deg, transparent 0, #000 calc(var(--cat-h) * 0.14));
+}
+.s-cat__ring {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--cat-h) * 0.36);
+  width: calc(var(--cat-h) * 4.4);
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: 50%;
+  translate: -50% 50%;
+  opacity: 0;
+  scale: 0;
+  animation: cat-ripple 12s linear infinite;
+}
+.s-cat__ring--2 { animation-delay: -4s; }
+.s-cat__ring--3 { animation-delay: -8s; }
+@keyframes cat-ripple {
+  0%   { scale: 0; opacity: 0; }
+  10%  { opacity: 0.35; }
+  100% { scale: 1; opacity: 0; }
+}
+.s-cat__floor {
+  top: calc(var(--cat-h) * -0.4);
+  width: 300vw;
+  height: 100vh;
+  background: linear-gradient(180deg,
+    transparent 0,
+    color-mix(in srgb, var(--hz) 25%, transparent) calc(var(--cat-h) * 0.18),
+    color-mix(in srgb, var(--hz) 50%, transparent) calc(var(--cat-h) * 0.32),
+    color-mix(in srgb, var(--hz) 60%, transparent) calc(var(--cat-h) * 0.46),
+    var(--sky-4) calc(var(--cat-h) * 0.85),
+    var(--sky-3) calc(var(--cat-h) * 1.5));
+  filter: blur(0.75rem);
+}
+/* Bruma horizonte (Figma: lineal #5FB2EF 0% → 40% en 62% → 0%, con desenfoque) — funde la base de la ciudad con el piso */
+.s-cat__mist {
+  bottom: calc(var(--cat-h) * -0.36);
+  width: 300vw;
+  height: calc(var(--cat-h) * 0.95);
+  background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--hz) 30%, transparent) 62%, transparent 100%);
+  filter: blur(1.75rem);
+}
+.s-cat__reflect {
+  bottom: calc(var(--cat-h) * -0.07);
+  width: calc(var(--cat-h) * 0.9);
+  height: calc(var(--cat-h) * 0.14);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.35), transparent);
+  filter: blur(0.5rem);
+}
+
+/* Nubes (capa frontal): vaivén suave, cada capa a su ritmo */
+/* Las nubes viven en el borde superior de la sección siguiente: suben con ella sobre el hero fijo */
+.cat-stack { position: relative; }
+.cat-stack > .s-cat { position: sticky; top: 0; z-index: 0; }
+.s-pgrid__clouds { position: absolute; left: 0; right: 0; bottom: calc(100% - clamp(1.5rem, 4vw, 4.5rem) - 9rem); z-index: 0; overflow: hidden; padding-top: 12rem; padding-bottom: 9rem; background: linear-gradient(180deg, transparent calc(100% - 9rem - 4rem), var(--color-bg) calc(100% - 9rem - 0.75rem)); pointer-events: none; will-change: transform; }
+
+
+.s-cat__cloud {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: max(108%, 60rem);
+  max-width: none;
+  height: auto;
+  transform: translateX(-50%);
+  animation: cat-sway-front 13s ease-in-out infinite alternate;
+}
+.s-cat__cloud--back { bottom: -4rem; opacity: 0.55; transform: translateX(-50%) scaleX(-1); animation: cat-sway-back 21s ease-in-out infinite alternate; animation-delay: -7s; }
+.s-cat__cloud--front { position: relative; display: block; }
+@keyframes cat-sway-front {
+  0%   { translate: -2.5% 0; }
+  45%  { translate: 1% -0.4rem; }
+  100% { translate: 3% 0.2rem; }
+}
+@keyframes cat-sway-back {
+  0%   { translate: 3% 0.3rem; }
+  55%  { translate: -1% -0.5rem; }
+  100% { translate: -3.5% 0; }
+}
+
+/* Flechas blancas */
+.s-cat__arrow {
+  position: absolute;
+  top: calc(var(--cat-h) * 0.6);
+  z-index: 10;
+  translate: 0 -50%;
+}
+.s-cat__arrow--prev { left: calc(50% - var(--cat-x1) * 0.8 - 2rem); }
+.s-cat__arrow--next { left: calc(50% + var(--cat-x1) * 0.8 - 2rem); }
+
+/* Chips de atributos */
+.s-cat__chips { position: relative; z-index: 4; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.375rem; margin: 0; padding: 0; list-style: none; transition: opacity 0.25s var(--ease-out); }
+.s-cat__chips.is-swapping { opacity: 0; }
+.s-cat__swatch { width: 0.5rem; height: 0.5rem; border-radius: 50%; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.4); }
+
+.s-cat__info { position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); margin-top: calc(var(--cat-h) * -0.05); }
+.s-cat__cta { margin-top: var(--space-sm); }
+.s-cat__cta { position: relative; z-index: 4; }
+.s-cat__dots { position: relative; z-index: 4; margin-top: var(--space-md); }
+
+/* Mobile */
+@media (max-width: 63.99em) {
+  .s-cat { --cat-h: clamp(12rem, calc((100svh - 36rem) * 0.9), 16rem); --cat-x1: 40vw; --cat-x2: 76vw; }
+  .s-cat__inner { padding-bottom: 3rem; gap: var(--space-lg); }
+  .s-cat__item[data-pos="1"],
+  .s-cat__item[data-pos="-1"] { --s: 0.55; opacity: 0.5; }
+  .s-cat__arrow--prev { left: 0; }
+  .s-cat__arrow--next { left: auto; right: 0; }
+  .s-cat__arrow { --icon-btn-size: 2.75rem; }
+  .s-cat__arrow i { font-size: 1rem; }
+  .s-cat__cta { display: flex; width: 100%; }
+  .s-pgrid__clouds { bottom: calc(100% - 4rem - 9rem); }
+  .s-cat__cta .btn__label { flex: 1; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-cat__cloud, .s-cat__halo, .s-cat__leaf { animation: none; }
+  .s-cat__ring { animation: none; opacity: 0.12; }
+  .s-cat__ring--1 { scale: 0.45; } .s-cat__ring--2 { scale: 0.7; } .s-cat__ring--3 { scale: 0.95; }
+}
+
+.s-cat__chip { min-height: 1.625rem; padding: 0 0.625rem; font-size: var(--fs-xs); gap: 0.3rem; }
+
+
+/* ==========================================================================
+   Productos — grilla con filtros (.s-pgrid) · reutiliza filtros/barra/pager del blog
+   ========================================================================== */
+.s-pgrid { position: relative; z-index: 2; padding-block: var(--space-md) clamp(4rem, 3rem + 4vw, 7rem); background: var(--color-bg); }
+.blog-filters.blog-filters--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.p-dd[data-dd="color"] .dd__btn { padding-left: var(--space-sm); }
+/* Filtros (y sus listas desplegables) por encima de la grilla */
+.s-pgrid .blog-tools { position: relative; z-index: 10; }
+.p-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(6rem, 4.5rem + 3vw, 8rem) var(--space-md);
+  margin: 0;
+  padding: clamp(4.5rem, 3.5rem + 2.5vw, 6rem) 0 0;
+  list-style: none;
+}
+.p-grid[hidden] { display: none; }
+.p-grid.is-updating > li { animation: pgrid-in 0.5s var(--ease-out) both; }
+.p-grid.is-updating > li:nth-child(4n + 2) { animation-delay: 0.04s; }
+.p-grid.is-updating > li:nth-child(4n + 3) { animation-delay: 0.08s; }
+.p-grid.is-updating > li:nth-child(4n + 4) { animation-delay: 0.12s; }
+@keyframes pgrid-in { from { opacity: 0; transform: translateY(1rem); } }
+.s-pgrid .empty-state { margin-top: var(--space-xl); }
+.s-pgrid > .container { position: relative; z-index: 1; }
+.p-sheet__group { display: grid; gap: var(--space-sm); }
+.p-sheet__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); margin-top: var(--space-xs); }
+@media (min-width: 48em) { .blog-sheet.p-sheet { display: none; } }
+@media (max-width: 79.99em) { .p-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 63.99em) {
+  .blog-filters.blog-filters--5 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .p-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 47.99em) {
+  .blog-filters.blog-filters--5 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .p-dd { display: none; }
+  .p-grid { grid-template-columns: minmax(0, 1fr); padding-inline: var(--space-sm); }
+}
+
+/* Hojas en las esquinas inferiores (pegadas al borde) — parallax suave con el mouse (--mx/--my: -1…1) */
+.s-cat__leaf {
+  position: absolute;
+  bottom: calc(9rem + 1rem);
+  width: clamp(12rem, 24vw, 28rem);
+  transform-origin: 50% 100%;
+  height: auto;
+  transition: translate 0.8s var(--ease-out);
+  animation: leaf-sway 7s ease-in-out infinite alternate;
+}
+@keyframes leaf-sway { from { rotate: -2.5deg; } to { rotate: 2.5deg; } }
+.s-cat__leaf--l { left: -1rem; translate: calc(var(--mx, 0) * -7px) calc(var(--my, 0) * -4px); }
+.s-cat__leaf--r { right: -1rem; transform: scaleX(-1); translate: calc(var(--mx, 0) * -10px) calc(var(--my, 0) * -5px); animation-duration: 8.5s; animation-delay: -3s; }
+@media (max-width: 47.99em) { .s-cat__leaf { width: 11.5rem; } }
+
+
+/* Banda blanca por delante: nada (hojas incluidas) asoma bajo la base de las nubes */
+.s-pgrid__clouds::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(9rem + 1.25rem);
+  background: linear-gradient(180deg, rgb(253 253 253 / 0) 0, var(--color-bg) 1.25rem);
+}
+
+/* Glow del activo: aparece con fade y un saltito de escala en cada cambio */
+.s-cat__pop {
+  bottom: calc(var(--cat-h) * -0.05);
+  width: calc(var(--cat-h) * 0.95);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--hz) 55%, #fff 25%), color-mix(in srgb, var(--hz) 25%, transparent) 55%, transparent 100%);
+  filter: blur(1rem);
+  opacity: 0.85;
+}
+.s-cat__pop.is-pop { animation: cat-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes cat-pop {
+  0%   { opacity: 0; scale: 0.82; }
+  55%  { opacity: 1; scale: 1.07; }
+  100% { opacity: 0.85; scale: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .s-cat__pop.is-pop { animation: none; } }
+
+/* El item no puede encogerse por falta de ancho (left: 50% deja medio track):
+   si se encoge, la foto se achica dentro de su caja y flota sobre la sombra */
+.s-cat__item { width: max-content; }
+.s-cat__item img { max-width: none; }
+@media (max-width: 63.99em) {
+  .s-cat__inner { padding-top: calc(var(--header-h) + var(--space-xl)); }
+}
+
+/* Nombre: alto reservado para 2 líneas, así un nombre largo no empuja el carrusel.
+   Si ocupa una sola línea, queda arriba. */
+.s-cat__name { text-wrap: balance; }
+@media (max-width: 63.99em) {
+  .s-cat__name { display: grid; align-content: start; min-height: 2em; }
+}

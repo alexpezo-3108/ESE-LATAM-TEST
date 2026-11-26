@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Bloque partido (.s-split) — imagen a sangre en media pantalla + texto.
+   --left: imagen a la izquierda · --right: imagen a la derecha.
+   [data-corner-reveal] revela la imagen desde una esquina ligado al scroll.
+   ========================================================================== */
+.s-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--color-bg); }
+.s-split--right .s-split__media { order: 2; }
+
+.s-split__media { position: relative; min-height: clamp(53.5rem, 75.5vw, 90.75rem); overflow: hidden; --p: 1; }
+.s-split__media-inner { position: absolute; inset: 0; }
+.s-split__media-inner img, .s-split__media-inner .s-human__ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.s-split__body {
+  display: grid; align-content: start; gap: var(--space-lg);
+  padding-block: clamp(var(--space-2xl), 6.5vw, 8rem) var(--space-3xl);
+  padding-inline: clamp(var(--space-lg), 4.2vw, 5rem) var(--space-gutter);
+}
+.s-split--right .s-split__body { padding-inline: var(--space-gutter) clamp(var(--space-lg), 4.2vw, 5rem); }
+.s-split__title .heading__light, .s-split__title .heading__bold { display: block; }
+.s-split__text { display: grid; gap: var(--space-md); max-width: 50rem; font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--color-text-muted); text-wrap: pretty; }
+
+.s-split__stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-lg); max-width: 50rem; }
+.s-split__stat { display: flex; flex-direction: column-reverse; justify-content: flex-end; padding-block: var(--space-md); }
+.s-split__stat + .s-split__stat { padding-left: var(--space-xl); border-left: 1px solid var(--color-grey-100); }
+.s-split__stat .stat__value { margin: 0; }
+.s-split__stat .stat__label { margin-top: var(--space-xs); }
+
+/* Revelado desde esquina: --p de 0 a 1 */
+.js-motion [data-corner-reveal].is-cr-ready .s-split__media-inner {
+  clip-path: polygon(0 0, calc(var(--p) * 200%) 0, 0 calc(var(--p) * 200%));
+  will-change: clip-path;
+}
+.js-motion [data-corner-reveal="top-right"].is-cr-ready .s-split__media-inner {
+  clip-path: polygon(100% 0, calc(100% - var(--p) * 200%) 0, 100% calc(var(--p) * 200%));
+}
+.js-motion [data-corner-reveal].is-cr-ready .s-split__media-inner > * { transform: scale(calc(1.15 - var(--p) * 0.15)); transform-origin: var(--cr-origin, top left); }
+.js-motion [data-corner-reveal="top-right"] { --cr-origin: top right; }
+.js-motion [data-corner-reveal].is-cr-done .s-split__media-inner,
+.js-motion [data-corner-reveal].is-cr-done .s-split__media-inner > * { transition: clip-path 1.8s var(--ease-out), transform 1.8s var(--ease-out); }
+
+@media (max-width: 63.99em) {
+  .s-split { grid-template-columns: minmax(0, 1fr); }
+  .s-split--right .s-split__media { order: 0; }
+  .s-split__media { min-height: 0; aspect-ratio: 390 / 710; }
+  .s-split__body, .s-split--right .s-split__body { padding: var(--space-2xl) var(--space-gutter) var(--space-3xl); gap: var(--space-md); }
+  .s-split__stats { margin-top: var(--space-sm); }
+  .s-split__stat + .s-split__stat { padding-left: var(--space-md); }
+}
+@media (max-width: 47.99em) {
+  .s-split__media { aspect-ratio: auto; height: min(44.5rem, 163vw); }
+}

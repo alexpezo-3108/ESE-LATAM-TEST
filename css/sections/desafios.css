@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Desafíos (sector) — lista + imagen única + título gigante a dos capas + panel.
+   Breakpoints globales del sitio (solo ancho): ≥64em desktop fijo (64–99.99em
+   tamaños laptop, ≥100em tamaños desktop) · <64em layout mobile.
+   ========================================================================== */
+.s-dc { --dc-shade: 0.5; /* intensidad del degradado bajo el título: subir/bajar según la foto */ background: var(--color-bg); }
+.s-dc__eyebrow { font-weight: var(--fw-regular); }
+
+/* Etiquetas y textos del panel (compartido) */
+.s-dc__panel { position: relative; background: var(--color-grey-25); }
+.s-dc__body { display: grid; gap: 2rem; }
+.s-dc__group { display: grid; gap: 0.875rem; justify-items: start; }
+.s-dc__label { display: inline-grid; place-items: center; width: 7rem; height: 1.625rem; border-radius: 999px; font-size: var(--fs-caption); font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
+.s-dc__label--red { background: linear-gradient(90deg, #F55C4D 0%, #9E1717 100%); }
+.s-dc__label--blue { background: var(--gradient-main); }
+.s-dc__text { font-size: 1.125rem; line-height: 1.5; color: var(--color-text); text-wrap: pretty; }
+.s-dc__text--sol { font-weight: var(--fw-medium); color: var(--color-navy-500); }
+.s-dc__rule { margin: 0; border: 0; border-top: 1px solid var(--color-grey-300); }
+.s-dc__num, .s-dc__mnum { font-weight: var(--fw-medium); line-height: 0.8; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+
+.s-dc__photo { position: absolute; inset: 0; z-index: 1; overflow: hidden; border-radius: inherit; background: var(--color-navy-500); }
+.s-dc__photo img, .s-dc__photo .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.s-dc__seg { display: block; height: 3px; border-radius: 3px; background: rgb(255 255 255 / 0.45); transition: background-color 0.5s var(--ease-out); }
+.s-dc__seg.is-on { background: var(--color-blue-500); }
+
+/* Título: máscara para el cambio (sale arriba, entra desde abajo) */
+.s-dc__t { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.s-dc__ti { display: block; }
+
+/* ---------- Desktop / laptop ---------- */
+@media (min-width: 64em) {
+  .s-dc { --dc-over: 140px; --dc-title: 7.5rem; --dc-title-min: 6rem; }
+  .s-dc__track { height: calc(100svh + 6 * 8svh); } /* 8vh de scroll por desafío */
+  .s-dc__pin { position: sticky; top: 0; height: 100svh; }
+  .s-dc__frame { height: 100%; padding-block: 2.5rem; display: grid; grid-template-columns: minmax(0, 580fr) minmax(0, 700fr) minmax(0, 480fr); } /* @1920: 580 · 700 · 480 */
+
+  .s-dc__aside { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 2.25rem; padding-right: var(--space-lg); }
+  .s-dc__list { display: grid; gap: 0.25rem; margin: 0; padding: 0; list-style: none; }
+  .s-dc__item { display: flex; align-items: center; gap: var(--space-sm); padding: 0.4rem 0; border: 0; background: none; font: inherit; color: var(--color-neutral-600); text-align: left; cursor: pointer; transition: color 0.4s var(--ease-out); }
+  .s-dc__mark { flex: none; width: 0.75rem; height: 1px; background: var(--color-grey-500); transition: width 0.5s var(--ease-out), background-color 0.4s var(--ease-out); }
+  .s-dc__iname { font-size: var(--fs-md); font-weight: var(--fw-regular); line-height: var(--lh-body, 1.5); }
+  .s-dc__item:hover { color: var(--color-text); }
+  .s-dc__item.is-active { color: var(--color-text); }
+  .s-dc__item.is-active .s-dc__mark { width: 1.5rem; background: var(--color-blue-500); }
+  .s-dc__hint { position: absolute; left: 0; bottom: 0; display: flex; align-items: center; gap: 0.25rem; font-size: var(--fs-xs); color: var(--color-neutral-600); }
+
+  .s-dc__media { position: relative; border-radius: 1.5rem 0 0 1.5rem; }
+  .s-dc__shade { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 42% at 0% 50%, rgb(0 30 96 / var(--dc-shade)) 0%, rgb(0 30 96 / calc(var(--dc-shade) * 0.5)) 45%, transparent 75%); }
+  .s-dc__clip { position: absolute; inset: 0; z-index: 2; overflow: hidden; border-radius: inherit; pointer-events: none; }
+  .s-dc__title { position: absolute; left: calc(-1 * var(--dc-over)); top: 50%; translate: 0 -50%; width: max-content; margin: 0; white-space: nowrap; /* 2 líneas fijas (data-title con "|") */ font-size: calc(var(--dc-title) * var(--dc-k, 1)); font-weight: var(--fw-semibold); line-height: 0.98; letter-spacing: -0.035em; text-wrap: balance; }
+  .s-dc__title--navy { z-index: 0; color: var(--color-navy-500); }
+  .s-dc__title--white { color: #fff; text-shadow: 0 2px 24px rgb(0 15 51 / 0.18); }
+  .s-dc__bar { position: absolute; left: 50%; bottom: 2.75rem; z-index: 3; display: grid; grid-template-columns: repeat(6, 1fr); width: 15rem; translate: -50% 0; }
+  .s-dc__bar .s-dc__seg { border-radius: 0; }
+  .s-dc__mtitle, .s-dc__mnum, .s-dc__ctrl { display: none; }
+
+  /* Grupos arriba, número abajo a la derecha, espacio flexible entre ambos */
+  .s-dc__panel { display: flex; flex-direction: column; border-radius: 0 1.5rem 1.5rem 0; padding: 3rem 2.5rem 2.75rem; }
+  .s-dc__num { margin-top: auto; padding-top: var(--space-lg); align-self: flex-end; text-align: right; font-size: 9.375rem; color: var(--color-grey-300); } /* 150 · decorativo, valor local */
+}
+/* Laptop: misma estructura, tipografía menor */
+@media (min-width: 64em) and (max-width: 99.99em) {
+  .s-dc { --dc-over: 88px; --dc-title: 5.5rem; --dc-title-min: 4.5rem; }
+  .s-dc__frame { padding-block: 2rem; grid-template-columns: minmax(0, 406fr) minmax(0, 506fr) minmax(0, 400fr); } /* @1440: 406 · 506 · 400 */
+  .s-dc__text { font-size: var(--fs-base); }
+  .s-dc__panel { padding: 2.25rem 2rem; }
+  .s-dc__num { font-size: 6.75rem; } /* 108 */
+}
+
+/* ---------- Mobile / pantallas bajas ---------- */
+@media (max-width: 63.99em) {
+  .s-dc { padding-block: var(--space-3xl); }
+  .s-dc__frame { display: grid; gap: var(--space-md); max-width: calc(35rem + 2 * var(--gutter, 1.25rem)); }
+  .s-dc__list, .s-dc__hint, .s-dc__title, .s-dc__clip, .s-dc__bar, .s-dc__num { display: none; }
+  .s-dc__media { position: relative; aspect-ratio: 350 / 380; border-radius: 1.25rem; overflow: hidden; touch-action: pan-y; }
+  .s-dc__shade { position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 15 51 / 0.75) 0%, rgb(0 15 51 / 0.35) 35%, transparent 60%); }
+  .s-dc__mtitle { position: absolute; left: var(--space-ml); right: var(--space-ml); bottom: var(--space-ml); z-index: 2; margin: 0; font-size: clamp(2rem, 1.4rem + 2.6vw, 2.75rem); font-weight: var(--fw-semibold); line-height: 1; letter-spacing: -0.02em; color: #fff; text-wrap: balance; }
+  .s-dc__mnum { position: absolute; top: var(--space-ml); right: var(--space-ml); z-index: 2; font-size: 3rem; color: rgb(255 255 255 / 0.6); }
+  .s-dc__panel { border-radius: 1.25rem; padding: var(--space-ml); touch-action: pan-y; }
+  .s-dc__text { font-size: var(--fs-base); }
+  .s-dc__ctrl { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--space-md); }
+  .s-dc__count { display: grid; gap: var(--space-xs); justify-items: center; font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--color-navy-500); font-variant-numeric: tabular-nums; }
+  .s-dc__msegs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.375rem; width: 100%; }
+  .s-dc__msegs .s-dc__seg { height: 4px; background: var(--color-grey-100); }
+  .s-dc__msegs .s-dc__seg.is-on { background: var(--color-blue-500); }
+  .s-dc__ctrl .icon-btn:disabled { background: var(--color-grey-100); color: var(--color-grey-500); box-shadow: none; cursor: default; }
+  .s-dc__ctrl .icon-btn:disabled::before { display: none; }
+}
+
+/* Pantallas de poco alto en desktop: se recortan espaciados, nunca la letra */
+@media (min-width: 64em) and (max-height: 50em) {
+  .s-dc__frame { padding-block: 1.25rem; }
+  .s-dc__aside { gap: 1.5rem; }
+  .s-dc__list { gap: 0; }
+  .s-dc__body { gap: 1.5rem; }
+  .s-dc__panel { padding-block: 1.75rem; }
+  .s-dc__num { font-size: 5rem; }
+  .s-dc__bar { bottom: 1.75rem; }
+}

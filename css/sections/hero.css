@@ -1,0 +1,253 @@
+/* ==========================================================================
+   Sección: Hero (.s-hero)
+   ========================================================================== */
+.s-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-neutral-900);
+  color: var(--color-on-dark);
+}
+
+/* Media sobredimensionada para que el parallax no deje huecos */
+.s-hero__media {
+  position: absolute;
+  inset: -8% 0;
+  z-index: -2;
+}
+/* Parallax y reveal van en capas distintas para no pisarse los transform */
+.s-hero__parallax,
+.s-hero__media-inner,
+.s-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-image-overlay);
+  pointer-events: none;
+}
+
+.s-hero__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-xl);
+  min-height: 100vh;
+  min-height: max(100svh, 40rem);
+  padding-block: calc(var(--header-h) + var(--space-3xl)) var(--space-4xl);
+}
+
+.s-hero__title {
+  font-size: calc(var(--fs-display) * 1.1);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+}
+.s-hero__title-light { display: block; font-weight: var(--fw-extralight); }
+.s-hero__title { width: fit-content; }
+.s-hero__title-bold  { display: block; font-weight: var(--fw-semibold); font-size: calc(1em * var(--fit, 1)); line-height: 1; white-space: nowrap; }
+
+.s-hero__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+}
+
+.s-hero__lead {
+  max-width: 40rem;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-relaxed);
+}
+
+.s-hero__cta { margin-top: var(--space-2xl); }
+
+@media (max-width: 47.99em) { .s-hero__inner { gap: var(--space-lg); } }
+
+/* ==========================================================================
+   Hero escena por capas (.s-hero--scene) — assets de «Hero · Assets para exportar»
+   Capas: .hl (parallax JS) > .hl__in (entrada) > .hl__loop (loop CSS) > img
+   ========================================================================== */
+.s-hero--scene { background: #0B4F9E; }
+.s-hero--scene::after { display: none; }
+.s-hero { --hvw: min(1vw, 19.2px, calc((72.5svh - 6.4rem) / 37)); }
+.s-hero__scene { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.hl { position: absolute; will-change: transform; }
+.hl__in, .hl__loop { width: 100%; height: 100%; }
+.hl img { display: block; width: 100%; height: auto; user-select: none; }
+
+/* Posiciones · desktop/laptop (ref. 1920×990 y 1440×900) */
+.hl--sky { inset: -6% 0 -14%; }
+.hl--sky img { height: 100%; object-fit: cover; object-position: 50% 0; }
+.hl--clouds-back { left: -12%; width: 124%; bottom: -3%; }
+.hl--birds { inset: 0; }
+.hl--skyline { left: calc(50% - 44 * var(--hvw)); width: calc(48 * var(--hvw)); top: calc(54svh - 6.62 * var(--hvw)); opacity: 0.72;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 96%); mask-image: linear-gradient(to bottom, #000 55%, transparent 96%); }
+.hl--skyline img { filter: none; }
+.hl--island { left: calc(50% - 20.2 * var(--hvw)); width: calc(81 * var(--hvw)); top: calc(72.5svh - 45.8 * var(--hvw)); }
+.hl--clouds-a { left: -15%; width: 130%; top: calc(72.5svh + 3.8 * var(--hvw)); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); mask-image: linear-gradient(to bottom, transparent 0%, #000 45%); }
+.hl--clouds-b { right: -18%; width: 90%; top: calc(72.5svh + 8.5 * var(--hvw)); }
+.hl--light-a { left: -12%; width: 62%; top: 44%; opacity: 0.9; }
+.hl--light-b { right: 0; width: 46%; bottom: 4%; opacity: 0.8; }
+.hl--leaf-tr { top: -3%; right: -2%; width: clamp(13rem, 19vw, 24rem); }
+.hl--leaf-bl { left: -3%; bottom: -4%; width: clamp(12rem, 17vw, 21rem); }
+
+/* Cascada: brillo de agua que baja + bruma en la base (en coordenadas de la isla) */
+.hl--island .hl__loop { position: relative; }
+.s-hero__falls { position: absolute; left: 3.6%; top: 54%; width: 10.4%; height: 29%; overflow: hidden; opacity: 0.85; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 45%, #000 45%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 45%, #000 45%, transparent 100%); }
+.s-hero__falls::before, .s-hero__falls::after { content: ""; position: absolute; inset: 0; }
+.s-hero__falls::before { background: repeating-linear-gradient(to bottom, rgb(255 255 255 / 0) 0 10px, rgb(255 255 255 / 0.95) 18px, rgb(255 255 255 / 0) 28px, rgb(255 255 255 / 0) 40px); -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 3px, rgb(0 0 0 / 0.35) 5px, #000 8px); mask-image: repeating-linear-gradient(90deg, #000 0 3px, rgb(0 0 0 / 0.35) 5px, #000 8px); }
+.s-hero__falls::after { background: repeating-linear-gradient(to bottom, rgb(220 240 255 / 0) 0 22px, rgb(235 247 255 / 0.7) 34px, rgb(220 240 255 / 0) 48px, rgb(220 240 255 / 0) 70px); }
+.s-hero__mist { position: absolute; left: -2%; top: 75%; width: 22%; height: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0)); opacity: 0.75; }
+
+/* Aves: 3 grupos con trayectoria y ritmo propios */
+
+/* ---------- Entrada ----------
+   La escena ya está en su posición final (la revela el preloader o carga directa).
+   Solo entran texto, botón y tarjeta (data-reveal). Después: pulso del botón y aves. */
+@keyframes hero-glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 1px rgb(255 255 255 / 0.6)) drop-shadow(0 0 7px rgb(255 255 255 / 0.45)) drop-shadow(0 0 18px rgb(64 184 255 / 0.55)); }
+  45% { filter: drop-shadow(0 0 2px rgb(255 255 255 / 0.8)) drop-shadow(0 0 12px rgb(255 255 255 / 0.6)) drop-shadow(0 0 32px rgb(64 184 255 / 0.85)); }
+}
+.s-hero--scene.is-entered .s-hero__cta .btn--split { animation: hero-glow-pulse 1.4s var(--ease-main) 2s 1 both; }
+.s-hero--scene.is-entered .s-hero__cta .btn--split:hover { animation: split-pop 0.45s cubic-bezier(0.33, 1, 0.68, 1); }
+
+/* ---------- Loops ---------- */
+@keyframes hero-drift { from { translate: -3% 0; } to { translate: 3% 0; } }
+@property --float-amp { syntax: "<number>"; inherits: false; initial-value: 0; }
+@keyframes hero-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(var(--float-amp) * -7px); } }
+@keyframes hero-drift-back { from { translate: -6% 0; } to { translate: 6% 0; } }
+@keyframes hero-sway { 0%, 100% { rotate: -2deg; } 50% { rotate: 2deg; } }
+@keyframes hero-pulse { 0%, 100% { opacity: 0.88; } 50% { opacity: 1; } }
+@keyframes hero-falls { from { transform: translateY(0); } to { transform: translateY(50%); } }
+@keyframes hero-mist { 0%, 100% { opacity: 0.65; scale: 1; } 50% { opacity: 1; scale: 1.12 1.06; } }
+/* Cruce de izquierda a derecha en ~30 % del ciclo (≈5 s); el resto del ciclo, fuera de cuadro */
+
+.hl--clouds-back .hl__loop { animation: hero-drift-back 60s ease-in-out infinite alternate; }
+.hl--clouds-a .hl__loop { animation: hero-drift 50s ease-in-out infinite alternate-reverse; }
+.hl--clouds-b .hl__loop { animation: hero-drift 64s ease-in-out -20s infinite alternate; }
+/* Sin flotación hasta que el hero se posa; arranca desde el reposo (0 px) y su amplitud
+   crece de 0 a 7 px durante el primer ciclo → sin salto respecto al último frame del preloader */
+.hl--island .hl__loop { --float-amp: 0; transition: --float-amp 7s ease-in-out; }
+.s-hero--scene.is-floating .hl--island .hl__loop { --float-amp: 1; animation: hero-float 7s ease-in-out infinite; }
+.hl--leaf-tr .hl__loop { transform-origin: 100% 0; animation: hero-sway 7.5s ease-in-out infinite; }
+.hl--leaf-bl .hl__loop { transform-origin: 0 100%; animation: hero-sway 9s ease-in-out -2s infinite; }
+.s-hero__pulse { animation: hero-pulse 9s ease-in-out infinite; }
+.hl--light-b .s-hero__pulse { animation-duration: 8s; animation-delay: -3s; }
+@keyframes hero-falls-a { from { background-position: 0 0; } to { background-position: 0 40px; } }
+@keyframes hero-falls-b { from { background-position: 0 0; } to { background-position: 0 70px; } }
+.s-hero__falls::before { animation: hero-falls-a 0.9s linear infinite; }
+.s-hero__falls::after { animation: hero-falls-b 1.35s linear infinite; }
+.s-hero__mist { animation: hero-mist 2.6s ease-in-out infinite; }
+/* a + b cruzan juntas a los 2 s (una bandada); c pasa sola más tarde. JS varía altura y trayectoria en cada pasada */
+
+/* Pausa cuando el hero no está en pantalla */
+.s-hero--scene.is-off .s-hero__scene *,
+.s-hero--scene.is-off .s-hero__scene *::before { animation-play-state: paused; }
+
+/* ---------- Mobile: sin parallax de mouse, loops simples (nubes, isla, aves) ---------- */
+@media (max-width: 63.99em) {
+  .hl--island { left: auto; right: -7vw; top: auto; bottom: -2svh; width: min(121vw, 84svh); }
+  /* Ancho limitado por el alto: la parte visible de las nubes nunca sube del ~58 % del hero (debajo del CTA) */
+  .hl--skyline { left: -10%; width: 120%; top: auto; bottom: calc(0.246 * max(110vw, min(220vw, 1.36 * 100svh * 3.53 / 2.2)) - 0.04 * 120vw); }
+  .hl--clouds-back { left: 50%; translate: -50% 0; width: max(110%, min(220%, 1.36 * 100svh * 3.53 / 2.2)); bottom: 0; }
+  .hl--clouds-a { left: 50%; translate: -50% 0; width: max(110%, min(280%, 0.75 * 100svh * 4.24 / 1.1)); top: auto; bottom: -12%; }
+  .hl--clouds-b { right: -50%; width: max(100%, min(200%, 0.7 * 100svh * 4.27 / 1.1)); top: auto; bottom: -8%; }
+  .hl--light-a { left: -30%; width: 140%; top: 38%; }
+  .hl--light-b { width: 120%; right: -30%; }
+  .hl--leaf-tr { width: 38vw; top: -2%; right: -6%; }
+  .hl--leaf-bl { width: 34vw; left: -8%; bottom: -3%; }
+  [class*="hl--leaf"] .hl__loop, .s-hero__pulse, .s-hero__falls::before, .s-hero__falls::after, .s-hero__mist { animation: none; }
+}
+
+/* ---------- Movimiento reducido: todo estático, solo la entrada en fade ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .s-hero__scene *, .s-hero__scene *::before { animation: none !important; }
+  .s-hero--scene .hl__in { translate: none !important; scale: none !important; transition: opacity 0.8s ease !important; }
+}
+
+/* Composición del frame: título, texto y CTA arriba a la izquierda (sobre el cielo,
+   nunca sobre las nubes); tarjeta 100 % abajo a la derecha */
+.s-hero--scene .s-hero__inner { justify-content: flex-start; padding-top: calc(var(--header-h) + clamp(2rem, 9svh, 7rem)); padding-bottom: clamp(2rem, 6svh, 4rem); }
+.s-hero--scene .s-hero__bottom { display: contents; }
+.s-hero--scene .s-hero__content { max-width: 40rem; }
+.s-hero--scene .s-hero__inner { gap: calc(var(--space-xl) - 0.375rem); }
+.s-hero--scene .s-hero__stat { align-self: flex-end; margin-top: auto; }
+@media (max-width: 63.99em) {
+  .s-hero--scene .s-hero__inner { padding-top: calc(var(--header-h) + clamp(1.5rem, 6svh, 4rem)); }
+}
+
+/* CTA del hero: glow de Figma (celeste #40B8FF blur 60 spread 6 + blanco 85 % blur 22 spread 2).
+   drop-shadow sigue la silueta inclinada de cada pieza; el spread se emula con una sombra corta previa */
+.s-hero__cta .btn--split {
+  filter:
+    drop-shadow(0 0 1px rgb(255 255 255 / 0.6)) drop-shadow(0 0 7px rgb(255 255 255 / 0.45))
+    drop-shadow(0 0 18px rgb(64 184 255 / 0.55));
+}
+
+/* Hero: la entrada de textos es solo máscara/desplazamiento, sin fade */
+.js-motion .s-hero--scene [data-reveal]:not(.is-revealed) { opacity: 1; }
+
+/* Estado final de la entrada: gana sobre las posiciones de inicio por capa */
+.s-hero--scene.is-entered .hl .hl__in { translate: 0 0; scale: 1; filter: none; opacity: 1; }
+
+
+/* Niebla que cruza por encima de la isla, de izquierda a derecha */
+.hl--fog { inset: 0; overflow: hidden; }
+.s-hero__fog { position: absolute; left: 0; top: var(--ft, 40%); width: var(--fw, 70vw); max-width: 90rem; opacity: var(--fo, 0.6); translate: -100% 0; animation: hero-fog var(--fd, 70s) linear var(--fdl, 0s) infinite; }
+.s-hero__fog img { display: block; width: 100%; height: auto; }
+.s-hero__fog--a { --ft: 54%; --fw: 72vw; --fo: 0.5; --fd: 44s; --fdl: -22s; }
+.s-hero__fog--b { --ft: 68%; --fw: 52vw; --fo: 0.45; --fd: 56s; --fdl: -50s; }
+.s-hero__fog--c { --ft: 61%; --fw: 60vw; --fo: 0.38; --fd: 70s; --fdl: -8s; }
+@keyframes hero-fog { from { translate: -100% 0; } to { translate: 100vw 0; } }
+@media (prefers-reduced-motion: reduce) { .hl--fog { display: none; } }
+@media (max-width: 47.99em) { .s-hero__fog--c { display: none; } .s-hero__fog { --fw: 120vw; } }
+/* Tarjeta 100 %: sube desde abajo (sin fade) mientras la cifra cuenta */
+.js-motion .s-hero--scene .s-hero__stat[data-reveal="up"]:not(.is-revealed) { transform: translate3d(0, 2.5rem, 0); }
+
+/* Lectura: degradado oscuro detrás del bloque de texto (sobre cielo, nubes y skyline; bajo la isla y el texto) */
+.s-hero__scrim { position: absolute; inset: 0 auto 0 0; width: min(50rem, 72vw); pointer-events: none;
+  background: linear-gradient(90deg, rgb(0 18 56 / 0.35) 0%, rgb(0 18 56 / 0.25) 40%, rgb(0 18 56 / 0.1) 72%, rgb(0 18 56 / 0) 100%); }
+@media (max-width: 63.99em) { .s-hero__scrim { width: 100%; background: linear-gradient(180deg, rgb(0 18 56 / 0.3) 0%, rgb(0 18 56 / 0.14) 55%, rgb(0 18 56 / 0) 80%); } }
+
+/* Nubes de fondo: el borde visible (≈40 % del alto de la imagen) cae a la altura del botón, no de la descripción */
+@media (min-width: 64em) {
+  .hl--clouds-back { bottom: auto; top: calc(54svh - 20.86vw); }
+}
+.s-hero--scene .s-hero__lead { text-shadow: 0 1px 12px rgb(0 20 60 / 0.35); }
+
+/* Tarjeta 100 %: más jerarquía con los estilos existentes (cifra de métrica + etiqueta en mayúsculas) */
+.s-hero__stat.stat-card--pill { padding: var(--space-sm) var(--space-2xl) var(--space-sm) var(--space-sm); column-gap: var(--space-md); }
+.s-hero__stat .stat-card__icon { width: calc(var(--fs-stat) * 1.3); font-size: calc(var(--fs-stat) * 0.62); }
+.s-hero__stat.stat-card--pill .stat-card__value { font-size: var(--fs-stat); font-weight: var(--fw-semibold); line-height: var(--lh-tight); letter-spacing: var(--ls-tight); }
+.s-hero__stat.stat-card--pill .stat-card__label { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: var(--ls-display); }
+
+@media (prefers-reduced-motion: reduce) {
+  .s-hero--scene .hl__in { opacity: 0; filter: none !important; }
+  .s-hero--scene.is-entered .hl__in { opacity: 1; }
+  .s-hero--scene .s-hero__cta .btn--split { animation: none !important; }
+}
+
+/* ---------- Aves (Lottie «Bird Flock», js/sections/hero-birds.js) ----------
+   Entre el skyline/nubes de fondo y la isla; el cruce lo anima el JS */
+.hl--birds { inset: 0; overflow: hidden; pointer-events: none; }
+.s-hero__flock { position: absolute; left: 0; top: 0; width: clamp(4.68rem, 4.26vw, 5.72rem); aspect-ratio: 1; opacity: 0; pointer-events: none; will-change: transform, opacity; }
+.s-hero__flock svg { display: block; width: 100% !important; height: 100% !important; }
+/* Dos bandadas Lottie juntas (14 aves): la segunda desplazada y algo más chica */
+.s-hero__flock-part { position: absolute; inset: 0; }
+.s-hero__flock-part--b { inset: auto; left: 48%; top: 22%; width: 82%; height: 82%; }
+/* 1–2 rezagadas detrás (a la izquierda) de la bandada principal */
+.s-hero__flock-part--c { inset: auto; left: -42%; top: 14%; width: 74%; height: 74%; }
+@media (max-width: 63.99em) { .s-hero__flock { width: 3.9rem; } }
+@media (prefers-reduced-motion: reduce) { .hl--birds { display: none; } }
+
+/* Color de cada ave según lo que tiene detrás: cielo → azul atmosférico; isla/edificios → oscuro */
+.s-hero__flock g[data-bird] path { fill: var(--bc, #4F75A3); transition: fill 0.45s ease; }

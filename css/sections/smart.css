@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Sección: Residuos inteligentes (.s-smart) — card con pasos (video + texto)
+   ========================================================================== */
+.s-smart {
+  padding-block: var(--space-section);
+  background: var(--color-bg);
+}
+.s-smart__lead {
+  max-width: 49rem;
+  margin-top: var(--space-xs);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.s-smart__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  max-width: 88.25rem;
+  min-height: clamp(28rem, 20rem + 12vw, 33.625rem);
+  margin: var(--space-4xl) auto 0;
+  overflow: hidden;
+  border-radius: var(--radius-16);
+  background: var(--color-bg);
+  box-shadow: inset 0 0 0 1px var(--color-grey-100);
+}
+
+/* Medios apilados: el activo se abre con máscara */
+.s-smart__media { display: grid; min-height: 0; }
+.s-smart__video {
+  position: relative;
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-grey-500);
+  visibility: hidden;
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path var(--dur-base) var(--ease-main), visibility 0s linear var(--dur-base);
+}
+.s-smart__video.is-active {
+  z-index: 1;
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--dur-base) var(--ease-main), visibility 0s linear 0s;
+}
+.s-smart__video video,
+.s-smart__video .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.s-smart__video .play-btn { position: relative; z-index: 1; }
+.s-smart__video.is-playing .play-btn { display: none; }
+
+.s-smart__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: clamp(var(--space-xl), 1rem + 2.5vw, 3.5rem);
+}
+.s-smart__panels { display: grid; }
+.s-smart__panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  transform: translate3d(0, 1.5rem, 0);
+  clip-path: inset(0 0 100% 0);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    clip-path var(--dur-base) var(--ease-out),
+    visibility 0s linear var(--dur-base);
+}
+.s-smart__panel.is-active {
+  visibility: visible;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+  transition:
+    transform var(--dur-base) var(--ease-out) 0.1s,
+    clip-path var(--dur-base) var(--ease-out) 0.1s,
+    visibility 0s linear 0s;
+}
+.s-smart__title {
+  font-size: clamp(1.25rem, 1rem + 0.7vw, 1.625rem);
+  font-weight: var(--fw-medium);
+  line-height: 1.12;
+  text-wrap: pretty;
+}
+.s-smart__text {
+  margin-top: var(--space-xl);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.s-smart__arrows { display: flex; justify-content: center; gap: var(--space-md); margin-top: var(--space-2xl); }
+.s-smart__dots { display: none; justify-content: center; margin-top: var(--space-xl); }
+
+@media (max-width: 63.99em) {
+  .s-smart__card { grid-template-columns: minmax(0, 1fr); }
+  .s-smart__media { aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 47.99em) {
+  .s-smart__card { margin-top: var(--space-xl); border-radius: var(--radius-12); }
+  .s-smart__media { aspect-ratio: 350 / 197; }
+  .s-smart__body { gap: var(--space-lg); padding: var(--space-xl) var(--space-ml) var(--space-ml); text-align: center; }
+  .s-smart__title { font-size: var(--fs-ml); font-weight: var(--fw-semibold); line-height: 1.25; }
+  .s-smart__text { margin-top: var(--space-md); font-size: var(--fs-sm); }
+  .s-smart__arrows { display: none; }
+  .s-smart__dots { display: flex; }
+}
+
+/* Seguida de Certificaciones: un solo espaciado de sección entre ambas */
+.s-smart:has(+ .s-certs) { padding-bottom: calc(var(--space-section) * 0.5); }
+.s-smart + .s-certs { padding-top: calc(var(--space-section) * 0.5); }
+
+/* Tras el cintillo de frases: menos aire arriba para que se lean juntos */
+.s-brand-band + .s-smart { padding-top: calc(var(--space-section) * 0.35); }

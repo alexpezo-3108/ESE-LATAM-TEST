@@ -1,0 +1,111 @@
+/* ==========================================================================
+   ¿Cómo trabajamos? — slider de proceso (.s-proc)
+   ========================================================================== */
+.s-proc { padding: 0 clamp(var(--space-xs), 1.7vw, 2rem) var(--space-4xl); background: var(--color-bg); }
+.proc {
+  --pad: clamp(var(--space-lg), 4.2vw, 5rem);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: clamp(33rem, 41vw, 49.375rem);
+  padding: var(--pad);
+  border-radius: var(--radius-24, 1.5rem);
+  overflow: hidden;
+  background: var(--color-navy-500);
+  color: var(--color-on-dark);
+}
+.proc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(10 18 40 / 0.4) 0%, rgb(10 18 40 / 0) 22%, rgb(10 18 40 / 0) 48%, rgb(10 18 40 / 0.65) 75%, rgb(8 16 38 / 0.95) 100%);
+  pointer-events: none;
+}
+.proc__media { position: absolute; inset: 0; z-index: -2; display: grid; }
+.proc__bg { grid-area: 1 / 1; position: relative; clip-path: inset(0 0 0 100%); transition: clip-path 0s 1.1s; }
+.proc__bg.is-active { z-index: 1; clip-path: inset(0 0 0 0); transition: clip-path 1.1s cubic-bezier(0.77, 0, 0.18, 1); }
+.proc__bg img,
+.proc__bg .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 1.6s var(--ease-main); }
+.proc__bg.is-active img,
+.proc__bg.is-active .placeholder { transform: none; }
+.proc__bg .placeholder { background: linear-gradient(180deg, #4D5568 0%, #8E929B 25%, #9A9DA5 50%, #5C6375 75%, #11192F 100%); }
+.proc__bg .placeholder__label { opacity: 0.6; }
+
+.proc__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
+.proc__count { font-size: var(--fs-ml); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.proc__bottom { align-self: end; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 28.75rem); align-items: end; gap: var(--space-xl) var(--space-3xl); }
+
+.proc__slides { display: contents; }
+.proc__slide { display: contents; }
+.proc__title {
+  grid-column: 1; grid-row: 1 / 3; align-self: end;
+  font-size: clamp(2.5rem, 1.2rem + 3.6vw, 5.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.proc__line { display: block; overflow: hidden; padding-top: 0.08em; margin-top: -0.08em; }
+.proc__line > span { display: block; font-weight: var(--fw-extralight); transform: translateY(105%); transition: transform 0.8s var(--ease-main); }
+.proc__line--bold > span { font-weight: var(--fw-semibold); }
+.proc__text {
+  grid-column: 2; grid-row: 1;
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  text-wrap: pretty;
+  opacity: 0; transform: translateY(0.75rem);
+  transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-main);
+}
+/* todos los slides apilados en la misma celda */
+.proc__slide:not(.is-active) .proc__title,
+.proc__slide:not(.is-active) .proc__text { visibility: hidden; transition-property: transform, opacity, visibility; transition-delay: 0s, 0s, 0.8s; }
+.proc__slide.is-active .proc__line > span { transform: none; transition-delay: 0.35s; }
+.proc__slide.is-active .proc__line--bold > span { transition-delay: 0.45s; }
+.proc__slide.is-active .proc__text { opacity: 1; transform: none; transition-delay: 0.55s; }
+.proc__slide.is-leaving .proc__line > span { transform: translateY(-105%); transition-delay: 0s; }
+
+.proc__controls { grid-column: 2; grid-row: 2; display: flex; align-items: center; gap: var(--space-sm); }
+.proc__bars { display: flex; flex: 1; gap: var(--space-2xs); margin-right: var(--space-sm); }
+.proc__bar { position: relative; flex: 1; height: 3px; border-radius: 3px; background: rgb(255 255 255 / 0.25); overflow: hidden; }
+.proc__bar i { position: absolute; inset: 0; background: var(--color-on-dark); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.proc__btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 0;
+  border-radius: var(--radius-full);
+  color: var(--color-on-dark);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.proc__btn--prev { background: rgb(255 255 255 / 0.06); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.45); backdrop-filter: blur(8px); }
+.proc__btn--prev:hover { background: rgb(255 255 255 / 0.16); }
+.proc__btn--next { position: relative; isolation: isolate; overflow: hidden; background: var(--gradient-main); box-shadow: 0 10px 24px -10px rgb(0 20 70 / 0.7); }
+.proc__btn--next::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity var(--dur-base) var(--ease-out); }
+.proc[data-tone="orange"] .proc__btn--next::before { background: var(--gradient-orange); opacity: 1; }
+.proc[data-tone="green"] .proc__btn--next::before { background: var(--gradient-green); opacity: 1; }
+.proc__btn:hover { transform: scale(1.06); }
+.proc__btn:hover i { transition: transform var(--dur-fast) var(--ease-out); }
+.proc__btn--next:hover i { transform: translateX(2px); }
+.proc__btn--prev:hover i { transform: translateX(-2px); }
+.proc__btn i { transition: transform var(--dur-fast) var(--ease-out); }
+
+@media (max-width: 63.99em) {
+  .s-proc { padding: 0 var(--container-pad, 1.25rem) var(--space-3xl); }
+  .proc { --pad: var(--space-ml); min-height: 36rem; border-radius: var(--radius-16); }
+  .proc__count { font-size: var(--fs-md); }
+  .proc__bottom { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs) 0; }
+  .proc__title { grid-column: 1; grid-row: 1; font-size: clamp(2rem, 1.2rem + 3vw, 2.5rem); line-height: 1.05; }
+  .proc__line--bold > span { font-weight: var(--fw-extralight); }
+  .proc__slide:first-child .proc__line--bold > span { font-weight: var(--fw-semibold); }
+  .proc__text { grid-column: 1; grid-row: 2; font-size: var(--fs-md); }
+  .proc__controls { grid-column: 1; grid-row: 3; margin-top: var(--space-lg); }
+  .proc[data-tone] .proc__btn--next::before { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .proc__bg, .proc__bg img, .proc__bg .placeholder, .proc__line > span, .proc__text { transition: none !important; }
+}

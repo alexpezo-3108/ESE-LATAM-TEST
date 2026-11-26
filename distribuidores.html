@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distribuidores — ESE Latam</title>
+  <meta name="description" content="Encuentra un distribuidor autorizado de ESE en Latinoamérica: asesoría, cotización y atención local.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap">
+  <!-- Íconos Phosphor (light + fill para logos sociales). En WP puede pasarse a sprite SVG. -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/header.css">
+  <link rel="stylesheet" href="css/sections/page-intro.css">
+  <link rel="stylesheet" href="css/sections/blog.css">
+  <link rel="stylesheet" href="css/sections/distributors.css">
+  <link rel="stylesheet" href="css/sections/dealers.css">
+  <link rel="stylesheet" href="css/sections/footer.css">
+  <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->
+  <script>
+    (function (d) {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('js-motion');
+      setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.remove('js-motion'); }, 3000);
+    })(document.documentElement);
+  </script>
+  <script type="module" src="js/motion.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/cookies.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/vendor/globe.js" defer></script>
+  <script src="js/data/distributors.js" defer></script>
+  <script src="js/sections/dealers.js" defer></script>
+  <!-- reCAPTCHA v2: reemplazar data-sitekey por la clave del sitio (la actual es la de prueba de Google) y validar el token en el servidor -->
+  <script src="js/sections/footer.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header" data-solid>
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="ESE Latam — inicio">
+        <img src="assets/img/logo-ese.png" width="128" height="39" alt="">
+      </a>
+
+      <div class="site-header__end">
+        <nav class="nav" id="site-nav" aria-label="Principal">
+          <ul class="nav__list" role="list">
+            <li class="nav__item"><a class="nav__link" href="productos.html">Productos <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-sectores">
+                Sectores <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="nav__sub nav__sub--rich nav__sub--mega" id="sub-sectores" role="list">
+                <li><a class="nav__sublink" href="sector-municipalidades.html"><span class="nav__sublink-title">Municipalidades y gobiernos locales</span><span class="nav__sublink-desc">Ciudades más limpias y ordenadas</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
+                <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--all" href="soluciones.html">Ver todos los sectores <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="index.html#distribuidores">Distribuidores <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-nosotros">
+                Nosotros <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+                            <ul class="nav__sub nav__sub--rich" id="sub-nosotros" role="list">
+                <li><a class="nav__sublink" href="nosotros.html"><span class="nav__sublink-title">Quiénes somos</span><span class="nav__sublink-desc">Historia, misión y equipo de ESE LATAM</span></a></li>
+                <li><a class="nav__sublink" href="certificaciones.html"><span class="nav__sublink-title">Certificaciones</span><span class="nav__sublink-desc">Normas y sellos europeos</span></a></li>
+                <li><a class="nav__sublink" href="impacto.html"><span class="nav__sublink-title">Impacto</span><span class="nav__sublink-desc">Economía circular y método Circulogic</span></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="blog.html">Blog <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+          </ul>
+
+          <!-- Solo mobile -->
+          <div class="nav__footer">
+            <button class="nav__search" type="button" data-search-open><i class="ph-light ph-magnifying-glass" aria-hidden="true"></i> Buscar productos o sectores</button>
+            <a class="btn btn--secondary btn--block" href="contacto.html">
+              Contacto
+              <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <ul class="social" role="list">
+              <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="icon-btn site-header__search-btn" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search" data-search-toggle>
+            <i class="ph-bold ph-magnifying-glass" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i>
+          </button>
+          <a class="btn btn--secondary btn--sm site-header__contact" href="contacto.html">
+            Contacto
+            <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search" id="site-search" role="dialog" aria-label="Buscar">
+        <form class="search__form" role="search" action="/" method="get">
+          <label class="sr-only" for="search-input">Buscar productos o sectores</label>
+          <i class="search__icon ph-light ph-magnifying-glass" aria-hidden="true"></i>
+          <input class="search__input" id="search-input" name="s" type="search" placeholder="Busca productos, sectores o artículos" autocomplete="off" aria-controls="search-results">
+          <button class="search__clear" type="button" aria-label="Borrar búsqueda"><i class="ph-fill ph-x-circle" aria-hidden="true"></i></button>
+          <kbd class="search__kbd">ESC</kbd>
+        </form>
+        <div class="search__results" id="search-results" aria-live="polite" data-lenis-prevent></div>
+      </div>
+    </div>
+    <div class="search-backdrop" aria-hidden="true"></div>
+  </header>
+
+  <template id="tpl-search-idle">
+    <div class="search__group">
+      <h3 class="search__eyebrow">Búsquedas frecuentes</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Contenedor 1.100 L">Contenedor 1.100 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Certificación Blue Angel">Certificación Blue Angel</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores en Perú">Distribuidores en Perú</button></li>
+      </ul>
+    </div>
+    <div class="search__group">
+      <h3 class="search__eyebrow">Accesos rápidos</h3>
+      <ul class="chip-list" role="list">
+        <li><a class="chip" href="productos.html">Catálogo de productos</a></li>
+        <li><a class="chip" href="soluciones.html">Soluciones por sector</a></li>
+        <li><a class="chip" href="index.html#distribuidores">Encuentra un distribuidor</a></li>
+        <li><a class="chip" href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </template>
+
+  <template id="tpl-search-empty">
+    <div class="search__empty">
+      <p class="search__empty-title">No encontramos resultados para «{q}»</p>
+      <p class="search__empty-text">Revisa la ortografía o prueba con una búsqueda más general.</p>
+    </div>
+    <div class="search__suggest">
+      <h3 class="search__eyebrow">Prueba con</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores">Distribuidores</button></li>
+      </ul>
+    </div>
+    <p class="search__help">¿No encuentras lo que necesitas? <a href="contacto.html">Escríbenos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></p>
+  </template>
+
+  <main id="main">
+
+    <section class="s-intro" aria-labelledby="intro-title">
+      <div class="container">
+        <nav class="breadcrumb breadcrumb--dark" aria-label="Ruta de navegación" data-reveal="mask-x" data-reveal-delay="0.1">
+          <ol class="breadcrumb__list" role="list">
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html"><i class="ph-fill ph-house" aria-hidden="true"></i>Inicio</a></li>
+            <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><span aria-current="page">Distribuidores</span></li>
+          </ol>
+        </nav>
+        <header class="page-head">
+          <h1 class="heading page-head__title" id="intro-title" data-reveal="mask" data-reveal-delay="0.2">
+            <span class="heading__light" data-line>Encuentra un</span>
+            <span class="heading__bold" data-line>distribuidor</span>
+          </h1>
+          <p class="page-head__lead" data-reveal="mask" data-reveal-delay="0.35">Nuestra red de representantes en Latinoamérica te ofrece asesoría, cotización y atención local con el respaldo de ESE.</p>
+        </header>
+      </div>
+    </section>
+
+    <section class="s-dealers" aria-label="Buscador de distribuidores" data-dealers>
+      <div class="container">
+        <div class="blog-filters dealers-filters" data-reveal="up" data-reveal-delay="0.4">
+          <div class="blog-filter blog-filter--search">
+            <label class="blog-filter__label" for="d-q">Buscador</label>
+            <div class="blog-filter__control">
+              <i class="ph ph-magnifying-glass blog-filter__search-icon" aria-hidden="true"></i>
+              <input class="blog-filter__input" id="d-q" type="search" placeholder="Busca por ciudad, empresa o representante" autocomplete="off" data-dq>
+            </div>
+          </div>
+          <div class="blog-filter" data-dd="country">
+            <span class="blog-filter__label" id="lbl-country">País</span>
+            <div class="dd">
+              <button class="blog-filter__input dd__btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lbl-country val-country"><span class="dd__value" id="val-country">Todos los países</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+              <ul class="dd__list" data-lenis-prevent role="listbox" aria-labelledby="lbl-country" tabindex="-1"></ul>
+            </div>
+          </div>
+          <div class="blog-filter" data-dd="sector">
+            <span class="blog-filter__label" id="lbl-sector">Sector</span>
+            <div class="dd">
+              <button class="blog-filter__input dd__btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lbl-sector val-sector"><span class="dd__value" id="val-sector">Todos los sectores</span><i class="ph ph-caret-down" aria-hidden="true"></i></button>
+              <ul class="dd__list" data-lenis-prevent role="listbox" aria-labelledby="lbl-sector" tabindex="-1"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="dealers-bar">
+          <p class="dealers-bar__count" aria-live="polite" data-dcount>16 distribuidores en 13 países</p>
+          <ul class="blog-chips" role="list" data-dchips></ul>
+          <button class="dealers-bar__reset" type="button" data-dreset hidden>Restablecer filtros</button>
+        </div>
+
+        <div class="dealers-layout">
+          <div class="dealers-main">
+            <ul class="dealers-list" role="list" data-dlist></ul>
+            <div class="empty-state dealers-empty" hidden data-dempty>
+              <p class="empty-state__title">Aún no tenemos distribuidor en ese país</p>
+              <p class="empty-state__text">Nuestro equipo de ESE LATAM puede atenderte directamente. Escríbenos y te ayudamos con tu cotización.</p>
+              <div class="dealers-empty__actions">
+                <a class="btn btn--secondary btn--block" href="contacto.html">Contáctanos <span class="btn__icon btn__icon--boxed"><i class="ph ph-arrow-right" aria-hidden="true"></i></span></a>
+                <button class="btn btn--ghost btn--lg btn--block" type="button" data-dreset>Restablecer filtros</button>
+              </div>
+            </div>
+            <button class="btn btn--ghost btn--lg btn--block dealers-more" type="button" hidden data-dmore>Ver más distribuidores</button>
+            <p class="dealers-note" hidden data-dnote></p>
+          </div>
+
+          <div class="dealers-aside">
+            <div class="dealers-map" data-cursor="light" data-particles="40">
+              <canvas class="dealers-map__canvas" aria-hidden="true"></canvas>
+              <span class="dealers-map__ring dealers-map__ring--1" aria-hidden="true"></span>
+              <span class="dealers-map__ring dealers-map__ring--2" aria-hidden="true"></span>
+              <span class="dealers-map__ring dealers-map__ring--3" aria-hidden="true"></span>
+              <div class="dealers-map__globe" data-globe role="img" aria-label="Mapa de distribuidores en Latinoamérica"></div>
+              <div class="dealers-map__markers" data-globe-markers></div>
+              <p class="dealers-map__hint"><span class="dealers-map__hint--fine">Pasa el cursor por un distribuidor para ubicarlo en el mapa.</span><span class="dealers-map__hint--touch">Toca un país para ver sus distribuidores.</span></p>
+              <div class="dealers-map__stat"><span class="dealers-map__stat-value">13</span><span class="dealers-map__stat-label">Países conectados</span></div>
+              <div class="dealers-pop" hidden data-dpop></div>
+            </div>
+            <div class="dealers-pop dealers-pop--static" hidden data-dpop-static></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dealers-sheet" role="dialog" aria-modal="true" aria-labelledby="dsheet-title" hidden data-dsheet>
+        <div class="dealers-sheet__backdrop" data-dsheet-close></div>
+        <div class="dealers-sheet__panel">
+          <span class="dealers-sheet__grip" aria-hidden="true"></span>
+          <div class="dealers-sheet__head">
+            <p class="dealers-sheet__title" id="dsheet-title">País</p>
+            <button class="dealers-sheet__close" type="button" aria-label="Cerrar" data-dsheet-close><i class="ph ph-x" aria-hidden="true"></i></button>
+          </div>
+          <p class="blog-filter__label dealers-sheet__sub">Selecciona un país</p>
+          <ul class="dealers-sheet__list" role="radiogroup" aria-labelledby="dsheet-title" data-dsheet-list></ul>
+          <div class="dealers-sheet__foot">
+            <button class="dealers-bar__reset" type="button" data-dsheet-reset><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>Restablecer filtros</button>
+            <button class="btn btn--secondary btn--lg" type="button" data-dsheet-apply>Ver distribuidores</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="site-footer__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="site-footer__top">
+        <nav class="site-footer__col" aria-label="Soluciones">
+          <h2>Soluciones</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="soluciones.html">Sectores</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="index.html#distribuidores">Distribuidores</a></li>
+            <li><a href="#">Casos de éxito</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col" aria-label="ESE LATAM">
+          <h2>ESE LATAM</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="certificaciones.html">Certificaciones</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col site-footer__col--legal" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="terminos-y-condiciones.html">Términos y condiciones</a></li>
+            <li><a href="politica-de-cookies.html">Política de cookies</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__about">
+          <p class="site-footer__tagline">Distribuimos contenedores de residuos sólidos fabricados en Alemania y Francia. <span>Calidad europea, transformando la recolección de residuos en Latinoamérica.</span></p>
+          <p class="site-footer__eyebrow">Síguenos</p>
+          <ul class="social social--light" role="list">
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><span class="brand-icon brand-icon--youtube" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="site-footer__copy">© 2026 ESE LATAM. Todos los derechos reservados.</p>
+      <div class="site-footer__brand" aria-hidden="true">
+        <span class="site-footer__logo" data-reveal="rise"></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

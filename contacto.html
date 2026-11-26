@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto — ESE Latam</title>
+  <meta name="description" content="Conversemos sobre tu proyecto: te ayudamos a elegir la solución de contención adecuada para tu ciudad, empresa o institución.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap">
+  <!-- Íconos Phosphor (light + fill para logos sociales). En WP puede pasarse a sprite SVG. -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/header.css">
+  <link rel="stylesheet" href="css/sections/page-intro.css">
+  <link rel="stylesheet" href="css/sections/contact.css">
+  <link rel="stylesheet" href="css/sections/footer.css">
+  <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->
+  <script>
+    (function (d) {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('js-motion');
+      setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.remove('js-motion'); }, 3000);
+    })(document.documentElement);
+  </script>
+  <script type="module" src="js/motion.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/cookies.js" defer></script>
+  <script src="js/confetti.js" defer></script>
+  <script src="js/sections/contact.js" defer></script>
+  <!-- reCAPTCHA v2: reemplazar data-sitekey por la clave del sitio (la actual es la de prueba de Google) y validar el token en el servidor -->
+  <script src="js/sections/footer.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header" data-solid>
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="ESE Latam — inicio">
+        <img src="assets/img/logo-ese.png" width="128" height="39" alt="">
+      </a>
+
+      <div class="site-header__end">
+        <nav class="nav" id="site-nav" aria-label="Principal">
+          <ul class="nav__list" role="list">
+            <li class="nav__item"><a class="nav__link" href="productos.html">Productos <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-sectores">
+                Sectores <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="nav__sub nav__sub--rich nav__sub--mega" id="sub-sectores" role="list">
+                <li><a class="nav__sublink" href="sector-municipalidades.html"><span class="nav__sublink-title">Municipalidades y gobiernos locales</span><span class="nav__sublink-desc">Ciudades más limpias y ordenadas</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
+                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
+                <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--all" href="soluciones.html">Ver todos los sectores <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="distribuidores.html">Distribuidores <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-nosotros">
+                Nosotros <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+                            <ul class="nav__sub nav__sub--rich" id="sub-nosotros" role="list">
+                <li><a class="nav__sublink" href="nosotros.html"><span class="nav__sublink-title">Quiénes somos</span><span class="nav__sublink-desc">Historia, misión y equipo de ESE LATAM</span></a></li>
+                <li><a class="nav__sublink" href="certificaciones.html"><span class="nav__sublink-title">Certificaciones</span><span class="nav__sublink-desc">Normas y sellos europeos</span></a></li>
+                <li><a class="nav__sublink" href="impacto.html"><span class="nav__sublink-title">Impacto</span><span class="nav__sublink-desc">Economía circular y método Circulogic</span></a></li>
+              </ul>
+            </li>
+            <li class="nav__item"><a class="nav__link" href="blog.html">Blog <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+          </ul>
+
+          <!-- Solo mobile -->
+          <div class="nav__footer">
+            <button class="nav__search" type="button" data-search-open><i class="ph-light ph-magnifying-glass" aria-hidden="true"></i> Buscar productos o sectores</button>
+            <a class="btn btn--secondary btn--block" href="contacto.html">
+              Contacto
+              <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <ul class="social" role="list">
+              <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+              <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="icon-btn site-header__search-btn" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search" data-search-toggle>
+            <i class="ph-bold ph-magnifying-glass" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i>
+          </button>
+          <a class="btn btn--secondary btn--sm site-header__contact" href="contacto.html">
+            Contacto
+            <span class="btn__icon btn__icon--boxed"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search" id="site-search" role="dialog" aria-label="Buscar">
+        <form class="search__form" role="search" action="/" method="get">
+          <label class="sr-only" for="search-input">Buscar productos o sectores</label>
+          <i class="search__icon ph-light ph-magnifying-glass" aria-hidden="true"></i>
+          <input class="search__input" id="search-input" name="s" type="search" placeholder="Busca productos, sectores o artículos" autocomplete="off" aria-controls="search-results">
+          <button class="search__clear" type="button" aria-label="Borrar búsqueda"><i class="ph-fill ph-x-circle" aria-hidden="true"></i></button>
+          <kbd class="search__kbd">ESC</kbd>
+        </form>
+        <div class="search__results" id="search-results" aria-live="polite" data-lenis-prevent></div>
+      </div>
+    </div>
+    <div class="search-backdrop" aria-hidden="true"></div>
+  </header>
+
+  <template id="tpl-search-idle">
+    <div class="search__group">
+      <h3 class="search__eyebrow">Búsquedas frecuentes</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Contenedor 1.100 L">Contenedor 1.100 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Certificación Blue Angel">Certificación Blue Angel</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores en Perú">Distribuidores en Perú</button></li>
+      </ul>
+    </div>
+    <div class="search__group">
+      <h3 class="search__eyebrow">Accesos rápidos</h3>
+      <ul class="chip-list" role="list">
+        <li><a class="chip" href="productos.html">Catálogo de productos</a></li>
+        <li><a class="chip" href="soluciones.html">Soluciones por sector</a></li>
+        <li><a class="chip" href="distribuidores.html">Encuentra un distribuidor</a></li>
+        <li><a class="chip" href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </template>
+
+  <template id="tpl-search-empty">
+    <div class="search__empty">
+      <p class="search__empty-title">No encontramos resultados para «{q}»</p>
+      <p class="search__empty-text">Revisa la ortografía o prueba con una búsqueda más general.</p>
+    </div>
+    <div class="search__suggest">
+      <h3 class="search__eyebrow">Prueba con</h3>
+      <ul class="chip-list" role="list">
+        <li><button class="chip" type="button" data-suggest="Contenedor 240 L">Contenedor 240 L</button></li>
+        <li><button class="chip" type="button" data-suggest="Papeleras urbanas">Papeleras urbanas</button></li>
+        <li><button class="chip" type="button" data-suggest="Bagio Smart">Bagio Smart</button></li>
+        <li><button class="chip" type="button" data-suggest="Distribuidores">Distribuidores</button></li>
+      </ul>
+    </div>
+    <p class="search__help">¿No encuentras lo que necesitas? <a href="contacto.html">Escríbenos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></p>
+  </template>
+
+  <main id="main">
+
+    <section class="s-intro" aria-labelledby="intro-title">
+      <div class="container">
+        <nav class="breadcrumb breadcrumb--dark" aria-label="Ruta de navegación" data-reveal="mask-x" data-reveal-delay="0.1">
+          <ol class="breadcrumb__list" role="list">
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html"><i class="ph-fill ph-house" aria-hidden="true"></i>Inicio</a></li>
+            <li class="breadcrumb__item"><i class="breadcrumb__sep ph-light ph-caret-right" aria-hidden="true"></i><span aria-current="page">Contacto</span></li>
+          </ol>
+        </nav>
+        <header class="page-head">
+          <h1 class="heading page-head__title" id="intro-title" data-reveal="mask" data-reveal-delay="0.2">
+            <span class="heading__light" data-line>Conversemos sobre</span>
+            <span class="heading__bold" data-line>tu proyecto</span>
+          </h1>
+          <p class="page-head__lead" data-reveal="mask" data-reveal-delay="0.35">Te ayudamos a elegir la solución de contención adecuada para tu ciudad, empresa o institución. Respondemos en menos de 24 horas hábiles.</p>
+        </header>
+      </div>
+    </section>
+
+    <section class="s-contact" aria-label="Formulario y datos de contacto">
+      <div class="container">
+        <div class="s-contact__grid">
+          <aside class="s-contact__aside" data-reveal="mask" data-reveal-delay="0.1">
+            <ul class="contact-list" role="list">
+              <li class="contact-card">
+                <span class="contact-card__icon" aria-hidden="true"><i class="ph ph-phone"></i></span>
+                <div class="contact-card__body">
+                  <p class="contact-card__title">Teléfono y WhatsApp</p>
+                  <a class="contact-card__value" href="tel:+51997171302">+51 997 171 302</a>
+                </div>
+                <a class="btn btn--whatsapp btn--sm contact-card__end" href="https://wa.me/51997171302" target="_blank" rel="noopener">
+                  <span class="btn__icon btn__icon--start"><i class="ph-light ph-whatsapp-logo" aria-hidden="true"></i></span>WhatsApp
+                </a>
+              </li>
+              <li class="contact-card">
+                <span class="contact-card__icon" aria-hidden="true"><i class="ph ph-envelope-simple"></i></span>
+                <div class="contact-card__body">
+                  <p class="contact-card__title">Correo electrónico</p>
+                  <a class="contact-card__value" href="mailto:eselatam@gmail.com">eselatam@gmail.com</a>
+                </div>
+              </li>
+              <li class="contact-card">
+                <a class="contact-card__cover" href="https://maps.google.com/?q=Grimaldo+del+Solar+162,+Miraflores,+Lima" target="_blank" rel="noopener" aria-label="Ver la oficina en Google Maps"></a>
+                <span class="contact-card__icon" aria-hidden="true"><i class="ph ph-map-pin"></i></span>
+                <div class="contact-card__body">
+                  <p class="contact-card__title">Oficina</p>
+                  <p class="contact-card__value">Grimaldo del Solar 162, Of. 603, Miraflores</p>
+                </div>
+                <i class="ph ph-arrow-up-right contact-card__end contact-card__arrow" aria-hidden="true"></i>
+              </li>
+              <li class="contact-card">
+                <span class="contact-card__icon" aria-hidden="true"><i class="ph ph-clock"></i></span>
+                <div class="contact-card__body">
+                  <p class="contact-card__title">Horario de atención</p>
+                  <p class="contact-card__value">Lunes a viernes, de 8:00 a 17:00</p>
+                </div>
+              </li>
+            </ul>
+            <div class="contact-follow">
+              <p class="contact-follow__title">Síguenos</p>
+              <p class="contact-follow__text">Proyectos, entregas y novedades de la región.</p>
+              <ul class="contact-follow__list" role="list">
+                <li><a class="social-btn social-btn--in" href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+                <li><a class="social-btn social-btn--ig" href="#" target="_blank" rel="noopener" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+                <li><a class="social-btn social-btn--fb" href="#" target="_blank" rel="noopener" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <div class="s-contact__main" data-reveal="up" data-reveal-delay="0.2">
+            <form class="contact-form" novalidate data-contact>
+              <div class="form-alert" role="alert" hidden data-contact-alert><i class="ph ph-warning-circle" aria-hidden="true"></i><span data-contact-alert-text></span></div>
+              <div class="form-grid">
+              <div class="field">
+                <label class="field__label" for="nombre">Nombre y apellido<span aria-hidden="true">*</span></label>
+                <input class="field__control" id="nombre" name="nombre" type="text" placeholder="Escribe tu nombre y apellido" required aria-describedby="nombre-error" autocomplete="name" data-msg="Ingresa tu nombre y apellido.">
+                <p class="field__error" id="nombre-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="empresa">Empresa o institución</label>
+                <input class="field__control" id="empresa" name="empresa" type="text" placeholder="Nombre de tu organización" aria-describedby="empresa-error" autocomplete="organization">
+                <p class="field__error" id="empresa-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="correo">Correo electrónico<span aria-hidden="true">*</span></label>
+                <input class="field__control" id="correo" name="correo" type="email" placeholder="ejemplo@entidad.com" required aria-describedby="correo-error" autocomplete="email" data-msg="Ingresa un correo válido, por ejemplo nombre@empresa.com.">
+                <p class="field__error" id="correo-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="telefono">Teléfono<span aria-hidden="true">*</span></label>
+                <input class="field__control" id="telefono" name="telefono" type="tel" placeholder="+51 999 999 999" required aria-describedby="telefono-error" autocomplete="tel" data-msg="Ingresa un teléfono de contacto.">
+                <p class="field__error" id="telefono-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="pais">País<span aria-hidden="true">*</span></label>
+                <div class="field__select">
+                  <select class="field__control" id="pais" name="pais" required aria-describedby="pais-error" data-msg="Selecciona tu país.">
+                    <option value="" disabled selected>Selecciona tu país</option>
+                    <option>Argentina</option>
+                    <option>Bolivia</option>
+                    <option>Chile</option>
+                    <option>Colombia</option>
+                    <option>Costa Rica</option>
+                    <option>Ecuador</option>
+                    <option>El Salvador</option>
+                    <option>Guatemala</option>
+                    <option>Honduras</option>
+                    <option>México</option>
+                    <option>Panamá</option>
+                    <option>Paraguay</option>
+                    <option>Perú</option>
+                    <option>República Dominicana</option>
+                    <option>Uruguay</option>
+                    <option>Otro</option>
+                  </select>
+                  <i class="ph ph-caret-down" aria-hidden="true"></i>
+                </div>
+                <p class="field__error" id="pais-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="sector">Sector<span aria-hidden="true">*</span></label>
+                <div class="field__select">
+                  <select class="field__control" id="sector" name="sector" required aria-describedby="sector-error" data-msg="Selecciona un sector.">
+                    <option value="" disabled selected>Selecciona tu sector</option>
+                    <option>Municipalidades y gobiernos locales</option>
+                    <option>Empresas de recolección</option>
+                    <option>Inmobiliarias</option>
+                    <option>Instituciones educativas</option>
+                    <option>Hospitalarios</option>
+                    <option>Supermercados y aeropuertos</option>
+                    <option>Restaurantes y hostelería</option>
+                    <option>Uso doméstico</option>
+                    <option>Otro</option>
+                  </select>
+                  <i class="ph ph-caret-down" aria-hidden="true"></i>
+                </div>
+                <p class="field__error" id="sector-error" hidden></p>
+              </div>
+              <div class="field field--full">
+                <label class="field__label" for="producto">Producto de interés</label>
+                <div class="field__select">
+                  <select class="field__control" id="producto" name="producto" aria-describedby="producto-error">
+                    <option value="" selected>Selecciona un producto (opcional)</option>
+                    <option>Contenedor de 2 ruedas · 80 L</option>
+                    <option>Contenedor de 2 ruedas · 120 L</option>
+                    <option>Contenedor de 2 ruedas · 180 L</option>
+                    <option>Contenedor de 2 ruedas · 240 L</option>
+                    <option>Contenedor de 2 ruedas · 360 L</option>
+                    <option>Contenedor de 4 ruedas · 400 L</option>
+                    <option>Contenedor de 4 ruedas · 1.100 L</option>
+                    <option>Papelera urbana · 50 L</option>
+                    <option>Aún no lo sé</option>
+                  </select>
+                  <i class="ph ph-caret-down" aria-hidden="true"></i>
+                </div>
+                <p class="field__error" id="producto-error" hidden></p>
+              </div>
+              <div class="field field--full">
+                <label class="field__label" for="mensaje">Mensaje<span aria-hidden="true">*</span></label>
+                <textarea class="field__control field__control--area" id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos qué necesitas: cantidad, capacidades, plazos…" required aria-describedby="mensaje-error" data-msg="Cuéntanos brevemente qué necesitas."></textarea>
+                <p class="field__error" id="mensaje-error" hidden></p>
+              </div>
+              </div>
+              <div class="check">
+                <input class="check__input" id="acepto" name="acepto" type="checkbox" required aria-describedby="acepto-error" data-msg="Debes aceptar la política de privacidad.">
+                <label class="check__label" for="acepto">Acepto la <a href="terminos-y-condiciones.html">política de privacidad</a> y el tratamiento de mis datos.</label>
+              </div>
+              <p class="field__error check__error" id="acepto-error" hidden></p>
+              <button class="btn btn--secondary btn--lg btn--block contact-form__submit" type="submit">
+                <span data-contact-label>Solicitar asesoría</span>
+                <span class="btn__icon btn__icon--boxed"><i class="ph ph-arrow-right" aria-hidden="true" data-contact-icon></i></span>
+              </button>
+              <p class="contact-form__note">Tu solicitud se deriva automáticamente al representante de tu país.</p>
+            </form>
+
+            <div class="contact-done" role="status" tabindex="-1" hidden data-contact-done>
+              <span class="contact-done__check" aria-hidden="true">
+                <span class="contact-done__halo"></span>
+                <svg class="contact-done__svg" viewBox="0 0 52 52" width="52" height="52"><circle class="contact-done__circle" cx="26" cy="26" r="25"></circle><path class="contact-done__tick" d="M15 27 l7.5 7.5 L37.5 19" fill="none"></path></svg>
+              </span>
+              <h2 class="contact-done__title">¡Gracias<span data-contact-name></span>! Recibimos tu solicitud</h2>
+              <p class="contact-done__text">Un asesor de ESE LATAM te contactará en menos de 24 horas hábiles. Te enviamos una copia de tu solicitud a <span data-contact-mail></span>.</p>
+              <div class="contact-done__actions">
+                <a class="btn btn--sm btn--secondary" href="productos.html">
+                  Ver catálogo de productos
+                  <span class="btn__icon btn__icon--boxed"><i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <button class="btn btn--ghost btn--lg" type="button" data-contact-again>Enviar otra solicitud</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solo demo: previsualiza estados del formulario. Quitar en producción. -->
+    <div class="demo-panel" data-contact-demo aria-label="Vista previa de estados">
+      <span class="demo-panel__title">Vista previa</span>
+      <button type="button" data-demo="ok">Éxito + confeti</button>
+      <button type="button" data-demo="confetti">Solo confeti</button>
+      <button type="button" data-demo="error">Errores</button>
+      <button type="button" data-demo="reset">Reiniciar</button>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" data-cursor="light">
+    <div class="site-footer__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="site-footer__top">
+        <nav class="site-footer__col" aria-label="Soluciones">
+          <h2>Soluciones</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="soluciones.html">Sectores</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="distribuidores.html">Distribuidores</a></li>
+            <li><a href="#">Casos de éxito</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col" aria-label="ESE LATAM">
+          <h2>ESE LATAM</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="certificaciones.html">Certificaciones</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="site-footer__col site-footer__col--legal" aria-label="Legal">
+          <h2>Legal</h2>
+          <ul class="site-footer__links" role="list">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="terminos-y-condiciones.html">Términos y condiciones</a></li>
+            <li><a href="politica-de-cookies.html">Política de cookies</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__about">
+          <p class="site-footer__tagline">Distribuimos contenedores de residuos sólidos fabricados en Alemania y Francia. <span>Calidad europea, transformando la recolección de residuos en Latinoamérica.</span></p>
+          <p class="site-footer__eyebrow">Síguenos</p>
+          <ul class="social social--light" role="list">
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><span class="brand-icon brand-icon--linkedin" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><span class="brand-icon brand-icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="Facebook"><span class="brand-icon brand-icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><span class="brand-icon brand-icon--youtube" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="site-footer__copy">© 2026 ESE LATAM. Todos los derechos reservados.</p>
+      <div class="site-footer__brand" aria-hidden="true">
+        <span class="site-footer__logo" data-reveal="rise"></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

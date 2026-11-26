@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Base: reset, tipografía, utilidades y estados iniciales de motion
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked { overflow: hidden; padding-right: var(--sb-comp, 0px); }
+body.is-locked .site-header { padding-right: var(--sb-comp, 0px); }
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure { margin: 0; }
+:where(ul[role="list"], ol[role="list"]) { padding: 0; list-style: none; }
+img, svg, video, picture { display: block; max-width: 100%; }
+img { height: auto; }
+button { font: inherit; color: inherit; }
+p, li { text-wrap: pretty; }
+
+a { color: var(--color-navy-400); text-decoration: none; }
+a:hover { color: var(--color-navy-500); }
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-gutter);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: calc(var(--z-header) + 1);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-8);
+  background: var(--color-bg);
+  color: var(--color-navy-500);
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { transform: none; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* --------------------------------------------------------------------------
+   Estados iniciales de reveal.
+   Solo aplican con html.js-motion (lo añade un script en <head> y se retira
+   si motion.js no arranca), así el contenido nunca queda oculto sin JS.
+   -------------------------------------------------------------------------- */
+.js-motion [data-reveal="up"]:not(.is-revealed),
+.js-motion [data-stagger] > :not([data-reveal]):not(.is-revealed) {
+  transform: translate3d(0, var(--reveal-distance), 0);
+}
+.js-motion [data-reveal="scale"]:not(.is-revealed) { transform: scale(0.94); }
+.js-motion [data-reveal="rise"]:not(.is-revealed) { transform: translate3d(0, 100%, 0); }
+.js-motion [data-reveal="mask"]:not(.is-revealed):not(.is-split) { clip-path: inset(100% 0 0 0); }
+.js-motion [data-reveal="mask-x"]:not(.is-revealed) { clip-path: inset(0 100% 0 0); }
+.js-motion [data-reveal="mask"]:not(.is-revealed) [data-reveal-inner] { transform: scale(1.1); }
+/* Ya revelado: sin recorte residual (no corta sombras ni el rebote de los botones) */
+.js-motion [data-reveal].is-revealed { clip-path: none !important; }
+
+/* Líneas de títulos (generadas por motion.js) */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.14em 0.08em;   /* evita recortar tildes y descendentes */
+  margin-block: -0.14em -0.08em;
+}
+.line__inner { display: block; }
+.js-motion .is-split:not(.is-revealed) .line__inner { transform: translate3d(0, 105%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Blur progresivo en el borde inferior del viewport */
+.scroll-edge { position: fixed; inset: auto 0 0; height: 7.5rem; z-index: calc(var(--z-header, 100) - 2); pointer-events: none; opacity: 0; transition: opacity 0.25s linear; }
+.scroll-edge.is-on { opacity: var(--edge-o, 1); }
+.scroll-edge > span { position: absolute; inset: 0; }
+.scroll-edge > span:nth-child(1) { backdrop-filter: blur(0.5px); -webkit-backdrop-filter: blur(0.5px); mask: linear-gradient(to top, #000 0%, #000 40%, transparent 100%); -webkit-mask: linear-gradient(to top, #000 0%, #000 40%, transparent 100%); }
+.scroll-edge > span:nth-child(2) { backdrop-filter: blur(1.5px); -webkit-backdrop-filter: blur(1.5px); mask: linear-gradient(to top, #000 0%, #000 25%, transparent 70%); -webkit-mask: linear-gradient(to top, #000 0%, #000 25%, transparent 70%); }
+.scroll-edge > span:nth-child(3) { backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); mask: linear-gradient(to top, #000 0%, transparent 45%); -webkit-mask: linear-gradient(to top, #000 0%, transparent 45%); }
+@media (max-width: 47.99em) { .scroll-edge { height: 5rem; } }
+@media (prefers-reduced-motion: reduce) { .scroll-edge { transition: none; } }
+
+/* --------------------------------------------------------------------------
+   Transición entre páginas (View Transitions entre documentos).
+   La página saliente se desvanece subiendo apenas; la nueva entra desde abajo.
+   El navbar queda fijo (no participa). Navegadores sin soporte: carga normal.
+   -------------------------------------------------------------------------- */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+::view-transition-group(site-header) { animation: none; }
+::view-transition-old(site-header), ::view-transition-new(site-header) { animation: none; }
+::view-transition-old(root) { animation: page-out 0.32s cubic-bezier(0.45, 0, 0.7, 0.4) both; }
+::view-transition-new(root) { animation: page-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
+@keyframes page-out { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(18px); } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.01s; }
+}

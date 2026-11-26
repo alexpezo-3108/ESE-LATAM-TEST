@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Pruebas de rigurosidad (.s-tests) — selector de 6 videos (producto, certificaciones)
+   ========================================================================== */
+/* Pruebas de rigurosidad: selector de 6 videos */
+.s-tests { padding-block: clamp(4rem, 3rem + 4vw, 7rem); background: var(--color-bg); }
+.s-tests__head { margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.s-tests__lead { max-width: 48rem; color: var(--color-neutral-600); text-wrap: pretty; }
+.pd-tests { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg); }
+.pd-tests__label, .pd-tests__count { display: none; font-size: var(--fs-xs); font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral-600); }
+.pd-test {
+  order: var(--o);
+  display: flex; align-items: center; gap: var(--space-lg);
+  padding: var(--space-md); border: 1px solid var(--color-grey-100); border-radius: var(--radius-16);
+  background: var(--color-bg); font: inherit; text-align: left; color: var(--color-navy-500); cursor: pointer;
+  transition: background-color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.pd-test:hover { border-color: var(--color-navy-100); box-shadow: 0 0.75rem 1.5rem -0.75rem rgb(0 30 96 / 0.18); }
+.pd-test.is-active { background: var(--color-navy-500); border-color: var(--color-navy-500); color: var(--color-on-dark); }
+.pd-test__thumb { flex-shrink: 0; width: 7rem; aspect-ratio: 1; border-radius: var(--radius-12); background: var(--color-navy-100); }
+.pd-test__copy { display: grid; gap: var(--space-2xs); min-width: 0; }
+.pd-test__title { font-size: var(--fs-lg); font-weight: var(--fw-medium); }
+.pd-test__desc { font-size: var(--fs-sm); line-height: var(--lh-body); color: var(--color-grey-600); }
+.pd-test.is-active .pd-test__desc { color: rgb(255 255 255 / 0.85); }
+.pd-test__caret { display: none; }
+.pd-video { order: 4; grid-column: 1 / -1; position: relative; display: grid; place-items: center; aspect-ratio: 1760 / 680; border-radius: var(--radius-16); background: var(--color-navy-100); overflow: hidden; transition: opacity 0.25s var(--ease-out); }
+.pd-video.is-swapping { opacity: 0.4; }
+.pd-video__play { display: grid; place-items: center; width: 5.5rem; height: 5.5rem; padding: 0; border: 0; border-radius: 50%; background: var(--color-bg); color: var(--color-navy-500); font-size: 2rem; box-shadow: 0 1rem 2rem -0.5rem rgb(0 30 96 / 0.3); cursor: pointer; transition: transform var(--dur-fast) var(--ease-out); }
+.pd-video__play i { translate: 2px 0; }
+.pd-video__play:hover { transform: scale(1.06); }
+@media (max-width: 79.99em) { .pd-test__thumb { width: 5.5rem; } .pd-tests { gap: var(--space-md); } }
+@media (max-width: 63.99em) { .pd-test { flex-direction: column; align-items: flex-start; } .pd-video { aspect-ratio: 16 / 9; } }
+@media (max-width: 47.99em) {
+  .pd-tests { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+  .pd-tests__label, .pd-tests__count { display: block; order: 0; }
+  .pd-tests__count { order: 8; }
+  .pd-test { order: 1; flex-direction: row; align-items: center; gap: var(--space-md); padding: var(--space-sm); }
+  .pd-test:not(.is-active) { display: none; }
+  .pd-tests.is-open .pd-test { display: flex; }
+  .pd-test.is-active { order: 0; }
+  .pd-test__thumb { width: 4rem; }
+  .pd-test__caret { display: grid; place-items: center; flex-shrink: 0; width: 2.25rem; height: 2.25rem; margin-left: auto; border-radius: 50%; background: rgb(255 255 255 / 0.15); transition: rotate var(--dur-fast) var(--ease-out); }
+  .pd-test:not(.is-active) .pd-test__caret { display: none; }
+  .pd-tests.is-open .pd-test.is-active .pd-test__caret { rotate: 180deg; }
+  .pd-video { order: 9; aspect-ratio: 350 / 220; }
+  .pd-video__play { width: 4rem; height: 4rem; font-size: 1.5rem; }
+}
+
+/* Al bajar, el bloque hero + características queda fijo (cuando su base toca el borde) y "Pruebas" sube por encima */
+.pd-stack > .pd { position: sticky; top: var(--pd-top, 0px); z-index: 0; }
+.pd-stack > .s-tests { position: relative; z-index: 1; box-shadow: 0 -1.5rem 3rem -1rem rgb(0 13 41 / 0.35); }
+@media (max-width: 63.99em) { .pd-stack > .pd { position: relative; top: auto; } }
+
+@media (max-width: 47.99em) {
+  /* "Selecciona una prueba" + tarjeta = un grupo; contador + video = otro */
+  .pd-tests__count { margin-top: var(--space-lg); }
+}

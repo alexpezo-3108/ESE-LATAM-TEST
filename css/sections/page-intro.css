@@ -1,0 +1,5 @@
+/* ==========================================================================
+   Hero interno claro (.s-intro) — páginas sin imagen de cabecera.
+   El título y la bajada usan el componente .page-head (components.css).
+   ========================================================================== */
+.s-intro { padding-top: calc(var(--header-h) + var(--space-md)); background: var(--color-bg); }

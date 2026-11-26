@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Soluciones por sector — grilla (.s-sx)
+   ========================================================================== */
+.s-sx { padding-bottom: var(--space-4xl); background: var(--color-bg); }
+.sx-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(12.5rem, 14.85vw, 17.8rem);  /* 206 @1440 · 285 @1920 */
+  gap: clamp(var(--space-md), 1.25vw, var(--space-lg));
+  list-style: none;
+}
+.sx-item { min-width: 0; }
+.sx-item--municipalidades { grid-column: 1 / 3; grid-row: 1 / 3; }
+.sx-item--inmobiliarias   { grid-column: 3; grid-row: 1; }
+.sx-item--hospitalarios   { grid-column: 4; grid-row: 1; }
+.sx-item--recoleccion     { grid-column: 3; grid-row: 2; }
+.sx-item--educativas      { grid-column: 4; grid-row: 2; }
+.sx-item--supermercados   { grid-column: 1; grid-row: 3; }
+.sx-item--restaurantes    { grid-column: 2; grid-row: 3; }
+.sx-item--cta             { grid-column: 1 / 3; grid-row: 4; }
+.sx-item--domestico       { grid-column: 3 / 5; grid-row: 3 / 5; }
+
+.sx-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-16);
+  background: var(--color-grey-300);
+  color: var(--color-on-dark);
+}
+.sx-card:hover { color: var(--color-on-dark); }
+.sx-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgb(30 38 58 / 0.85) 0%, rgb(30 38 58 / 0.35) 32%, transparent 55%);
+  pointer-events: none;
+}
+.sx-card__media { position: absolute; inset: 0; z-index: -2; transition: transform 0.9s var(--ease-main); }
+.sx-card__media img,
+.sx-card__media .placeholder { width: 100%; height: 100%; object-fit: cover; }
+.sx-card:hover .sx-card__media { transform: scale(1.05); }
+
+.sx-card__body { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); padding: var(--space-lg); }
+.sx-card__copy { display: grid; gap: var(--space-xs); min-width: 0; }
+.sx-card__title { font-size: var(--fs-ml); font-weight: var(--fw-medium); line-height: 1.2; text-wrap: balance; }
+.sx-card__desc { display: none; font-size: var(--fs-sm); line-height: var(--lh-body); max-width: 33rem; color: color-mix(in srgb, var(--color-on-dark) 88%, transparent); text-wrap: pretty; }
+.sx-card--lg .sx-card__title { font-size: var(--fs-xl); }
+.sx-card--lg .sx-card__desc { display: block; }
+
+.sx-card__go {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-blue-500), var(--color-navy-500));
+  box-shadow: 0 8px 20px -8px rgb(0 20 70 / 0.6);
+  font-size: 1.125rem;
+  color: var(--color-on-dark);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.sx-card--lg .sx-card__go { width: 4rem; height: 4rem; font-size: 1.375rem; }
+.sx-card__go i { transition: transform var(--dur-base) var(--ease-out); }
+.sx-card:hover .sx-card__go { transform: scale(1.08); }
+.sx-card:hover .sx-card__go i { transform: translate(2px, -2px); }
+
+.sx-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  height: 100%;
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
+  background: var(--gradient-navy);
+}
+.sx-cta__copy { display: grid; gap: var(--space-sm); }
+.sx-cta__title { font-size: var(--fs-xl); font-weight: var(--fw-medium); line-height: 1.2; }
+.sx-cta__text { font-size: var(--fs-md); line-height: var(--lh-relaxed); color: color-mix(in srgb, var(--color-on-dark) 85%, var(--color-blue-500)); }
+.sx-cta__btn { align-self: flex-start; }
+
+@media (max-width: 89.99em) {
+  .sx-card__body { padding: var(--space-md) var(--space-ml); }
+}
+/* Tablet: 2 columnas */
+@media (max-width: 63.99em) {
+  .s-sx { padding-bottom: var(--space-3xl); }
+  .sx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(15rem, auto); }
+  .sx-item[class*="sx-item--"] { grid-column: auto; grid-row: auto; }
+  .sx-item--municipalidades, .sx-item--domestico, .sx-item--cta { grid-column: 1 / -1 !important; }
+  .sx-card__desc { display: block; }
+}
+/* Mobile: 1 columna, todas con descripción */
+@media (max-width: 47.99em) {
+  .sx-grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: var(--space-sm); }
+  .sx-card { min-height: 14.75rem; }
+  .sx-card__body { align-items: flex-end; padding: var(--space-ml); }
+  .sx-card__title, .sx-card--lg .sx-card__title { font-size: var(--fs-ml); }
+  .sx-card__go, .sx-card--lg .sx-card__go { width: 2.75rem; height: 2.75rem; font-size: 1rem; }
+  .sx-cta { min-height: 16.25rem; padding: var(--space-ml); }
+  .sx-cta__title { font-size: var(--fs-xl); }
+}

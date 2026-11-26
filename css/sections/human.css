@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Una decisión humana (.s-human) — muro de fotos: dos carruseles infinitos en
+   sentido contrario + fila central con card de texto y dos fotos fijas.
+   ========================================================================== */
+.s-human { --human-gap: var(--space-sm); --tile-w: clamp(9.375rem, 17.7vw, 21.25rem); padding-block: var(--space-4xl); background: var(--color-bg); overflow: hidden; }
+.s-human__wall { display: grid; gap: var(--human-gap); }
+
+.s-human__row { overflow: hidden; border-radius: var(--radius-16); }
+.s-human__track { display: flex; width: max-content; list-style: none; animation: human-marquee 60s linear infinite; }
+.s-human__row--right .s-human__track { animation-direction: reverse; }
+.s-human__row:hover .s-human__track { animation-play-state: paused; }
+.s-human__tile { flex: none; width: var(--tile-w); aspect-ratio: 340 / 200; margin-right: var(--human-gap); overflow: hidden; border-radius: var(--radius-16); }
+.s-human__tile img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes human-marquee { to { transform: translateX(-50%); } }
+
+.s-human__ph {
+  display: grid; place-items: center; width: 100%; height: 100%;
+  background: linear-gradient(180deg, var(--color-grey-300) 40%, color-mix(in srgb, var(--color-navy-500) 80%, var(--color-grey-700)) 100%);
+}
+.s-human__ph .placeholder__label { background: var(--color-grey-100); color: var(--color-grey-700); }
+
+.s-human__mid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.36fr) minmax(0, 1fr); gap: var(--human-gap); min-height: clamp(20rem, 26vw, 27.5rem); }
+.s-human__side { position: relative; overflow: hidden; border-radius: var(--radius-16); }
+.s-human__side img, .s-human__side .s-human__ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.s-human__card {
+  display: grid; align-content: center; justify-items: center; gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-xl);
+  border-radius: var(--radius-16); background: var(--color-navy-50);
+  text-align: center;
+}
+.s-human__title .heading__light, .s-human__title .heading__bold { display: block; }
+.s-human__lead { max-width: 36rem; font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--color-text-muted); text-wrap: pretty; }
+
+@media (max-width: 63.99em) {
+  .s-human { padding-block: var(--space-3xl); }
+  .s-human__mid { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .s-human__side { display: none; }
+  .s-human__card { padding: var(--space-xl) var(--space-lg); gap: var(--space-sm); }
+}
+@media (max-width: 47.99em) {
+  .s-human { --human-gap: var(--space-xs); --tile-w: 9.375rem; }
+  .s-human__tile { aspect-ratio: 150 / 120; }
+  .s-human__track { animation-duration: 40s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-human__track { animation: none; }
+}
+
+/* Mobile: las fotos del muro son chicas; radio menor para que no se vean redondas */
+@media (max-width: 47.99em) {
+  .s-human__row, .s-human__tile, .s-human__side { border-radius: var(--radius-8); }
+}

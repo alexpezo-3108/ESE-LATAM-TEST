@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Sección: Sectores (.s-sectors)
+   Desktop: carrusel por transform (activa a escala 1, resto a --card-scale).
+   Mobile: scroll horizontal nativo con snap + dots.
+   ========================================================================== */
+.s-sectors {
+  --aside-w: clamp(17rem, 32.9vw, 29.625rem);  /* 474 */
+  --card-gap: 1.5rem;
+  --card-scale: 0.847;                        /* 590 → 500 */
+  --card-w: min(36.875rem, calc(100vw - var(--space-gutter) - var(--aside-w) - 6rem));
+  --card-h: calc(var(--card-w) * 0.678);      /* 590 × 400 */
+
+  overflow: clip;
+  padding-block: var(--space-section);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Encabezado: componente .section-intro (components.css). Aquí solo el orden en mobile. */
+
+.s-sectors__note {
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.s-sectors__body {
+  display: grid;
+  grid-template-columns: var(--aside-w) minmax(0, 1fr);
+  margin-top: var(--space-5xl);
+}
+
+.s-sectors__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(var(--card-h) * var(--card-scale));
+  padding-right: var(--space-xl);
+}
+.s-sectors__note { max-width: 19rem; margin-top: var(--space-lg); }
+.s-sectors__arrows { display: flex; gap: var(--space-lg); }
+
+/* Viewport sangra hasta el borde derecho y se desvanece */
+.s-sectors__viewport {
+  position: relative;
+  height: var(--card-h);
+  margin-right: calc(var(--space-gutter) * -1);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 16rem), transparent calc(100% - 1rem));
+  mask-image: linear-gradient(90deg, #000 calc(100% - 16rem), transparent calc(100% - 1rem));
+}
+
+.s-sectors__track {
+  position: relative;
+  display: flex;
+  gap: var(--card-gap);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.s-sectors__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--card-w);
+  height: var(--card-h);
+  transform-origin: 0 0;
+}
+.s-sectors.is-ready .s-sectors__slide { transition: transform var(--dur-carousel, 0.6s) var(--ease-main); }
+
+.s-sectors__dots { display: none; }
+
+@media (min-width: 64em) {
+  /* Inactivas: sin descripción, el título baja a su lugar */
+  .s-sectors__slide .sector-card__body { transition: transform var(--dur-carousel, 0.6s) var(--ease-main); }
+  .s-sectors__slide .sector-card__desc { transition: clip-path var(--dur-carousel, 0.6s) var(--ease-main); }
+  .s-sectors__slide:not(.is-active) .sector-card__body {
+    transform: translateY(calc(var(--fs-sm) * var(--lh-body) + var(--space-sm)));
+  }
+  .s-sectors__slide:not(.is-active) .sector-card__desc { clip-path: inset(0 0 100% 0); }
+}
+
+@media (max-width: 63.99em) {
+  .s-sectors__inner { display: flex; flex-direction: column; }
+  .s-sectors__top,
+  .s-sectors__side,
+  .s-sectors__body { display: contents; }
+  .s-sectors__aside { display: none; }
+
+  .s-sectors__head  { order: 1; }
+  .s-sectors__intro { order: 2; margin-top: var(--space-sm); }
+
+  .s-sectors__viewport {
+    order: 3;
+    height: auto;
+    margin: var(--space-2xl) calc(var(--space-gutter) * -1) 0;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .s-sectors__track {
+    gap: var(--space-sm);
+    padding-inline: var(--space-gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--space-gutter);
+    scrollbar-width: none;
+  }
+  .s-sectors__track::-webkit-scrollbar { display: none; }
+  .s-sectors__slide {
+    position: static;
+    flex: 0 0 auto;
+    width: min(17.5rem, 75vw);
+    height: auto;
+    aspect-ratio: 280 / 380;
+    scroll-snap-align: start;
+  }
+
+  .s-sectors__dots { display: flex; order: 4; margin-top: var(--space-xl); }
+  .s-sectors__cta  { order: 5; width: 100%; margin-top: var(--space-xl); }
+  .s-sectors__cta .btn { display: flex; width: 100%; }
+
+  .sector-card__body { padding: var(--space-ml); }
+  .sector-card__title { font-size: var(--fs-ml); }
+  .sector-card__desc { display: none; }
+}
+
