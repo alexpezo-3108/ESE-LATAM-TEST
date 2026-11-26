@@ -48,6 +48,7 @@
 
   /* ---------- Parallax ---------- */
   let mx = 0, my = 0, tx = 0, ty = 0, raf = 0, visible = true;
+  const mobQ = matchMedia('(max-width: 63.99em)');
   const onMove = (e) => {
     if (!fine.matches || reduce.matches) return;
     const r = hero.getBoundingClientRect();
@@ -65,9 +66,12 @@
     const y = Math.max(0, window.scrollY);
     const H = hero.offsetHeight || innerHeight;
     const p = Math.min(1, y / H);
+    const mob = mobQ.matches;
     layers.forEach((l) => {
       const x = -mx * l.d + l.ox * p;
-      const yy = -my * l.d + y * l.sy + l.oy * p;
+      // Mobile: las nubes del frente (sy < 0) no suben al scrollear → siempre pegadas al borde inferior, sin hueco
+      const sy = mob && l.sy < 0 ? 0 : l.sy;
+      const yy = -my * l.d + y * sy + l.oy * p;
       const t = `translate3d(${x.toFixed(2)}px, ${yy.toFixed(2)}px, 0)`;
       if (t !== l.last) { l.el.style.transform = t; l.last = t; }
     });

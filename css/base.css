@@ -91,6 +91,7 @@ html.lenis, html.lenis body { height: auto; }
 .js-motion [data-reveal="rise"]:not(.is-revealed) { transform: translate3d(0, 100%, 0); }
 .js-motion [data-reveal="mask"]:not(.is-revealed):not(.is-split) { clip-path: inset(100% 0 0 0); }
 .js-motion [data-reveal="mask-x"]:not(.is-revealed) { clip-path: inset(0 100% 0 0); }
+.js-motion [data-reveal="mask-x"][data-reveal-bleed]:not(.is-revealed) { clip-path: inset(-3rem 100% -3rem -3rem); }
 .js-motion [data-reveal="mask"]:not(.is-revealed) [data-reveal-inner] { transform: scale(1.1); }
 /* Ya revelado: sin recorte residual (no corta sombras ni el rebote de los botones) */
 .js-motion [data-reveal].is-revealed { clip-path: none !important; }

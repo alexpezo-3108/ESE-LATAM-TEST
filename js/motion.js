@@ -97,9 +97,11 @@ function reveal(el, extraDelay = 0) {
         { duration: 1, ease: EASE_OUT, delay: delay + i * 0.08 }));
     });
   } else if (type === 'mask' || type === 'mask-x') {
-    const from = type === 'mask' ? 'inset(100% 0% 0% 0%)' : 'inset(0% 100% 0% 0%)';
+    // data-reveal-bleed: el recorte deja aire alrededor (no corta el glow/sombra del botón)
+    const b = el.hasAttribute('data-reveal-bleed') ? '-3rem' : '0%';
+    const from = type === 'mask' ? `inset(100% ${b} ${b} ${b})` : `inset(${b} 100% ${b} ${b})`;
     anims.push(animate(el,
-      { clipPath: [from, 'inset(0% 0% 0% 0%)'] },
+      { clipPath: [from, `inset(${b} ${b} ${b} ${b})`] },
       { duration: DUR.base, ease: EASE_MAIN, delay }));
     const inner = el.querySelector('[data-reveal-inner]');
     if (inner) {
@@ -139,6 +141,8 @@ function once(el, cb) {
   let outer = target && target.closest('[data-reveal]:not(.is-revealed)');
   while (outer && outer !== el) { target = outer.parentElement; outer = target && target.closest('[data-reveal]:not(.is-revealed)'); }
   const r = target.getBoundingClientRect();
+  // El hero siempre está en pantalla al cargar: entra sin esperar al observer (p. ej. la tarjeta 100 % pegada al borde inferior)
+  if (el.closest('.s-hero') && window.scrollY < window.innerHeight * 0.5) { cb(); return; }
   if (r.top < window.innerHeight * 0.9 && r.bottom > 0) { cb(); return; }
   const io = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) { io.disconnect(); cb(); }

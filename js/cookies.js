@@ -46,13 +46,23 @@
   if (!get()) {
     // nunca durante el preloader: 4 s desde la carga, y al menos 1,5 s después de que termine la intro
     const t0 = performance.now();
-    const go = () => show(Math.max(1500, 4000 - (performance.now() - t0)));
+    // En el Home: recién después de que entra la tarjeta «100 % HDPE»
+    const stat = document.querySelector('.s-hero__stat[data-reveal]');
+    const afterStat = (fallback) => {
+      if (!stat || stat.classList.contains('is-revealed')) { show(stat ? 900 : fallback); return; }
+      let doneOnce = false;
+      const fire = () => { if (doneOnce) return; doneOnce = true; mo.disconnect(); show(900); };
+      const mo = new MutationObserver(() => { if (stat.classList.contains('is-revealed')) fire(); });
+      mo.observe(stat, { attributes: true, attributeFilter: ['class'] });
+      setTimeout(fire, 8000);   // red de seguridad
+    };
+    const go = () => afterStat(Math.max(1500, 4000 - (performance.now() - t0)));
     if (document.documentElement.classList.contains('is-intro') && !window.__preEnd) addEventListener('preloader:end', go, { once: true });
-    else show(4000);
+    else if (stat) afterStat(4000); else show(4000);
   }
 
   // Solo demo: botón para volver a ver el aviso. Poner DEMO = false en producción.
-  const DEMO = false;
+  const DEMO = true;
   if (DEMO) {
     const b = document.createElement('button');
     b.type = 'button';
