@@ -194,7 +194,9 @@
 }
 
 /* Hero: la entrada de textos es solo máscara/desplazamiento, sin fade */
-.js-motion .s-hero--scene [data-reveal]:not(.is-revealed) { opacity: 1; }
+.js-motion .s-hero--scene [data-reveal]:not(.is-revealed):not([data-reveal-fade]) { opacity: 1; }
+/* Tarjeta 100 %: invisible hasta que arranca su entrada (sube + cuenta) */
+.js-motion .s-hero--scene .s-hero__stat[data-reveal-fade]:not(.is-revealed):not(.is-revealing) { opacity: 0; }
 
 /* Estado final de la entrada: gana sobre las posiciones de inicio por capa */
 .s-hero--scene.is-entered .hl .hl__in { translate: 0 0; scale: 1; filter: none; opacity: 1; }
