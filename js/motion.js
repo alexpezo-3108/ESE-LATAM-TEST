@@ -158,7 +158,7 @@ function once(el, cb) {
   if (r.top < window.innerHeight * 0.9 && r.bottom > 0) { cb(); return; }
   const io = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) { io.disconnect(); cb(); }
-  }, { rootMargin: '0px 0px -10% 0px' });
+  }, { rootMargin: el.closest('.site-footer') ? '0px' : '0px 0px -10% 0px' });   // al final de la página el margen negativo nunca se alcanza (mobile)
   io.observe(target);
 }
 

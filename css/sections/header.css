@@ -728,7 +728,9 @@ a.chip { text-decoration: none; }
 .is-pill:not(.is-nav-open) .site-header__contact .btn__icon--boxed { color: var(--color-on-dark); }
 @media (max-width: 63.99em) {
   .is-search-open .site-header__inner::before { opacity: 0; }
-  .site-header.is-search-open { color: var(--color-navy-500); }
+  /* Buscador abierto en mobile: panel blanco → logo e íconos navy, aunque el header esté en modo pill */
+  .site-header.is-search-open,
+  .site-header.is-pill.is-search-open:not(.is-nav-open) { color: var(--color-navy-500); }
 }
 
 /* ---------- Mobile: burger encaja en el borde derecho del pill ----------

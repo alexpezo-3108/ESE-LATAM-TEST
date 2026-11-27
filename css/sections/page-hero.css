@@ -148,3 +148,13 @@
   .s-page-hero__glows span { width: 42vw; filter: blur(24px); }
 }
 @media (prefers-reduced-motion: reduce) { .s-page-hero__glows span { animation: none; } }
+
+/* Títulos con palabras largas (p. ej. «Supermercados y aeropuertos»): en mobile cada línea va en su renglón
+   para no desbordar; el bloque nunca supera el ancho del contenedor */
+.s-page-hero__content { min-width: 0; }
+.s-page-hero__inner { grid-template-columns: minmax(0, 1fr); }
+.s-page-hero__inner > .breadcrumb { min-width: 0; }
+@media (max-width: 63.99em) {
+  .s-page-hero__title--stack .s-page-hero__title-light,
+  .s-page-hero__title--stack .s-page-hero__title-bold { display: block; }
+}
