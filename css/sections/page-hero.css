@@ -73,7 +73,7 @@
 
 /* Tablet / mobile: todo apilado, cue abajo a la izquierda */
 @media (max-width: 63.99em) {
-  .s-page-hero__actions .btn { width: 100%; }
+  .s-page-hero__actions .btn { width: auto; }   /* alineado a la izquierda con el texto (antes 100% centraba el contenido) */
   .s-page-hero__inner { padding-bottom: var(--space-xl); }
   .s-page-hero__body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto; }
   .s-page-hero__content { align-self: center; gap: var(--space-lg); }
