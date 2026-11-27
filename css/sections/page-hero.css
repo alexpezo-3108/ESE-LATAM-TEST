@@ -17,7 +17,11 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--gradient-image-overlay);
+  /* Oscurecimiento sobre la foto: parejo arriba (navbar y título) y más fuerte abajo */
+  /* Como en Figma: oscuro a la izquierda (texto), la foto se ve limpia a la derecha */
+  background:
+    linear-gradient(90deg, rgba(4, 10, 26, 0.88) 0%, rgba(4, 10, 26, 0.7) 30%, rgba(4, 10, 26, 0.25) 55%, rgba(4, 10, 26, 0) 74%),
+    linear-gradient(180deg, rgba(0, 15, 51, 0.35) 0%, rgba(0, 15, 51, 0) 22%, rgba(0, 15, 51, 0) 70%, rgba(0, 15, 51, 0.35) 100%);
   pointer-events: none;
 }
 
@@ -115,3 +119,32 @@
 
 /* Heroes sin botón: el bloque de texto sube un poco (los que tienen botón quedan igual) */
 .s-page-hero__content:not(:has(.s-page-hero__actions)) { translate: 0 calc(-1 * clamp(1.5rem, 0.5rem + 3vw, 4rem)); }
+
+/* Grano suave sobre la foto del hero (reutilizable: <span class="grain">) */
+.grain {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0.45; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+.s-page-hero__media-inner { position: relative; }
+
+/* Luces difusas celestes a la izquierda (decorativas, muy sutiles y lentas) */
+.s-page-hero__inner { position: relative; z-index: 1; }
+.s-page-hero__glows { position: absolute; inset: 0 45% 0 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.s-page-hero__glows span {
+  position: absolute; width: clamp(9rem, 18vw, 20rem); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, var(--color-blue-300) 0%, transparent 68%);
+  filter: blur(clamp(30px, 4vw, 70px)); opacity: 0.38; mix-blend-mode: screen; will-change: transform;
+}
+.s-page-hero__glows span:nth-child(1) { left: 4%; top: 12%; animation: hero-glow-a 16s ease-in-out infinite alternate; }
+.s-page-hero__glows span:nth-child(2) { left: 46%; top: 40%; opacity: 0.3; background: radial-gradient(circle, var(--color-blue-500) 0%, transparent 68%); animation: hero-glow-b 19s ease-in-out infinite alternate; }
+.s-page-hero__glows span:nth-child(3) { left: 14%; top: 66%; opacity: 0.28; animation: hero-glow-c 14s ease-in-out infinite alternate; }
+@keyframes hero-glow-a { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(55%, 35%) scale(1.15); } 100% { transform: translate(20%, 70%) scale(0.95); } }
+@keyframes hero-glow-b { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-60%, -40%) scale(0.88); } 100% { transform: translate(-25%, 30%) scale(1.1); } }
+@keyframes hero-glow-c { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(70%, -45%) scale(1.12); } 100% { transform: translate(35%, -10%) scale(0.92); } }
+@media (max-width: 47.99em) {
+  .s-page-hero__glows { inset: 0; }
+  .s-page-hero__glows span { width: 42vw; filter: blur(24px); }
+}
+@media (prefers-reduced-motion: reduce) { .s-page-hero__glows span { animation: none; } }

@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Catálogos PDF (página) — grilla de tarjetas con portada vertical 5:7.
+   Reusa: .s-intro + .page-head (hero claro), .placeholder y .sx-card__go (botón circular).
+   ========================================================================== */
+.s-catalogs { padding-bottom: var(--space-4xl); background: var(--color-bg); }
+.catalogs-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); align-items: stretch; }
+.catalogs-grid > li { display: flex; scroll-margin-top: calc(var(--header-h) + var(--space-lg)); }
+.catalog-card {
+  flex: 1; display: flex; flex-direction: column; gap: var(--space-md); min-width: 0;
+  padding: var(--space-sm); border: 1px solid var(--color-grey-100); border-radius: var(--radius-16);
+  background: #fff; color: var(--color-neutral-900);
+  transition: box-shadow var(--dur-base) var(--ease-out);
+}
+.catalog-card:hover { color: var(--color-neutral-900); box-shadow: 0 1.5rem 3rem -1.25rem rgb(0 30 96 / 0.22); }
+.catalog-card__cover { position: relative; aspect-ratio: 5 / 7; overflow: hidden; border-radius: var(--radius-12); background: var(--color-grey-50); }
+.catalog-card__cover img, .catalog-card__cover .placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease-main); }
+.catalog-card:hover .catalog-card__cover img, .catalog-card:hover .catalog-card__cover .placeholder { transform: scale(1.03); }
+.catalog-card__body { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); padding: 0 var(--space-xs) var(--space-xs); }
+.catalog-card__copy { display: grid; gap: var(--space-2xs); min-width: 0; }
+.catalog-card__eyebrow { font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-navy-400); }
+.catalog-card__title { font-size: var(--fs-md); font-weight: var(--fw-medium); line-height: var(--lh-snug); color: var(--color-neutral-900); text-wrap: balance; }
+.catalog-card__detail { font-size: var(--fs-sm); line-height: var(--lh-body); color: var(--color-text-muted); text-wrap: pretty; }
+.sx-card__go i { transition: transform var(--dur-base) var(--ease-out); }
+.catalog-card:hover .sx-card__go { transform: scale(1.08); }
+.catalog-card:hover .sx-card__go i { transform: translate(2px, -2px); }
+@media (max-width: 63.99em) { .catalogs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 47.99em) {
+  .s-catalogs { padding-bottom: var(--space-3xl); }
+  .catalogs-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+  .sx-card__go { width: 2.75rem; height: 2.75rem; font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) { .catalog-card, .catalog-card__cover img, .catalog-card__cover .placeholder { transition: none; } }

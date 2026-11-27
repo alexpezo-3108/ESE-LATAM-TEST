@@ -90,7 +90,13 @@
     const pg = e.target.closest('[data-page]');
     if (pg && !pg.disabled) {
       set({ page: +pg.dataset.page });
-      window.scrollTo({ top: root.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+      // Al inicio de la grilla. Con Lenis activo hay que usar su scroll (window.scrollTo se pisa y requería 2 clics)
+      const hd = document.querySelector('.site-header');
+      const off = (hd ? hd.offsetHeight : 80) + 24;
+      const y = Math.max(0, grid.getBoundingClientRect().top + (window.lenis ? window.lenis.scroll : window.scrollY) - off);
+      const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (window.lenis) window.lenis.scrollTo(y, { immediate: still, force: true, lock: true, duration: 0.9 });
+      else window.scrollTo({ top: y, behavior: still ? 'auto' : 'smooth' });
     }
   });
 

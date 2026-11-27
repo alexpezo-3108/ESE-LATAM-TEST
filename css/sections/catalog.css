@@ -66,6 +66,7 @@
   transition: transform var(--cat-dur) var(--ease-main), opacity var(--cat-dur) var(--ease-out), filter var(--cat-dur) var(--ease-out);
 }
 .s-cat__item.no-anim { transition: none; }
+.s-cat__item:not([data-pos]) { opacity: 0; transition: none; } /* hasta que el JS los ubica: nunca apilados */
 .s-cat__item[data-pos="0"]  { z-index: 5; --y: calc(var(--cat-h) * 0.03); }
 .s-cat__item[data-pos="1"],
 .s-cat__item[data-pos="-1"] { --s: 0.5; z-index: 4; opacity: 0.6; filter: blur(1.5px) saturate(0.7); }
@@ -89,7 +90,11 @@
   transition: filter var(--cat-dur) var(--ease-out);
 }
 /* Activo: glow azul + sombra al piso */
-.s-cat__item[data-pos="0"] img { filter: drop-shadow(0 0 1.75rem color-mix(in srgb, var(--hz) 50%, transparent)); transition: filter 0.3s var(--ease-out); }
+/* El filtro está siempre aplicado (nunca pasa de "none" a drop-shadow): solo se anima su intensidad (--glow),
+   así el navegador no tiene que re-rasterizar el glow al final del deslizamiento y entra junto con el producto */
+@property --glow { syntax: "<number>"; inherits: false; initial-value: 0; }
+.s-cat__item img { --glow: 0; filter: drop-shadow(0 0 1.75rem color-mix(in srgb, var(--hz) calc(var(--glow) * 50%), transparent)); transition: --glow 0.35s var(--ease-out); }
+.s-cat__item[data-pos="0"] img { --glow: 1; }
 .s-cat__item::after {
   content: "";
   position: absolute;
@@ -364,3 +369,4 @@
 @media (max-width: 63.99em) {
   .s-cat__name { display: grid; align-content: start; min-height: 2em; }
 }
+

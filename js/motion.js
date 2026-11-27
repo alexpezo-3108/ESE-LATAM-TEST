@@ -24,8 +24,14 @@ const TEXT_TAGS = /^(H[1-6]|P|BLOCKQUOTE)$/;
 /* ---------- Lenis ---------- */
 function initLenis() {
   // prevent: la rueda/trackpad dentro de un panel con scroll propio (dropdowns, menú, buscador, hojas) no mueve la página
-  const scrollsOwn = (n) => n instanceof Element && n !== document.body && n !== document.documentElement &&
-    (n.hasAttribute('data-lenis-prevent') || (/(auto|scroll)/.test(getComputedStyle(n).overflowY) && n.scrollHeight > n.clientHeight + 1));
+  // Barato en cada gesto: el overflow de cada nodo se lee una vez (antes era getComputedStyle por ancestro en cada touchmove)
+  const ovf = new WeakMap();
+  const scrollsOwn = (n) => {
+    if (!(n instanceof Element) || n === document.body || n === document.documentElement) return false;
+    if (n.hasAttribute('data-lenis-prevent')) return true;
+    let o = ovf.get(n); if (o === undefined) { o = /(auto|scroll)/.test(getComputedStyle(n).overflowY); ovf.set(n, o); }
+    return o && n.scrollHeight > n.clientHeight + 1;
+  };
   const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, anchors: true, prevent: scrollsOwn });
   const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
   requestAnimationFrame(raf);
@@ -37,6 +43,7 @@ function initLenis() {
    Nota: el split automático aplana el marcado inline del texto. */
 function splitLines(el) {
   let lines = [...el.querySelectorAll('[data-line]')];
+  if (!lines.length) el._plain = el.textContent.trim().replace(/\s+/g, ' ');
 
   if (!lines.length) {
     const words = el.textContent.trim().split(/\s+/);
@@ -79,10 +86,15 @@ const distance = () => getComputedStyle(root).getPropertyValue('--reveal-distanc
    recortaría sombras) y el estado final queda en CSS vía .is-revealed. */
 function done(el) {
   el.classList.add('is-revealed');
-  [el, ...el.querySelectorAll('.line__inner, [data-reveal-inner]')].forEach((n) => n.getAnimations?.().forEach((a) => a.cancel()));
+  // Solo lo propio: no tocar líneas de otro reveal anidado que aún está animando (p. ej. texto dentro del panel del CTA)
+  const own = [...el.querySelectorAll('.line__inner, [data-reveal-inner]')].filter((n) => n.parentElement.closest('[data-reveal]') === el);
+  [el, ...own].forEach((n) => n.getAnimations?.().forEach((a) => a.cancel()));
   el.style.removeProperty('transform');
   el.style.removeProperty('clip-path');
-  el.querySelectorAll('.line__inner, [data-reveal-inner]').forEach((n) => n.style.removeProperty('transform'));
+  own.forEach((n) => n.style.removeProperty('transform'));
+  // Párrafos partidos en líneas automáticamente: al terminar vuelven a texto corrido
+  // (si el ancho cambió después del split, las líneas fijas se partían otra vez y quedaban saltos raros)
+  if (el._plain != null) { el.textContent = el._plain; el._lines = null; el._plain = null; el.classList.remove('is-split'); }
 }
 
 function reveal(el, extraDelay = 0) {
@@ -126,7 +138,7 @@ function reveal(el, extraDelay = 0) {
   // marca el inicio real de la animación (tras su delay) → p. ej. para arrancar contadores
   setTimeout(() => el.classList.add('is-revealing'), delay * 1000);
 
-  Promise.all(anims).then(() => done(el));
+  Promise.all(anims).then(() => done(el), () => done(el));
 }
 
 /* Dispara una sola vez al entrar al viewport (IntersectionObserver nativo) */
@@ -174,6 +186,8 @@ function failsafe() {
     });
     // Si el observer nunca disparó, los contadores muestran su valor final
     document.querySelectorAll('[data-count]:not([data-counted])').forEach((el) => {
+      // Los que todavía están debajo de la pantalla esperan a su conteo (no se muestran ya terminados)
+      if (el.getBoundingClientRect().top > innerHeight) return;
       el.textContent = `${el.dataset.countPrefix || ''}${fmtCount(parseFloat(el.dataset.count) || 0)}${el.dataset.countSuffix || ''}`;
     });
   }, 4000);
@@ -231,7 +245,12 @@ function initCounters() {
     const to = parseFloat(el.dataset.count) || 0;
     const suffix = el.dataset.countSuffix || '', prefix = el.dataset.countPrefix || '';
     el.textContent = `${prefix}0${suffix}`;
-    once(el, () => {
+    // Empieza recién cuando la cifra ya está bien dentro de la pantalla (no apenas asoma)
+    const start = (cb) => {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); cb(); } }, { rootMargin: '0px 0px -22% 0px' });
+      io.observe(el.closest('li, .stat, [data-count-scope]') || el);
+    };
+    start(() => {
       el.dataset.counted = '';
       animate(0, to, {
         duration: DUR.slow * 1.4,

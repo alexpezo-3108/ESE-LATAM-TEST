@@ -13,16 +13,16 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
-  <link rel="stylesheet" href="css/tokens.css?v=20261126e">
-  <link rel="stylesheet" href="css/base.css?v=20261126e">
-  <link rel="stylesheet" href="css/components.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/header.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/page-hero.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/page-intro.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/sectors-grid.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/process.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/cta.css?v=20261126e">
-  <link rel="stylesheet" href="css/sections/footer.css?v=20261126e">
+  <link rel="stylesheet" href="css/tokens.css?v=20261128h">
+  <link rel="stylesheet" href="css/base.css?v=20261128h">
+  <link rel="stylesheet" href="css/components.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/header.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/page-hero.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/page-intro.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/sectors-grid.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/process.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/cta.css?v=20261128h">
+  <link rel="stylesheet" href="css/sections/footer.css?v=20261128h">
   <!-- Activa estados iniciales de motion; si motion.js no arranca en 3s, se retiran -->
   <script>
     (function (d) {
@@ -31,14 +31,14 @@
       setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.remove('js-motion'); }, 3000);
     })(document.documentElement);
   </script>
-  <script type="module" src="js/motion.js?v=20261126e"></script>
-  <script src="js/main.js?v=20261126e" defer></script>
-  <script src="js/cookies.js?v=20261126e" defer></script>
-  <script src="js/particles.js?v=20261126e" defer></script>
-  <script src="js/sections/process.js?v=20261126e" defer></script>
-  <script src="js/sections/cta.js?v=20261126e" defer></script>
-  <script src="js/sections/footer.js?v=20261126e" defer></script>
-  <script src="js/cursor.js?v=20261126e" defer></script>
+  <script type="module" src="js/motion.js?v=20261128h"></script>
+  <script src="js/main.js?v=20261128h" defer></script>
+  <script src="js/cookies.js?v=20261128h" defer></script>
+  <script src="js/particles.js?v=20261128h" defer></script>
+  <script src="js/sections/process.js?v=20261128h" defer></script>
+  <script src="js/sections/cta.js?v=20261128h" defer></script>
+  <script src="js/sections/footer.js?v=20261128h" defer></script>
+  <script src="js/cursor.js?v=20261128h" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -52,20 +52,34 @@
       <div class="site-header__end">
         <nav class="nav" id="site-nav" aria-label="Principal">
           <ul class="nav__list" role="list">
-            <li class="nav__item"><a class="nav__link" href="productos.html">Productos <i class="nav__arrow ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+            <li class="nav__item nav__item--has-sub">
+              <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-productos" data-href="productos.html">
+                Productos <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="nav__sub nav__sub--rich" id="sub-productos" role="list">
+                <li class="nav__sub-head"><a class="nav__sublink nav__sublink--all" href="productos.html">Ver todos los productos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="nav__sublink" href="productos.html?categoria=Contenedores%202%20ruedas#catalogo"><span class="nav__sublink-title">Contenedores 2 ruedas</span></a></li>
+                <li><a class="nav__sublink" href="productos.html?categoria=Contenedores%203%20ruedas#catalogo"><span class="nav__sublink-title">Contenedores 3 ruedas</span></a></li>
+                <li><a class="nav__sublink" href="productos.html?categoria=Contenedores%204%20ruedas#catalogo"><span class="nav__sublink-title">Contenedores 4 ruedas</span></a></li>
+                <li><a class="nav__sublink" href="productos.html?categoria=Soterrados#catalogo"><span class="nav__sublink-title">Semi soterrados</span></a></li>
+                <li><a class="nav__sublink" href="productos.html?categoria=Papeleras#catalogo"><span class="nav__sublink-title">Papeleras</span></a></li>
+                <li><a class="nav__sublink" href="productos.html?categoria=Contenedores%20dom%C3%A9sticos#catalogo"><span class="nav__sublink-title">Contenedores domésticos</span></a></li>
+                <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--quiet" href="catalogos.html">Ver catálogos <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
+              </ul>
+            </li>
             <li class="nav__item nav__item--has-sub is-current">
               <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-sectores" aria-current="page">
                 Sectores <i class="nav__chevron ph-light ph-caret-down" aria-hidden="true"></i>
               </button>
               <ul class="nav__sub nav__sub--rich nav__sub--mega" id="sub-sectores" role="list">
                 <li><a class="nav__sublink" href="sector-municipalidades.html"><span class="nav__sublink-title">Municipalidades y gobiernos locales</span><span class="nav__sublink-desc">Ciudades más limpias y ordenadas</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
-                <li><a class="nav__sublink" href="#"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
+                <li><a class="nav__sublink" href="sector-empresas-de-recoleccion.html"><span class="nav__sublink-title">Empresas de recolección</span><span class="nav__sublink-desc">Volteo mecánico EN 840</span></a></li>
+                <li><a class="nav__sublink" href="sector-inmobiliarias.html"><span class="nav__sublink-title">Inmobiliarias</span><span class="nav__sublink-desc">Residuos integrados desde el proyecto</span></a></li>
+                <li><a class="nav__sublink" href="sector-hospitalarios.html"><span class="nav__sublink-title">Hospitalarios</span><span class="nav__sublink-desc">Hermeticidad y bioseguridad</span></a></li>
+                <li><a class="nav__sublink" href="sector-instituciones-educativas.html"><span class="nav__sublink-title">Instituciones educativas</span><span class="nav__sublink-desc">Resistencia para uso intensivo</span></a></li>
+                <li><a class="nav__sublink" href="sector-supermercados-y-aeropuertos.html"><span class="nav__sublink-title">Supermercados y aeropuertos</span><span class="nav__sublink-desc">Alto volumen y flujo continuo</span></a></li>
+                <li><a class="nav__sublink" href="sector-restaurantes-y-hosteleria.html"><span class="nav__sublink-title">Restaurantes y hostelería</span><span class="nav__sublink-desc">Higiene y orden en alto tráfico</span></a></li>
+                <li><a class="nav__sublink" href="sector-uso-domestico.html"><span class="nav__sublink-title">Uso doméstico</span><span class="nav__sublink-desc">Separación de residuos en casa</span></a></li>
                 <li class="nav__sub-footer"><a class="nav__sublink nav__sublink--all" href="soluciones.html">Ver todos los sectores <i class="ph-light ph-arrow-right" aria-hidden="true"></i></a></li>
               </ul>
             </li>
@@ -206,7 +220,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--inmobiliarias">
-            <a class="sx-card" href="#" data-reveal="mask" data-reveal-delay="0.13">
+            <a class="sx-card" href="sector-inmobiliarias.html" data-reveal="mask" data-reveal-delay="0.13">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-inmobiliarias.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen inmobiliarias</span></div>
@@ -221,7 +235,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--hospitalarios">
-            <a class="sx-card" href="#" data-reveal="mask" data-reveal-delay="0.21">
+            <a class="sx-card" href="sector-hospitalarios.html" data-reveal="mask" data-reveal-delay="0.21">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-hospitalarios.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen hospitalarios</span></div>
@@ -236,7 +250,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--recoleccion">
-            <a class="sx-card" href="#" data-reveal="mask" data-reveal-delay="0.29">
+            <a class="sx-card" href="sector-empresas-de-recoleccion.html" data-reveal="mask" data-reveal-delay="0.29">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-recoleccion.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen recoleccion</span></div>
@@ -251,7 +265,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--educativas">
-            <a class="sx-card" href="#" data-reveal="mask" data-reveal-delay="0.05">
+            <a class="sx-card" href="sector-instituciones-educativas.html" data-reveal="mask" data-reveal-delay="0.05">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-educativas.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen educativas</span></div>
@@ -266,7 +280,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--supermercados">
-            <a class="sx-card" href="#" data-reveal="mask" data-reveal-delay="0.13">
+            <a class="sx-card" href="sector-supermercados-y-aeropuertos.html" data-reveal="mask" data-reveal-delay="0.13">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-supermercados.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen supermercados</span></div>
@@ -281,7 +295,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--restaurantes">
-            <a class="sx-card" href="#" data-reveal="mask" data-reveal-delay="0.21">
+            <a class="sx-card" href="sector-restaurantes-y-hosteleria.html" data-reveal="mask" data-reveal-delay="0.21">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-restaurantes.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen restaurantes</span></div>
@@ -296,7 +310,7 @@
             </a>
           </li>
           <li class="sx-item sx-item--domestico">
-            <a class="sx-card sx-card--lg" href="#" data-reveal="mask" data-reveal-delay="0.29">
+            <a class="sx-card sx-card--lg" href="sector-uso-domestico.html" data-reveal="mask" data-reveal-delay="0.29">
               <div class="sx-card__media">
                 <!-- <img src="assets/img/sector-domestico.jpg" width="1200" height="800" alt="" loading="lazy" decoding="async"> -->
                 <div class="placeholder placeholder--light" aria-hidden="true"><span class="placeholder__label">imagen domestico</span></div>
@@ -407,8 +421,8 @@
           <ul class="site-footer__links" role="list">
             <li><a href="soluciones.html">Sectores</a></li>
             <li><a href="productos.html">Productos</a></li>
+            <li><a href="catalogos.html">Catálogos</a></li>
             <li><a href="distribuidores.html">Distribuidores</a></li>
-            <li><a href="#">Casos de éxito</a></li>
           </ul>
         </nav>
         <nav class="site-footer__col" aria-label="ESE LATAM">

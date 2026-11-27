@@ -784,3 +784,22 @@ a.chip { text-decoration: none; }
   .nav, .search { transition: clip-path var(--menu-dur) var(--menu-ease), visibility 0s linear var(--menu-dur) !important; }
   .is-nav-open .nav, .is-search-open .search { transition: clip-path var(--menu-dur) var(--menu-ease), visibility 0s linear 0s !important; }
 }
+
+/* Mobile/táctil: el pill ya es navy al 92 %; sin backdrop-filter (repintar el blur sobre el globo/canvas al subir trababa el scroll) */
+@media (pointer: coarse), (max-width: 63.99em) {
+  .site-header__inner::before, .is-pill:not(.is-nav-open) .site-header__inner::before { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+}
+
+/* Productos: «Ver todos» primero, separado de las categorías (espejo del cierre de Sectores) */
+.nav__sub-head { grid-column: 1 / -1; margin-bottom: var(--space-3xs); padding-bottom: var(--space-3xs); border-bottom: 1px solid var(--color-grey-100); }
+.nav__sub-head .nav__sublink { flex-direction: row; align-items: center; gap: 0.375rem; font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+.nav__sub-head .nav__sublink:hover { background: none; }
+.nav__sub-head .nav__sublink i { transition: transform var(--dur-fast) var(--ease-out); }
+.nav__sub-head .nav__sublink:hover i { transform: translateX(3px); }
+/* Mismo color que las demás opciones del submenú en cada breakpoint */
+.nav__sublink--quiet, .nav__sublink--quiet:hover,
+.nav__sub-head .nav__sublink--all, .nav__sub-head .nav__sublink--all:hover { color: inherit; }
+@media (min-width: 64em) {
+  .nav__sublink--quiet, .nav__sublink--quiet:hover,
+  .nav__sub-head .nav__sublink--all, .nav__sub-head .nav__sublink--all:hover { color: var(--color-navy-500); }
+}

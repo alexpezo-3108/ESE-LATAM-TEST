@@ -121,6 +121,11 @@ html.lenis, html.lenis body { height: auto; }
 .scroll-edge > span:nth-child(2) { backdrop-filter: blur(1.5px); -webkit-backdrop-filter: blur(1.5px); mask: linear-gradient(to top, #000 0%, #000 25%, transparent 70%); -webkit-mask: linear-gradient(to top, #000 0%, #000 25%, transparent 70%); }
 .scroll-edge > span:nth-child(3) { backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); mask: linear-gradient(to top, #000 0%, transparent 45%); -webkit-mask: linear-gradient(to top, #000 0%, transparent 45%); }
 @media (max-width: 47.99em) { .scroll-edge { height: 5rem; } }
+/* Táctil: una sola capa de blur (tres capas enmascaradas eran muy costosas al hacer scroll rápido) */
+@media (pointer: coarse) {
+  .scroll-edge > span:nth-child(1), .scroll-edge > span:nth-child(2) { display: none; }
+  .scroll-edge > span:nth-child(3) { backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+}
 @media (prefers-reduced-motion: reduce) { .scroll-edge { transition: none; } }
 
 /* --------------------------------------------------------------------------

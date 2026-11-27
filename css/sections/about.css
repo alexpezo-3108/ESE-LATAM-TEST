@@ -91,3 +91,10 @@
 }
 .is-hex > .bento-hex { opacity: 0.55; }
 @media (prefers-reduced-motion: reduce) { .bento-hex { transition: none; } }
+
+/* «Conoce más de nosotros»: junto al texto en desktop; al final de la sección en mobile */
+.s-about__cta--end { display: none; }
+@media (max-width: 47.99em) {
+  .s-about__cta--top { display: none; }
+  .s-about__cta--end { display: block; margin-top: var(--space-xl); }
+}

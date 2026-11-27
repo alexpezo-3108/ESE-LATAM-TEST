@@ -106,7 +106,21 @@
         if (mat && it.dataset.mat) mat.textContent = it.dataset.mat;
       }
       if (link && it.dataset.href) link.href = it.dataset.href; }
+    // Posición inicial sin transición (antes estaban todos apilados al centro y se abrían en abanico)
+    items.forEach((el) => el.classList.add('no-anim'));
     layout();
+    void root.offsetWidth;
+    requestAnimationFrame(() => items.forEach((el) => el.classList.remove('no-anim')));
+    /* Entrada: cada producto sube desde abajo en su lugar; primero el central, luego los laterales */
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      items.forEach((el) => {
+        const d = Math.abs(el._d);
+        if (d > 2) return;
+        const to = getComputedStyle(el).opacity;
+        el.animate([{ translate: '0 35%', opacity: 0 }, { translate: '0 0', opacity: to }],
+          { duration: 1000, delay: 350 + d * 130, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' });
+      });
+    }
 
     /* Parallax de hojas con el mouse */
     if (matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -150,3 +150,15 @@ document.querySelectorAll('.s-dist__list').forEach((list) => {
   items.forEach((i) => mo.observe(i, { attributes: true, attributeFilter: ['class'] }));
   sync();
 })();
+
+/* Fotos de países: se descargan todas al acercarse a la sección, así al elegir un país ya está lista (sin esperar) */
+(() => {
+  const sec = document.querySelector('[data-distributors]');
+  if (!sec) return;
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    sec.querySelectorAll('img[data-preload]').forEach((img) => { img.loading = 'eager'; img.decode?.().catch(() => {}); });
+  }, { rootMargin: '800px 0px' });
+  io.observe(sec);
+})();

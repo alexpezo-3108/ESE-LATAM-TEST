@@ -112,7 +112,9 @@
     const toggle = item.querySelector('.nav__toggle');
     let timer;
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+      // Desktop con mouse: el menú ya se abre al pasar el cursor; el clic navega si el ítem tiene página propia (p. ej. Productos)
+      if (toggle.dataset.href && desktop.matches && hoverable.matches && e.detail > 0) { location.href = toggle.dataset.href; return; }
       const open = !item.classList.contains('is-open');
       if (desktop.matches) closeSubs(item);
       setSub(item, open);

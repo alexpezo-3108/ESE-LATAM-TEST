@@ -326,3 +326,12 @@ a.dist-card:hover { color: var(--color-on-dark); transform: translateX(4px); }
   .s-dist__list .dist-country__head { pointer-events: none; }
   .s-dist__list .dist-country__caret { display: none; }
 }
+
+/* Mobile: sin backdrop-filter sobre el canvas animado (era lo más costoso al hacer scroll) */
+@media (max-width: 63.99em) {
+  .s-dist .dist-card, .s-dist [class*="dist-"] { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .s-dist__frame { contain: paint; }
+}
+
+/* La foto del país aparece al instante al elegirlo (sin barrido de entrada) */
+.dist-country__bg { transition: none; }

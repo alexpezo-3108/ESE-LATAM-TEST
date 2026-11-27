@@ -98,7 +98,8 @@
     }, { passive: true });
 
     let resizeT;
-    window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(layout, 120); });
+    let lastW = innerWidth;
+    window.addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(resizeT); resizeT = setTimeout(layout, 120); });
     desktop.addEventListener('change', () => { track.scrollLeft = 0; setActive(0); layout(); });
 
     setActive(0);

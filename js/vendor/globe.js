@@ -98,7 +98,7 @@
       const w = Math.max(1, Math.round(container.clientWidth)), h = Math.max(1, Math.round(container.clientHeight));
       if (w === cw && h === ch) return;
       cw = w; ch = h;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, o.maxPixelRatio));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, matchMedia('(pointer: coarse)').matches ? 1.5 : o.maxPixelRatio));
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       const R = (o.atmosphere ? 1.06 : 1.0) * (1 + o.padding);

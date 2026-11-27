@@ -5,6 +5,7 @@
    ========================================================================== */
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches; // mobile: canvas más liviano
 
   document.querySelectorAll('[data-particles]').forEach((box) => {
     const canvas = box.querySelector('canvas');
@@ -19,7 +20,7 @@
 
     const resize = () => {
       const r = box.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.25 : 2);
       w = r.width; h = r.height;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -53,7 +54,8 @@
 
     resize();
     draw();
-    new ResizeObserver(() => { resize(); draw(); }).observe(box);
+    let lw = 0;
+    new ResizeObserver(([e]) => { const nw = Math.round(e.contentRect.width); if (coarse && nw === lw) return; lw = nw; resize(); draw(); }).observe(box);
     if (reduced) return;
 
     new IntersectionObserver(([e]) => {

@@ -77,7 +77,7 @@
   .s-sectors__slide .sector-card__body { transition: transform var(--dur-carousel, 0.6s) var(--ease-main); }
   .s-sectors__slide .sector-card__desc { transition: clip-path var(--dur-carousel, 0.6s) var(--ease-main); }
   .s-sectors__slide:not(.is-active) .sector-card__body {
-    transform: translateY(calc(var(--fs-sm) * var(--lh-body) + var(--space-sm)));
+    transform: translateY(calc(var(--fs-sm) * var(--lh-body) + var(--space-xs)));
   }
   .s-sectors__slide:not(.is-active) .sector-card__desc { clip-path: inset(0 0 100% 0); }
 }

@@ -82,6 +82,8 @@
 
 /* Métricas sin la sección Desafíos encima: sin margen superior propio */
 .s-chal--stats .chal-stats { margin-top: 0; }
+.s-chal--stats { padding-top: calc(var(--space-4xl) + var(--space-xl)); }
+@media (max-width: 63.99em) { .s-chal--stats { padding-top: calc(var(--space-3xl) + var(--space-lg)); } }
 /* Métricas: número y etiqueta suben desde abajo dentro de su máscara (como las líneas de los títulos) */
 .chal-stat__mask { display: block; overflow: hidden; padding-block: 0.08em; margin-block: -0.08em; }
 .chal-stat__mask > * { display: block; }

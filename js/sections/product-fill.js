@@ -207,14 +207,17 @@
   sync();
 })();
 
-/* Documentos de opciones del producto (p. ej. BIO SELECT) */
+/* Documentos del producto: catálogo PDF de su familia + opciones (p. ej. BIO SELECT) */
 (() => {
   const id = new URLSearchParams(location.search).get('id') || 'cl';
   const p = (window.PRODUCTS || []).find((x) => x.id === id);
   const btn = document.querySelector('[data-pd] [data-pd-pdf]');
-  if (!p || !p.docs || !btn) return;
+  if (!p || !btn) return;
+  const CAT = { 'Contenedores 2 ruedas': 'cat-2-ruedas', 'Contenedores 3 ruedas': 'cat-3-ruedas', 'Contenedores 4 ruedas': 'cat-4-ruedas', 'Papeleras': 'cat-papeleras', 'Soterrados': 'cat-semi-soterrados', 'Contenedores biológicos': 'cat-biologicos', 'Contenedores domésticos': 'cat-domesticos' };
+  const anchor = /split/.test(p.id) ? 'cat-4-ruedas-spl' : (CAT[p.line] || 'cat-general');
   const box = document.createElement('ul'); box.className = 'pd-docs'; box.setAttribute('role', 'list');
-  box.innerHTML = p.docs.map((d) => `<li><a href="${d.href}" download><i class="ph ph-file-pdf" aria-hidden="true"></i>${d.label}</a></li>`).join('');
+  box.innerHTML = `<li><a href="catalogos.html#${anchor}"><i class="ph ph-download-simple" aria-hidden="true"></i>Descargar catálogo (PDF)</a></li>` +
+    (p.docs || []).map((d) => `<li><a href="${d.href}" download><i class="ph ph-file-pdf" aria-hidden="true"></i>${d.label}</a></li>`).join('');
   const row = btn.closest('.pd-actions') || btn.parentElement;
   row.appendChild(box);
 })();

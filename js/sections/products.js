@@ -115,6 +115,20 @@
       compact.innerHTML = ps.map((p) => `<li class="s-products__compact-item">${window.ProductCard ? window.ProductCard.html(p) : ''}</li>`).join('');
     };
 
+    /* Alto fijo: todas las tarjetas de la sección miden lo que la más alta de TODAS las categorías
+       (el alto de la sección no cambia al pasar de categoría) */
+    const lockHeights = () => {
+      root.style.removeProperty('--pc-h');
+      const hid = all.filter((s) => s.hidden);
+      hid.forEach((s) => { s.hidden = false; });
+      const hs = all.map((s) => s.querySelector('.product-card')?.offsetHeight || 0);
+      hid.forEach((s) => { s.hidden = true; });
+      const max = Math.max(0, ...hs);
+      if (max) root.style.setProperty('--pc-h', max + 'px');
+      if (!stage.hidden) stageH = stage.offsetHeight;
+    };
+    let stageH = 0;
+
     const wide = matchMedia('(min-width: 64em)');
     wide.addEventListener('change', () => { const c = category; category = null; setCategory(c, false); });
     const setCategory = (cat, animate = true) => {
@@ -126,8 +140,10 @@
       const wasCompact = root.classList.contains('is-compact');
       root.classList.toggle('is-compact', isCompact);
       if (isCompact) {
+        if (!stage.hidden) stageH = stage.offsetHeight;
         renderCompact(cat);
-        stage.hidden = true; if (dotsWrap) dotsWrap.hidden = true; compact.hidden = false;
+        stage.hidden = true; if (dotsWrap) dotsWrap.style.visibility = 'hidden'; compact.hidden = false;
+        compact.style.minHeight = stageH ? stageH + 'px' : '';
         if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
           compact.animate?.([{ transform: 'translateY(3rem)' }, { transform: 'none' }], { duration: 900, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
         }
@@ -136,10 +152,11 @@
         return;
       }
       if (compact) compact.hidden = true;
-      stage.hidden = false; if (dotsWrap) dotsWrap.hidden = false;
+      stage.hidden = false; if (dotsWrap) { dotsWrap.hidden = false; dotsWrap.style.visibility = ''; }
       if (wasCompact) animate = true;
       all.forEach((s) => { s._d = undefined; });
       all.forEach((s) => { s.hidden = !list.includes(s); });
+      root.classList.toggle('is-single', list.length <= 1); // una sola tarjeta: sin flechas ni puntos
       index = 0;
       root.classList.remove('is-ready');
       buildDots();
@@ -192,9 +209,14 @@
     }, { passive: true });
 
     let t;
-    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(layout, 120); });
+    // Solo si cambia el ancho: en mobile la barra del navegador cambia el alto al subir y re-medir aquí movía el scroll
+    let lastW = innerWidth;
+    window.addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(t); t = setTimeout(() => { lockHeights(); layout(); }, 120); });
     desktop.addEventListener('change', () => { track.scrollLeft = 0; index = 0; layout(); });
 
     setCategory(select?.value || all[0]?.dataset.category, false);
+    lockHeights();
+    document.fonts?.ready.then(lockHeights);
+    addEventListener('load', lockHeights, { once: true });
   });
 })();
